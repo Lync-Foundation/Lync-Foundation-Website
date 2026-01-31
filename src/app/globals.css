@@ -82,11 +82,27 @@ html {
   font-weight: 400;
 }
 
-/* Elegant line */
+/* Elegant line - now with logo gradient */
 .elegant-line {
-  width: 60px;
+  width: 80px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.5), rgba(168, 85, 247, 0.5), transparent);
+}
+
+/* Logo gradient colors */
+.gradient-text {
+  background: linear-gradient(135deg, #7DD3FC 0%, #6366F1 50%, #A855F7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  border-image: linear-gradient(135deg, #7DD3FC, #6366F1, #A855F7) 1;
+}
+
+.gradient-glow {
+  box-shadow: 0 0 60px rgba(99, 102, 241, 0.15), 0 0 120px rgba(168, 85, 247, 0.1);
 }
 
 /* Subtle glow */

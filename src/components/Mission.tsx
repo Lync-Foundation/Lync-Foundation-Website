@@ -14,7 +14,7 @@ export default function Mission() {
           transition={{ duration: 1 }}
           className="text-center max-w-4xl mx-auto"
         >
-          <p className="refined-caps text-gold mb-12">About</p>
+          <p className="refined-caps gradient-text mb-12">About</p>
           
           <p className="text-xl lg:text-2xl xl:text-3xl font-extralight dark:text-zinc-400 text-zinc-600 leading-relaxed">
             We build infrastructure that bridges traditional financial systems 

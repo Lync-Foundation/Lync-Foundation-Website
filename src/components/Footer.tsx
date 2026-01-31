@@ -52,8 +52,8 @@ export default function Footer() {
             href="mailto:contact@lync-foundation.org"
             className="flex items-center gap-2 mb-12 group"
           >
-            <Mail className="w-4 h-4 dark:text-zinc-600 text-zinc-500 group-hover:text-gold transition-colors duration-300" />
-            <span className="text-sm dark:text-zinc-600 text-zinc-500 group-hover:text-gold transition-colors duration-300">
+            <Mail className="w-4 h-4 dark:text-zinc-600 text-zinc-500 group-hover:text-[#6366F1] transition-colors duration-300" />
+            <span className="text-sm dark:text-zinc-600 text-zinc-500 group-hover:text-[#6366F1] transition-colors duration-300">
               contact@lync-foundation.org
             </span>
           </Link>

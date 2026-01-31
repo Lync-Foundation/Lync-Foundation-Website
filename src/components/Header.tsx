@@ -159,7 +159,7 @@ export default function Header() {
                               <span className={`text-base ${isDark ? "text-white" : "text-black"}`}>
                                 {product.name}
                               </span>
-                              <span className="nav-text text-gold">{product.status}</span>
+                              <span className="nav-text text-[#6366F1]">{product.status}</span>
                             </div>
                             <p className={`text-sm ${isDark ? "text-zinc-600" : "text-zinc-500"}`}>
                               {product.description}
@@ -186,14 +186,12 @@ export default function Header() {
             </div>
 
             <Link
-              href="https://github.com/Lync-Foundation"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#news"
               className={`nav-text transition-colors duration-500 ${
                 isDark ? "text-zinc-500 hover:text-zinc-200" : "text-zinc-500 hover:text-zinc-900"
               }`}
             >
-              GitHub
+              News
             </Link>
 
             {/* Theme Toggle - 1.5x larger */}
