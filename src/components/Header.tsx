@@ -30,7 +30,7 @@ export default function Header() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/80 dark:bg-slate-950/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800"
+          ? "bg-white/90 dark:bg-slate-950/90 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800"
           : "bg-transparent"
       }`}
     >
@@ -45,7 +45,7 @@ export default function Header() {
               height={40}
               className="w-8 h-8 lg:w-10 lg:h-10"
             />
-            <span className="font-semibold text-lg text-slate-900 dark:text-white hidden sm:block">
+            <span className={`font-semibold text-lg ${isScrolled ? 'text-slate-900 dark:text-white' : 'text-white'}`}>
               Lync Foundation
             </span>
           </Link>
@@ -56,38 +56,33 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 text-sm font-medium"
+                className={`transition-colors duration-200 text-sm font-medium ${
+                  isScrolled 
+                    ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white' 
+                    : 'text-slate-300 hover:text-white'
+                }`}
               >
                 {link.label}
               </Link>
             ))}
             <Link
-              href="https://lync-z.xyz"
+              href="https://github.com/Lync-Foundation"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 gradient-button text-white text-sm font-medium rounded-xl hover:opacity-90 transition-opacity duration-200"
+              className={`text-sm font-medium transition-colors duration-200 ${
+                isScrolled 
+                  ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white' 
+                  : 'text-slate-300 hover:text-white'
+              }`}
             >
-              Explore LyncZ
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
+              GitHub
             </Link>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-slate-600 dark:text-slate-300"
+            className={`md:hidden p-2 ${isScrolled ? 'text-slate-600 dark:text-slate-300' : 'text-white'}`}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -99,7 +94,7 @@ export default function Header() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden py-4 border-t border-slate-200 dark:border-slate-800"
+            className="md:hidden py-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950"
           >
             <nav className="flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -113,12 +108,12 @@ export default function Header() {
                 </Link>
               ))}
               <Link
-                href="https://lync-z.xyz"
+                href="https://github.com/Lync-Foundation"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 gradient-button text-white text-sm font-medium rounded-xl hover:opacity-90 transition-opacity duration-200"
+                className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 text-sm font-medium"
               >
-                Explore LyncZ
+                GitHub
               </Link>
             </nav>
           </motion.div>
