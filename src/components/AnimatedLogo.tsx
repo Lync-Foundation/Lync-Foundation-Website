@@ -77,22 +77,17 @@ export default function AnimatedLogo({
     }),
   };
 
-  const containerFloat = {
-    animate: {
-      y: [0, -15, 0],
-      rotate: [0, 3, 0, -3, 0],
-      transition: {
-        y: { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 4 },
-        rotate: { duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 },
-      },
-    },
-  };
-
   return (
     <motion.div 
       className={`relative ${className}`}
-      variants={containerFloat}
-      animate="animate"
+      animate={{
+        y: [0, -15, 0],
+        rotate: [0, 3, 0, -3, 0],
+      }}
+      transition={{
+        y: { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 4 },
+        rotate: { duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 },
+      }}
     >
       {/* Pulsing glow behind logo */}
       <motion.div
