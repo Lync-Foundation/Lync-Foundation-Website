@@ -7,14 +7,14 @@ import { Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="relative py-24 border-t dark:border-zinc-900 border-zinc-200 dark:bg-[#060606] bg-[#f0e8e0]">
-      {/* Imperial pattern */}
+    <footer className="relative py-24 border-t dark:border-zinc-900/50 border-zinc-300/50 dark:bg-[#060606] bg-[#f5f0e6]">
+      {/* Subtle lattice pattern */}
       <div 
-        className="absolute inset-0 dark:opacity-[0.02] opacity-[0.04]"
+        className="absolute inset-0 dark:opacity-[0.015] opacity-[0.03]"
         style={{
           backgroundImage: `
-            linear-gradient(90deg, rgba(139, 69, 69, 0.4) 1px, transparent 1px),
-            linear-gradient(rgba(139, 69, 69, 0.4) 1px, transparent 1px)
+            linear-gradient(90deg, rgba(139, 35, 35, 0.3) 1px, transparent 1px),
+            linear-gradient(rgba(139, 35, 35, 0.3) 1px, transparent 1px)
           `,
           backgroundSize: '80px 80px'
         }}
@@ -26,23 +26,18 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="flex flex-col items-start text-left"
+          className="flex flex-col items-start"
         >
-          {/* Imperial seal */}
-          <Link href="/" className="mb-6 group">
+          {/* Logo */}
+          <Link href="/" className="mb-12 group">
             <Image
               src="/logo.png"
               alt="Lync Foundation"
               width={48}
               height={48}
-              className="w-12 h-12 opacity-60 group-hover:opacity-80 transition-opacity duration-500"
+              className="w-12 h-12 opacity-50 group-hover:opacity-70 transition-opacity duration-500"
             />
           </Link>
-
-          {/* Imperial designation */}
-          <p className="refined-caps dark:text-[#8B4545] text-[#8B4545] tracking-[0.3em] mb-8">
-            Imperial Research Foundation
-          </p>
 
           {/* Links */}
           <div className="flex items-center gap-8 mb-8">
@@ -50,28 +45,28 @@ export default function Footer() {
               href="https://x.com/LyncFoundation"
               target="_blank"
               rel="noopener noreferrer"
-              className="refined-caps dark:text-zinc-700 text-zinc-500 hover:text-[#8B4545] dark:hover:text-[#8B4545] transition-colors duration-500"
+              className="text-xs tracking-[0.2em] uppercase dark:text-zinc-700 text-zinc-500 hover:text-[#6366F1] dark:hover:text-[#6366F1] transition-colors duration-500"
             >
-              X / Twitter
+              X
             </Link>
           </div>
 
-          {/* Contact - imperial style */}
+          {/* Contact */}
           <Link
             href="mailto:contact@lync-foundation.org"
-            className="flex items-center gap-3 mb-12 group"
+            className="flex items-center gap-3 mb-16 group"
           >
-            <Mail className="w-4 h-4 dark:text-zinc-700 text-zinc-500 group-hover:text-[#8B4545] transition-colors duration-300" />
-            <span className="text-sm dark:text-zinc-600 text-zinc-500 group-hover:text-[#8B4545] transition-colors duration-300">
+            <Mail className="w-4 h-4 dark:text-zinc-700 text-zinc-500 group-hover:text-[#6366F1] transition-colors duration-300" />
+            <span className="text-sm dark:text-zinc-600 text-zinc-500 group-hover:text-[#6366F1] transition-colors duration-300">
               contact@lync-foundation.org
             </span>
           </Link>
 
-          {/* Imperial copyright */}
+          {/* Copyright */}
           <div className="flex items-center gap-4">
-            <div className="h-[1px] w-8 dark:bg-zinc-800 bg-zinc-300" />
-            <p className="text-xs dark:text-zinc-800 text-zinc-400 tracking-wider">
-              © MMXXVI Lync Foundation. All rights reserved.
+            <div className="h-[1px] w-8 bg-gradient-to-r from-[#8B2323] to-transparent" />
+            <p className="text-xs dark:text-zinc-800 text-zinc-400 tracking-wide">
+              © 2026 Lync Foundation
             </p>
           </div>
         </motion.div>
