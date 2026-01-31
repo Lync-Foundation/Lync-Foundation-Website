@@ -1,19 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050505;
-  --foreground: #E8E8E8;
-  --silver: #C0C0C0;
-  --gold: #B8860B;
-  --gold-light: #D4AF37;
-  --surface: #0A0A0A;
-  --surface-light: #111111;
-  --border: rgba(255, 255, 255, 0.08);
-}
-
-/* Light mode variables */
-.light {
-  --background: #FAFAFA;
+  --background: #f5f0e6;
   --foreground: #1A1A1A;
   --silver: #666666;
   --gold: #B8860B;
@@ -21,6 +9,8 @@
   --surface: #FFFFFF;
   --surface-light: #F5F5F5;
   --border: rgba(0, 0, 0, 0.08);
+  --vermillion: #8B2323;
+  --imperial-cream: #f5f0e6;
 }
 
 @theme inline {
@@ -34,18 +24,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-/* Light mode specific overrides */
-.light body,
-.light {
-  background: #FAFAFA;
-  color: #1A1A1A;
 }
 
 /* Luxury gold accent */
@@ -59,10 +41,6 @@ html {
 
 /* Silver text */
 .text-silver {
-  color: #A0A0A0;
-}
-
-.light .text-silver {
   color: #666666;
 }
 
@@ -74,7 +52,7 @@ html {
   font-weight: 400;
 }
 
-/* Navigation text - 1.5x larger */
+/* Navigation text */
 .nav-text {
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -82,7 +60,7 @@ html {
   font-weight: 400;
 }
 
-/* Elegant line - now with logo gradient */
+/* Elegant line with logo gradient */
 .elegant-line {
   width: 80px;
   height: 1px;
@@ -116,34 +94,21 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--imperial-cream);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: #ccc;
   border-radius: 3px;
 }
 
-.light ::-webkit-scrollbar-thumb {
-  background: #ccc;
-}
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #444;
-}
-
-.light ::-webkit-scrollbar-thumb:hover {
   background: #999;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(212, 175, 55, 0.2);
-  color: white;
-}
-
-.light ::selection {
-  background: rgba(212, 175, 55, 0.3);
+  background: rgba(99, 102, 241, 0.2);
   color: #1A1A1A;
 }
 
@@ -157,13 +122,4 @@ html {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 200ms ease, transform 200ms ease;
-}
-
-/* Theme toggle button */
-.theme-toggle {
-  transition: transform 0.3s ease;
-}
-
-.theme-toggle:hover {
-  transform: scale(1.1);
 }

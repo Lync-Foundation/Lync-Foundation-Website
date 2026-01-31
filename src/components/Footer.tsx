@@ -7,10 +7,10 @@ import { Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="relative py-24 border-t dark:border-zinc-900/50 border-zinc-300/50 dark:bg-[#060606] bg-[#f5f0e6]">
+    <footer className="relative py-24 border-t border-zinc-300/50 bg-[#f0e8e0]">
       {/* Subtle lattice pattern */}
       <div 
-        className="absolute inset-0 dark:opacity-[0.015] opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `
             linear-gradient(90deg, rgba(139, 35, 35, 0.3) 1px, transparent 1px),
@@ -35,7 +35,7 @@ export default function Footer() {
               alt="Lync Foundation"
               width={48}
               height={48}
-              className="w-12 h-12 opacity-50 group-hover:opacity-70 transition-opacity duration-500"
+              className="w-12 h-12 opacity-60 group-hover:opacity-80 transition-opacity duration-500"
             />
           </Link>
 
@@ -45,7 +45,7 @@ export default function Footer() {
               href="https://x.com/LyncFoundation"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs tracking-[0.2em] uppercase dark:text-zinc-700 text-zinc-500 hover:text-[#6366F1] dark:hover:text-[#6366F1] transition-colors duration-500"
+              className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-[#6366F1] transition-colors duration-500"
             >
               X
             </Link>
@@ -56,8 +56,8 @@ export default function Footer() {
             href="mailto:contact@lync-foundation.org"
             className="flex items-center gap-3 mb-16 group"
           >
-            <Mail className="w-4 h-4 dark:text-zinc-700 text-zinc-500 group-hover:text-[#6366F1] transition-colors duration-300" />
-            <span className="text-sm dark:text-zinc-600 text-zinc-500 group-hover:text-[#6366F1] transition-colors duration-300">
+            <Mail className="w-4 h-4 text-zinc-500 group-hover:text-[#6366F1] transition-colors duration-300" />
+            <span className="text-sm text-zinc-500 group-hover:text-[#6366F1] transition-colors duration-300">
               contact@lync-foundation.org
             </span>
           </Link>
@@ -65,7 +65,7 @@ export default function Footer() {
           {/* Copyright */}
           <div className="flex items-center gap-4">
             <div className="h-[1px] w-8 bg-gradient-to-r from-[#8B2323] to-transparent" />
-            <p className="text-xs dark:text-zinc-800 text-zinc-400 tracking-wide">
+            <p className="text-xs text-zinc-400 tracking-wide">
               © 2026 Lync Foundation
             </p>
           </div>

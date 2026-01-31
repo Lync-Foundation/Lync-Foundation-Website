@@ -34,7 +34,7 @@ function useParticleCanvas() {
       x: Math.random() * width,
       y: Math.random() * height,
       vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3 - 0.1, // Slight upward drift
+      vy: (Math.random() - 0.5) * 0.3 - 0.1,
       size: Math.random() * 2 + 0.5,
       alpha: Math.random() * 0.5 + 0.1,
       color: colors[Math.floor(Math.random() * colors.length)],
@@ -57,7 +57,6 @@ function useParticleCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Initialize particles
     const particleCount = Math.min(80, Math.floor(window.innerWidth / 20));
     particlesRef.current = Array.from({ length: particleCount }, () => 
       createParticle(canvas.width, canvas.height)
@@ -71,7 +70,6 @@ function useParticleCanvas() {
         p.y += p.vy;
         p.life++;
 
-        // Fade in and out based on life
         const lifeRatio = p.life / p.maxLife;
         const fadeAlpha = lifeRatio < 0.1 
           ? lifeRatio * 10 
@@ -81,19 +79,16 @@ function useParticleCanvas() {
 
         const currentAlpha = p.alpha * fadeAlpha;
 
-        // Draw particle with glow
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = p.color.replace("alpha", String(currentAlpha));
         ctx.fill();
 
-        // Add subtle glow
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
         ctx.fillStyle = p.color.replace("alpha", String(currentAlpha * 0.1));
         ctx.fill();
 
-        // Reset particle if dead or out of bounds
         if (p.life > p.maxLife || p.x < -10 || p.x > canvas.width + 10 || 
             p.y < -10 || p.y > canvas.height + 10) {
           particlesRef.current[i] = createParticle(canvas.width, canvas.height);
@@ -119,13 +114,13 @@ export default function HeroAnimated() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Base gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b dark:from-[#050505] dark:via-[#0a0808] dark:to-[#080808] from-[#f5f0e6] via-[#f0ebe3] to-[#ebe5dc]" />
+      {/* Light theme background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#f5f0e6] via-[#f0ebe3] to-[#ebe5dc]" />
 
-      {/* Animated lattice pattern - CSS only */}
+      {/* Animated lattice pattern */}
       <div className="absolute inset-0 overflow-hidden">
         <div 
-          className="absolute inset-0 dark:opacity-[0.04] opacity-[0.06]"
+          className="absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage: `
               linear-gradient(90deg, rgba(139, 35, 35, 0.5) 1px, transparent 1px),
@@ -137,9 +132,9 @@ export default function HeroAnimated() {
         />
       </div>
 
-      {/* Radial glows - animated */}
+      {/* Radial glows */}
       <motion.div 
-        className="absolute inset-0 dark:opacity-30 opacity-15"
+        className="absolute inset-0 opacity-15"
         animate={{
           background: [
             "radial-gradient(ellipse 40% 35% at 50% 50%, rgba(139, 35, 35, 0.25) 0%, transparent 70%)",
@@ -151,9 +146,9 @@ export default function HeroAnimated() {
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Logo gradient glow - breathing */}
+      {/* Logo gradient glow */}
       <motion.div 
-        className="absolute inset-0 dark:opacity-20 opacity-10"
+        className="absolute inset-0 opacity-10"
         animate={{
           background: [
             "radial-gradient(ellipse 30% 25% at 50% 50%, rgba(99, 102, 241, 0.2) 0%, transparent 60%)",
@@ -168,18 +163,18 @@ export default function HeroAnimated() {
       {/* Particle canvas */}
       <canvas 
         ref={canvasRef} 
-        className="absolute inset-0 pointer-events-none dark:opacity-60 opacity-40"
+        className="absolute inset-0 pointer-events-none opacity-40"
       />
 
       {/* Vignette */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.3) 100%)"
+          background: "radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.2) 100%)"
         }}
       />
 
-      {/* Center content */}
+      {/* Center content with animated logo */}
       <div className="relative z-10 flex flex-col items-center justify-center">
         {/* Rotating outer ring */}
         <motion.div
@@ -191,7 +186,7 @@ export default function HeroAnimated() {
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
         />
 
-        {/* Second rotating ring - opposite direction */}
+        {/* Second rotating ring */}
         <motion.div
           className="absolute w-56 h-56 lg:w-72 lg:h-72 rounded-full"
           style={{
@@ -214,16 +209,34 @@ export default function HeroAnimated() {
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Logo */}
+        {/* ANIMATED LOGO */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 2.5, ease: "easeOut" }}
+          className="relative"
         >
+          {/* Shimmer effect overlay */}
+          <motion.div
+            className="absolute inset-0 z-20 pointer-events-none overflow-hidden rounded-full"
+            style={{ width: '100%', height: '100%' }}
+          >
+            <motion.div
+              className="absolute w-[200%] h-full"
+              style={{
+                background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)",
+                left: '-100%',
+              }}
+              animate={{ left: ['−100%', '100%'] }}
+              transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
+            />
+          </motion.div>
+
+          {/* Logo with animations */}
           <motion.div
             animate={{ 
               y: [0, -10, 0],
-              rotate: [0, 1, 0, -1, 0]
+              rotate: [0, 2, 0, -2, 0]
             }}
             transition={{ 
               y: { duration: 8, repeat: Infinity, ease: "easeInOut" },
@@ -261,12 +274,8 @@ export default function HeroAnimated() {
       {/* CSS Keyframes */}
       <style jsx>{`
         @keyframes latticeShift {
-          0% {
-            transform: translate(0, 0);
-          }
-          100% {
-            transform: translate(60px, 60px);
-          }
+          0% { transform: translate(0, 0); }
+          100% { transform: translate(60px, 60px); }
         }
       `}</style>
     </section>
