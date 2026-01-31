@@ -5,19 +5,18 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Deep black background */}
-      <div className="absolute inset-0 bg-[#050505]" />
+      {/* Background handled by body */}
       
       {/* Subtle radial gradient */}
       <div 
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-30 dark:opacity-30"
         style={{
           background: "radial-gradient(ellipse 80% 50% at 50% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 70%)"
         }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
+      {/* Content - full width */}
+      <div className="relative z-10 w-full px-8 lg:px-16 xl:px-24 text-center">
         {/* Elegant line */}
         <motion.div
           initial={{ scaleX: 0 }}
@@ -31,11 +30,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.6 }}
-          className="text-3xl sm:text-4xl lg:text-5xl font-extralight tracking-wide text-white leading-relaxed mb-8"
+          className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-extralight tracking-wide leading-relaxed mb-8"
         >
-          Cryptographic trust
+          <span className="dark:text-white text-zinc-900">Cryptographic trust</span>
           <br />
-          <span className="text-zinc-500">for traditional finance.</span>
+          <span className="dark:text-zinc-500 text-zinc-500">for traditional finance.</span>
         </motion.h1>
 
         {/* Subtle tagline */}
@@ -43,7 +42,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="refined-caps text-zinc-600 mb-20"
+          className="refined-caps dark:text-zinc-600 text-zinc-500 mb-20"
         >
           Research Foundation
         </motion.p>
