@@ -1,122 +1,120 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20,
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-slate-950">
-      {/* Abstract geometric background */}
-      <div className="absolute inset-0">
-        {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
-        
-        {/* Subtle grid pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px'
-          }}
-        />
-        
-        {/* Accent glow - subtle */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-500/5 blur-[120px] rounded-full" />
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Deep background */}
+      <div className="absolute inset-0 bg-[#0A0A0C]" />
+      
+      {/* Subtle grid */}
+      <div className="absolute inset-0 grid-bg opacity-60" />
+      
+      {/* Gradient orbs - react to mouse */}
+      <motion.div
+        className="absolute w-[800px] h-[800px] rounded-full opacity-20"
+        style={{
+          background: "radial-gradient(circle, rgba(127, 128, 255, 0.3) 0%, transparent 70%)",
+          filter: "blur(80px)",
+          x: mousePosition.x,
+          y: mousePosition.y,
+        }}
+        animate={{
+          x: mousePosition.x,
+          y: mousePosition.y,
+        }}
+        transition={{ type: "spring", damping: 30, stiffness: 100 }}
+      />
+      
+      <motion.div
+        className="absolute w-[600px] h-[600px] rounded-full opacity-15"
+        style={{
+          background: "radial-gradient(circle, rgba(200, 109, 215, 0.4) 0%, transparent 70%)",
+          filter: "blur(100px)",
+          right: "-10%",
+          bottom: "10%",
+        }}
+        animate={{
+          x: -mousePosition.x * 0.5,
+          y: -mousePosition.y * 0.5,
+        }}
+        transition={{ type: "spring", damping: 30, stiffness: 100 }}
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Foundation badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8"
-          >
-            <span className="text-sm font-medium text-slate-400">
-              Non-profit Research Initiative
-            </span>
-          </motion.div>
+      {/* Noise overlay */}
+      <div className="absolute inset-0 noise-overlay pointer-events-none" />
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-6"
-          >
-            <span className="text-white">Bridging Traditional Finance</span>
-            <br />
-            <span className="text-white">with </span>
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
-              Cryptographic Trust
-            </span>
-          </motion.h1>
-
-          {/* Subheadline */}
+      {/* Content */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-4xl">
+          {/* Label */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="caps text-[#7F80FF] mb-8"
           >
-            Lync Foundation develops open-source infrastructure that makes 
-            real-world financial transactions verifiable on-chain through 
-            zero-knowledge cryptography.
+            Research Foundation
           </motion.p>
 
-          {/* CTAs */}
-          <motion.div
+          {/* Main statement */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="text-4xl sm:text-5xl lg:text-7xl font-light tracking-tight text-white leading-[1.1] mb-8"
+          >
+            We build infrastructure
+            <br />
+            <span className="gradient-text font-normal">
+              that wasn&apos;t possible before.
+            </span>
+          </motion.h1>
+
+          {/* Subtext */}
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-lg text-zinc-500 max-w-xl leading-relaxed mb-12"
           >
-            <Link
-              href="#mission"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-slate-900 font-medium rounded-xl hover:bg-slate-100 transition-colors duration-200"
-            >
-              Our Mission
-            </Link>
-            <Link
-              href="#products"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-medium rounded-xl hover:bg-white/20 transition-colors duration-200 border border-white/10"
-            >
-              View Products
-            </Link>
+            Cryptographic verification of traditional finance.
+            <br />
+            Zero-knowledge proofs for real-world payments.
+            <br />
+            Open source. Non-profit.
+          </motion.p>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="flex items-center gap-4"
+          >
+            <div className="w-12 h-[1px] bg-zinc-700" />
+            <span className="caps text-zinc-600">Scroll to explore</span>
           </motion.div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <div className="flex flex-col items-center gap-2 text-slate-500">
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </motion.div>
-          </div>
-        </motion.div>
       </div>
+
+      {/* Bottom gradient fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0A0C] to-transparent" />
     </section>
   );
 }

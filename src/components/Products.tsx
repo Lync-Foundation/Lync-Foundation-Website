@@ -1,144 +1,147 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle, Clock } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
-const products = [
+const projects = [
   {
+    id: "01",
     name: "LyncZ",
-    tagline: "P2P Fiat-Crypto Exchange",
-    description:
-      "Trustless peer-to-peer exchange with ZK-verified payment proofs.",
-    status: "live",
-    statusLabel: "Live",
+    field: "Payment Verification",
+    status: "Active",
+    statusColor: "#8AF5FF",
+    description: "Trustless P2P exchange using ZK proofs to verify Alipay receipts on-chain.",
     href: "https://lync-z.xyz",
-    logo: "/lyncz-avatar.svg",
   },
   {
+    id: "02",
     name: "LyncS",
-    tagline: "Verified Stablecoin",
-    description:
-      "Stablecoin backed by cryptographically verified fiat balances.",
-    status: "development",
-    statusLabel: "Research",
+    field: "Verified Assets",
+    status: "Research",
+    statusColor: "#C86DD7",
+    description: "Stablecoin backed by cryptographically verified fiat balances.",
     href: null,
-    logo: null,
+  },
+  {
+    id: "03",
+    name: "Payment Rails",
+    field: "Infrastructure",
+    status: "Planned",
+    statusColor: "#7F80FF",
+    description: "SEPA, Wise, and additional regional payment integrations.",
+    href: null,
   },
 ];
 
 export default function Products() {
   return (
-    <section id="products" className="relative py-24 lg:py-32 bg-slate-50 dark:bg-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="research" className="relative py-32 lg:py-48 bg-[#0F0F10]">
+      {/* Subtle top glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#7F80FF]/5 blur-[120px] rounded-full" />
+      
+      <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mb-16"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="mb-16"
         >
-          <p className="text-sm font-medium text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-3">
-            Products
-          </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">
-            From Research to Reality
+          <p className="caps text-[#7F80FF] mb-4">Research</p>
+          <h2 className="text-3xl lg:text-5xl font-light text-white max-w-2xl leading-tight">
+            Active projects and
+            <br />
+            <span className="gradient-text-subtle">ongoing research.</span>
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
-            Our research translates into practical applications that demonstrate 
-            the viability of trustless financial infrastructure.
-          </p>
         </motion.div>
 
-        {/* Products list - compact */}
-        <div className="space-y-4">
-          {products.map((product, index) => (
+        {/* Table header */}
+        <div className="hidden lg:grid grid-cols-12 gap-4 py-4 border-b border-zinc-800 mb-2">
+          <div className="col-span-1">
+            <span className="caps text-zinc-600">ID</span>
+          </div>
+          <div className="col-span-3">
+            <span className="caps text-zinc-600">Project</span>
+          </div>
+          <div className="col-span-3">
+            <span className="caps text-zinc-600">Field</span>
+          </div>
+          <div className="col-span-2">
+            <span className="caps text-zinc-600">Status</span>
+          </div>
+          <div className="col-span-3">
+            <span className="caps text-zinc-600">Link</span>
+          </div>
+        </div>
+
+        {/* Projects */}
+        <div className="space-y-0">
+          {projects.map((project, index) => (
             <motion.div
-              key={product.name}
-              initial={{ opacity: 0, y: 20 }}
+              key={project.id}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
-              className="bg-white dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-700"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group grid grid-cols-12 gap-4 py-6 lg:py-8 border-b border-zinc-800/50 hover:bg-zinc-900/30 transition-colors duration-300"
             >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  {product.logo ? (
-                    <Image
-                      src={product.logo}
-                      alt={product.name}
-                      width={48}
-                      height={48}
-                      className="w-12 h-12 rounded-xl"
-                    />
-                  ) : (
-                    <div className="w-12 h-12 rounded-xl bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
-                      <span className="text-lg font-bold text-slate-400">?</span>
-                    </div>
-                  )}
-                  <div>
-                    <div className="flex items-center gap-3">
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                        {product.name}
-                      </h3>
-                      <span
-                        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium ${
-                          product.status === "live"
-                            ? "bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
-                            : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400"
-                        }`}
-                      >
-                        {product.status === "live" ? (
-                          <CheckCircle className="w-3 h-3" />
-                        ) : (
-                          <Clock className="w-3 h-3" />
-                        )}
-                        {product.statusLabel}
-                      </span>
-                    </div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
-                      {product.tagline}
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-4">
-                  <p className="text-sm text-slate-600 dark:text-slate-400 max-w-xs hidden md:block">
-                    {product.description}
-                  </p>
-                  {product.href ? (
-                    <Link
-                      href={product.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-medium rounded-lg hover:opacity-90 transition-opacity"
-                    >
-                      Visit
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  ) : (
-                    <span className="text-sm text-slate-400 dark:text-slate-500">
-                      Coming soon
-                    </span>
-                  )}
-                </div>
+              {/* ID */}
+              <div className="col-span-2 lg:col-span-1">
+                <span className="font-mono text-sm text-zinc-600">{project.id}</span>
+              </div>
+              
+              {/* Name */}
+              <div className="col-span-10 lg:col-span-3">
+                <h3 className="text-lg lg:text-xl font-normal text-white group-hover:text-[#8AF5FF] transition-colors duration-300">
+                  {project.name}
+                </h3>
+                <p className="text-sm text-zinc-600 mt-1 lg:hidden">{project.field}</p>
+              </div>
+              
+              {/* Field */}
+              <div className="hidden lg:block col-span-3">
+                <span className="text-zinc-400">{project.field}</span>
+              </div>
+              
+              {/* Status */}
+              <div className="col-span-6 lg:col-span-2">
+                <span 
+                  className="inline-flex items-center gap-2 text-sm"
+                  style={{ color: project.statusColor }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: project.statusColor }} />
+                  {project.status}
+                </span>
+              </div>
+              
+              {/* Link */}
+              <div className="col-span-6 lg:col-span-3 flex justify-end lg:justify-start">
+                {project.href ? (
+                  <Link
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors group/link"
+                  >
+                    <span>Visit</span>
+                    <ArrowUpRight className="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                  </Link>
+                ) : (
+                  <span className="text-sm text-zinc-600">—</span>
+                )}
+              </div>
+
+              {/* Description - mobile only */}
+              <div className="col-span-12 lg:hidden mt-2">
+                <p className="text-sm text-zinc-500">{project.description}</p>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Future note */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-8 text-sm text-slate-500 dark:text-slate-500"
-        >
-          Additional payment rail integrations planned for 2026-2027.
-        </motion.p>
+        {/* Descriptions - desktop hover reveal could go here */}
       </div>
     </section>
   );

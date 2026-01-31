@@ -4,20 +4,19 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "#mission", label: "Mission" },
-  { href: "#products", label: "Products" },
+  { href: "#doctrine", label: "Doctrine" },
+  { href: "#research", label: "Research" },
+  { href: "https://github.com/Lync-Foundation", label: "GitHub", external: true },
 ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -27,97 +26,54 @@ export default function Header() {
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-white/90 dark:bg-slate-950/90 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800"
+          ? "bg-[#0A0A0C]/80 backdrop-blur-xl border-b border-zinc-800/50"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3 group">
             <Image
               src="/logo.png"
               alt="Lync Foundation"
-              width={40}
-              height={40}
-              className="w-8 h-8 lg:w-10 lg:h-10"
+              width={32}
+              height={32}
+              className="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity"
             />
-            <span className={`font-semibold text-lg ${isScrolled ? 'text-slate-900 dark:text-white' : 'text-white'}`}>
+            <span className="text-sm font-medium text-zinc-400 group-hover:text-white transition-colors">
               Lync Foundation
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`transition-colors duration-200 text-sm font-medium ${
-                  isScrolled 
-                    ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white' 
-                    : 'text-slate-300 hover:text-white'
-                }`}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                className="text-sm text-zinc-500 hover:text-white transition-colors duration-300"
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="https://github.com/Lync-Foundation"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`text-sm font-medium transition-colors duration-200 ${
-                isScrolled 
-                  ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white' 
-                  : 'text-slate-300 hover:text-white'
-              }`}
-            >
-              GitHub
-            </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden p-2 ${isScrolled ? 'text-slate-600 dark:text-slate-300' : 'text-white'}`}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile menu - simplified */}
+          <div className="md:hidden">
+            <Link
+              href="#research"
+              className="text-sm text-zinc-500 hover:text-white transition-colors"
+            >
+              Menu
+            </Link>
+          </div>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="md:hidden py-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950"
-          >
-            <nav className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 text-sm font-medium"
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Link
-                href="https://github.com/Lync-Foundation"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 text-sm font-medium"
-              >
-                GitHub
-              </Link>
-            </nav>
-          </motion.div>
-        )}
       </div>
     </motion.header>
   );
