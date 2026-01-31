@@ -58,7 +58,7 @@ export default function AnimatedLogo({
         pathLength: { 
           duration: 1.5, 
           delay: i * 0.4,
-          ease: [0.65, 0, 0.35, 1]
+          ease: "easeInOut" as const
         },
         opacity: { duration: 0.3, delay: i * 0.4 },
       },
