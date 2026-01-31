@@ -17,7 +17,7 @@ const products = [
   {
     name: "LyncS",
     logo: null,
-    description: "Verified Stablecoin",
+    description: "Trustless CNY Stablecoin",
     href: null,
     status: "Research",
   },

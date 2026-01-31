@@ -7,7 +7,7 @@ import { Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="relative py-24 border-t dark:border-white/5 border-black/5">
+    <footer className="relative py-24 border-t border-zinc-900 bg-[#080808]">
       <div className="w-full px-8 lg:px-16 xl:px-24">
         <motion.div
           initial={{ opacity: 0 }}
@@ -29,14 +29,6 @@ export default function Footer() {
 
           {/* Links */}
           <div className="flex items-center gap-8 mb-8">
-            <Link
-              href="https://github.com/Lync-Foundation"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="refined-caps dark:text-zinc-700 text-zinc-500 hover:text-zinc-400 dark:hover:text-zinc-400 transition-colors duration-500"
-            >
-              GitHub
-            </Link>
             <Link
               href="https://x.com/LyncFoundation"
               target="_blank"
