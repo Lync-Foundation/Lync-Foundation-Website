@@ -2,97 +2,64 @@
 
 import { motion } from "framer-motion";
 
-const doctrines = [
-  {
-    number: "01",
-    title: "Trust Through Cryptography",
-    text: "Financial systems should not require faith in intermediaries. Mathematical proof is the only arbiter.",
-  },
-  {
-    number: "02", 
-    title: "Verification Over Custody",
-    text: "We verify payments on-chain. We never hold your funds. The smart contract is neutral territory.",
-  },
-  {
-    number: "03",
-    title: "Open Infrastructure",
-    text: "All code is public. All transactions are verifiable. We build in the open because secrecy breeds corruption.",
-  },
-];
-
 export default function Mission() {
   return (
-    <section id="doctrine" className="relative py-32 lg:py-48">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-24"
-        >
-          <p className="caps text-[#7F80FF] mb-4">Doctrine</p>
-          <h2 className="text-3xl lg:text-5xl font-light text-white max-w-2xl leading-tight">
-            The principles that
-            <br />
-            <span className="gradient-text-subtle">govern our work.</span>
-          </h2>
-        </motion.div>
-
-        {/* Doctrine list */}
-        <div className="space-y-0">
-          {doctrines.map((doctrine, index) => (
-            <motion.div
-              key={doctrine.number}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: index * 0.15 }}
-              className="group border-t border-zinc-800 py-12 lg:py-16"
-            >
-              <div className="grid grid-cols-12 gap-4 lg:gap-8 items-start">
-                {/* Number */}
-                <div className="col-span-2 lg:col-span-1">
-                  <span className="text-sm font-mono text-zinc-600 group-hover:text-[#7F80FF] transition-colors duration-500">
-                    {doctrine.number}
-                  </span>
-                </div>
-                
-                {/* Title */}
-                <div className="col-span-10 lg:col-span-4">
-                  <h3 className="text-xl lg:text-2xl font-normal text-white group-hover:text-[#C86DD7] transition-colors duration-500">
-                    {doctrine.title}
-                  </h3>
-                </div>
-                
-                {/* Text */}
-                <div className="col-span-12 lg:col-span-7 lg:pl-8">
-                  <p className="text-zinc-500 leading-relaxed">
-                    {doctrine.text}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-          
-          {/* Bottom border */}
-          <div className="border-t border-zinc-800" />
-        </div>
-
-        {/* Quote */}
+    <section id="about" className="relative py-32 lg:py-48">
+      <div className="max-w-4xl mx-auto px-8 lg:px-12">
+        {/* Section */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1 }}
-          className="mt-24 lg:mt-32"
+          className="text-center"
         >
-          <blockquote className="text-2xl lg:text-4xl font-light text-white leading-relaxed max-w-3xl">
-            &ldquo;We don&apos;t build products.
-            <br />
-            <span className="gradient-text">We build proofs.</span>&rdquo;
-          </blockquote>
+          <p className="refined-caps text-gold mb-12">About</p>
+          
+          <p className="text-xl lg:text-2xl font-extralight text-zinc-400 leading-relaxed max-w-2xl mx-auto">
+            We build infrastructure that bridges traditional financial systems 
+            with cryptographic verification.
+          </p>
+          
+          <div className="elegant-line mx-auto mt-16 mb-16" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              <p className="refined-caps text-zinc-600 mb-4">Principle</p>
+              <p className="text-sm text-zinc-500 leading-relaxed">
+                Trust through mathematics, not intermediaries.
+              </p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <p className="refined-caps text-zinc-600 mb-4">Method</p>
+              <p className="text-sm text-zinc-500 leading-relaxed">
+                Zero-knowledge proofs for real-world payments.
+              </p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <p className="refined-caps text-zinc-600 mb-4">Structure</p>
+              <p className="text-sm text-zinc-500 leading-relaxed">
+                Non-profit. Open source. No value extraction.
+              </p>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
