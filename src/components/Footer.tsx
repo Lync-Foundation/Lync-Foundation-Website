@@ -14,16 +14,16 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="flex flex-col items-center text-center"
+          className="flex flex-col items-start text-left"
         >
-          {/* Logo */}
+          {/* Logo - 1.5x larger */}
           <Link href="/" className="mb-8">
             <Image
               src="/logo.png"
               alt="Lync Foundation"
-              width={32}
-              height={32}
-              className="w-8 h-8 opacity-40 hover:opacity-60 transition-opacity duration-500 dark:invert-0"
+              width={48}
+              height={48}
+              className="w-12 h-12 opacity-50 hover:opacity-70 transition-opacity duration-500"
             />
           </Link>
 

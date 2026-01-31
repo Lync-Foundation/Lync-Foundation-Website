@@ -157,20 +157,23 @@ export default function Header() {
                             }`}
                             onClick={() => setIsProductsOpen(false)}
                           >
-                            <div className="flex items-center gap-3 mb-2">
-                              {product.logo && (
+                            {product.logo ? (
+                              <div className="mb-3">
                                 <Image
                                   src={product.logo}
                                   alt={product.name}
-                                  width={24}
-                                  height={24}
-                                  className="w-6 h-6"
+                                  width={80}
+                                  height={32}
+                                  className="h-8 w-auto"
                                 />
-                              )}
-                              <span className={`text-base ${isDark ? "text-white" : "text-black"}`}>
-                                {product.name}
-                              </span>
-                            </div>
+                              </div>
+                            ) : (
+                              <div className="mb-2">
+                                <span className={`text-base ${isDark ? "text-white" : "text-black"}`}>
+                                  {product.name}
+                                </span>
+                              </div>
+                            )}
                             <p className={`text-sm ${isDark ? "text-zinc-600" : "text-zinc-500"}`}>
                               {product.description}
                             </p>
