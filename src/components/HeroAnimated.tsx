@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { useEffect, useRef, useCallback } from "react";
+import AnimatedLogo from "./AnimatedLogo";
 
 // Particle system for the mystical effect
 function useParticleCanvas() {
@@ -174,7 +174,7 @@ export default function HeroAnimated() {
         }}
       />
 
-      {/* Center content with animated logo */}
+      {/* Center content with ANIMATED SVG LOGO */}
       <div className="relative z-10 flex flex-col items-center justify-center">
         {/* Rotating outer ring */}
         <motion.div
@@ -196,70 +196,15 @@ export default function HeroAnimated() {
           transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
         />
 
-        {/* Pulsing glow */}
-        <motion.div
-          className="absolute w-48 h-48 lg:w-64 lg:h-64 rounded-full"
-          style={{
-            background: "radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.1) 40%, transparent 70%)",
-          }}
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.4, 0.7, 0.4]
-          }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* ANIMATED LOGO */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.7 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2.5, ease: "easeOut" }}
-          className="relative"
-        >
-          {/* Shimmer effect overlay */}
-          <motion.div
-            className="absolute inset-0 z-20 pointer-events-none overflow-hidden rounded-full"
-            style={{ width: '100%', height: '100%' }}
-          >
-            <motion.div
-              className="absolute w-[200%] h-full"
-              style={{
-                background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)",
-                left: '-100%',
-              }}
-              animate={{ left: ['−100%', '100%'] }}
-              transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
-            />
-          </motion.div>
-
-          {/* Logo with animations */}
-          <motion.div
-            animate={{ 
-              y: [0, -10, 0],
-              rotate: [0, 2, 0, -2, 0]
-            }}
-            transition={{ 
-              y: { duration: 8, repeat: Infinity, ease: "easeInOut" },
-              rotate: { duration: 12, repeat: Infinity, ease: "easeInOut" }
-            }}
-          >
-            <Image
-              src="/logo.png"
-              alt="Lync Foundation"
-              width={200}
-              height={200}
-              className="w-44 h-44 lg:w-56 lg:h-56 drop-shadow-[0_0_60px_rgba(99,102,241,0.3)]"
-              priority
-            />
-          </motion.div>
-        </motion.div>
+        {/* ANIMATED SVG LOGO - draws itself in */}
+        <AnimatedLogo size={220} className="lg:w-[280px] lg:h-[280px]" />
       </div>
 
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 3 }}
+        transition={{ duration: 1, delay: 4 }}
         className="absolute bottom-12 z-10"
       >
         <motion.div
