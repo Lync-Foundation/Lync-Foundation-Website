@@ -9,12 +9,14 @@ import { ChevronDown, Sun, Moon } from "lucide-react";
 const products = [
   {
     name: "LyncZ",
-    description: "P2P CNY-Crypto Exchange",
+    logo: "/lyncz-logo.svg",
+    description: "Trustless CNY-Crypto P2P Exchange",
     href: "https://lync-z.xyz",
-    status: "Live",
+    status: null,
   },
   {
     name: "LyncS",
+    logo: null,
     description: "Verified Stablecoin",
     href: null,
     status: "Research",
@@ -155,11 +157,19 @@ export default function Header() {
                             }`}
                             onClick={() => setIsProductsOpen(false)}
                           >
-                            <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              {product.logo && (
+                                <Image
+                                  src={product.logo}
+                                  alt={product.name}
+                                  width={24}
+                                  height={24}
+                                  className="w-6 h-6"
+                                />
+                              )}
                               <span className={`text-base ${isDark ? "text-white" : "text-black"}`}>
                                 {product.name}
                               </span>
-                              <span className="nav-text text-[#6366F1]">{product.status}</span>
                             </div>
                             <p className={`text-sm ${isDark ? "text-zinc-600" : "text-zinc-500"}`}>
                               {product.description}
@@ -167,11 +177,13 @@ export default function Header() {
                           </Link>
                         ) : (
                           <div className={`block px-6 py-5 opacity-50 cursor-not-allowed`}>
-                            <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center justify-between mb-2">
                               <span className={`text-base ${isDark ? "text-white" : "text-black"}`}>
                                 {product.name}
                               </span>
-                              <span className="nav-text text-zinc-500">{product.status}</span>
+                              {product.status && (
+                                <span className="nav-text text-zinc-500">{product.status}</span>
+                              )}
                             </div>
                             <p className={`text-sm ${isDark ? "text-zinc-600" : "text-zinc-500"}`}>
                               {product.description}
