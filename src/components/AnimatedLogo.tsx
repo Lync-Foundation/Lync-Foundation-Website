@@ -72,7 +72,7 @@ export default function AnimatedLogo({
       transition: {
         duration: 0.8,
         delay: 1.5 + i * 0.3,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     }),
   };
