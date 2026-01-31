@@ -74,6 +74,14 @@ html {
   font-weight: 400;
 }
 
+/* Navigation text - 1.5x larger */
+.nav-text {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
 /* Elegant line */
 .elegant-line {
   width: 60px;
