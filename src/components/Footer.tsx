@@ -10,17 +10,16 @@ export default function Footer() {
       {/* Top accent glow */}
       <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#8B2323]/3 to-transparent" />
 
-
       <div className="relative w-full px-8 lg:px-16 xl:px-24">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="flex flex-col items-start"
+          className="flex flex-col items-center"
         >
           {/* Logo */}
-          <Link href="/" className="mb-12 group">
+          <Link href="/" className="mb-8 group">
             <Image
               src="/lync-icon-new.svg"
               alt="Lync Foundation"
@@ -30,8 +29,8 @@ export default function Footer() {
             />
           </Link>
 
-          {/* Links */}
-          <div className="flex items-center gap-8 mb-16">
+          {/* Links and Contact */}
+          <div className="flex items-center gap-8 mb-8">
             <Link
               href="https://x.com/LyncFoundation"
               target="_blank"
@@ -40,8 +39,13 @@ export default function Footer() {
             >
               X
             </Link>
+            <Link
+              href="mailto:contact@lync-foundation.org"
+              className="px-5 py-2 bg-[#8B2323] text-white text-xs tracking-[0.12em] uppercase hover:bg-[#6B1A1A] transition-colors duration-300"
+            >
+              Contact Us
+            </Link>
           </div>
-
 
           {/* Copyright */}
           <div className="flex items-center gap-4">
@@ -49,6 +53,7 @@ export default function Footer() {
             <p className="text-xs text-zinc-400 tracking-wide">
               © 2026 Lync Foundation
             </p>
+            <div className="h-[2px] w-8 bg-gradient-to-l from-[#8B2323] to-transparent" />
           </div>
         </motion.div>
       </div>

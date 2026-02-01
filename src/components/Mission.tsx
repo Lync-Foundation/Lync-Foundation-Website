@@ -23,7 +23,7 @@ export default function Mission() {
             times: [0, 0.1, 0.7, 1],
             ease: "easeOut"
           }}
-          className="absolute left-1/2 top-1/2 -translate-x-1/4 -translate-y-[45%] pointer-events-none"
+          className="absolute left-[60%] top-1/2 -translate-x-1/4 -translate-y-[45%] pointer-events-none"
         >
           <HanziSeal />
         </motion.div>
@@ -44,7 +44,7 @@ export default function Mission() {
               </h1>
               
               <p className="text-lg lg:text-xl font-light text-zinc-500 leading-relaxed max-w-2xl">
-                Lync Foundation is a non-profit building trustless infrastructure to internationalize CNY — making the People&apos;s Currency accessible to everyone, everywhere.
+                Lync Foundation is a non-profit building trustless infrastructure to internationalize CNY.
               </p>
             </motion.div>
           </div>
