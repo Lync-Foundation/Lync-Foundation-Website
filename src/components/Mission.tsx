@@ -44,7 +44,7 @@ export default function Mission() {
               </h1>
               
               <p className="text-lg lg:text-xl font-light text-zinc-500 leading-relaxed max-w-2xl">
-                Lync Foundation is a non-profit building trustless infrastructure to internationalize CNY.
+                A non-profit foundation making CNY accessible worldwide through trustless infrastructure.
               </p>
             </motion.div>
           </div>
