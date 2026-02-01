@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="#C52F2F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Main left spiral -->
+    <path d="
+      M15 35
+      C8 20, 25 8, 42 12
+      C58 16, 65 32, 55 45
+      C45 58, 25 55, 20 42
+      C15 30, 28 22, 40 26
+      C52 30, 52 45, 40 48
+      C28 51, 28 38, 38 36
+      C48 34, 48 44, 40 44
+    "/>
+    
+    <!-- Connecting curve to right -->
+    <path d="M55 45 C65 48, 78 42, 90 38"/>
+    
+    <!-- Right spiral curl -->
+    <path d="
+      M90 38
+      C98 35, 108 40, 105 50
+      C102 60, 88 58, 90 48
+      C92 38, 102 42, 100 50
+    "/>
+    
+    <!-- Bottom flowing accent -->
+    <path d="M40 52 C55 58, 75 55, 95 50"/>
+  </g>
+</svg>
