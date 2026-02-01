@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Circular seal with two characters -->
+  
+  <!-- Outer circle border -->
+  <circle cx="100" cy="100" r="92" fill="none" stroke="#C52F2F" stroke-width="5"/>
+  
+  <!-- Inner circle border -->
+  <circle cx="100" cy="100" r="78" fill="none" stroke="#C52F2F" stroke-width="2.5"/>
+  
+  <!-- Vertical dividing line between characters -->
+  <path d="M100 30 Q98 100, 100 170" fill="none" stroke="#C52F2F" stroke-width="2" opacity="0.6"/>
+  
+  <!-- LEFT CHARACTER - Lian (connect) -->
+  
+  <!-- Left ear radical -->
+  <path d="M38 45 Q36 47, 37 52 Q35 70, 38 88 Q40 92, 42 88 Q40 72, 41 54 Q43 48, 38 45 Z" fill="#C52F2F"/>
+  
+  <!-- Top horizontal of ear -->
+  <path d="M38 48 Q42 46, 48 47 Q54 46, 58 48 Q56 50, 52 49 Q46 50, 40 49 Q38 50, 38 48 Z" fill="#C52F2F"/>
+  
+  <!-- Middle horizontal of ear -->
+  <path d="M40 62 Q44 60, 50 61 Q56 60, 58 62 Q56 64, 52 63 Q46 64, 42 63 Q40 64, 40 62 Z" fill="#C52F2F"/>
+  
+  <!-- Bottom horizontal of ear -->
+  <path d="M38 78 Q42 76, 50 77 Q58 76, 62 78 Q60 80, 54 79 Q46 80, 40 79 Q38 80, 38 78 Z" fill="#C52F2F"/>
+  
+  <!-- Right vertical of ear -->
+  <path d="M56 48 Q58 50, 57 54 Q58 68, 56 82 Q54 86, 52 82 Q54 70, 55 56 Q54 50, 56 48 Z" fill="#C52F2F"/>
+  
+  <!-- Silk radical middle -->
+  <path d="M62 50 Q65 48, 68 52 Q72 60, 68 68 Q64 72, 62 68 Q66 62, 64 56 Q62 52, 62 50 Z" fill="#C52F2F"/>
+  <path d="M64 70 Q62 72, 60 78 Q58 84, 62 88 Q66 90, 68 86 Q64 82, 66 76 Q68 72, 64 70 Z" fill="#C52F2F"/>
+  
+  <!-- Right ear radical -->
+  <path d="M72 45 Q70 47, 71 52 Q69 70, 72 88 Q74 92, 76 88 Q74 72, 75 54 Q77 48, 72 45 Z" fill="#C52F2F"/>
+  <path d="M72 48 Q76 46, 82 47 Q88 46, 92 48 Q90 50, 86 49 Q80 50, 74 49 Q72 50, 72 48 Z" fill="#C52F2F"/>
+  <path d="M74 62 Q78 60, 84 61 Q90 60, 92 62 Q90 64, 86 63 Q80 64, 76 63 Q74 64, 74 62 Z" fill="#C52F2F"/>
+  <path d="M72 78 Q76 76, 84 77 Q92 76, 96 78 Q94 80, 88 79 Q80 80, 74 79 Q72 80, 72 78 Z" fill="#C52F2F"/>
+  <path d="M90 48 Q92 50, 91 54 Q92 68, 90 82 Q88 86, 86 82 Q88 70, 89 56 Q88 50, 90 48 Z" fill="#C52F2F"/>
+  
+  <!-- RIGHT CHARACTER - Tong (through) -->
+  
+  <!-- Walking radical at bottom -->
+  <path 
+    d="M108 150
+       Q106 148, 110 146
+       Q125 142, 145 144
+       Q160 146, 168 152
+       Q172 156, 166 158
+       Q158 154, 145 152
+       Q128 150, 112 154
+       Q108 156, 108 150 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- Dot of walking radical -->
+  <path d="M112 132 Q108 130, 110 134 Q108 140, 114 144 Q118 142, 114 138 Q116 134, 112 132 Z" fill="#C52F2F"/>
+  
+  <!-- Yong top part - lid -->
+  <path d="M120 48 Q118 46, 122 44 Q138 40, 154 44 Q158 46, 154 48 Q152 50, 148 49 Q138 46, 128 49 Q122 50, 120 48 Z" fill="#C52F2F"/>
+  
+  <!-- Yong vertical stroke -->
+  <path d="M136 44 Q134 46, 135 50 Q133 80, 136 110 Q138 114, 140 110 Q138 82, 139 52 Q140 47, 136 44 Z" fill="#C52F2F"/>
+  
+  <!-- Yong box top -->
+  <path d="M118 58 Q116 56, 120 54 Q130 52, 146 54 Q152 56, 148 58 Q146 60, 142 59 Q132 57, 124 59 Q120 60, 118 58 Z" fill="#C52F2F"/>
+  
+  <!-- Yong box left side -->
+  <path d="M120 56 Q118 58, 119 62 Q117 78, 120 94 Q122 98, 124 94 Q122 80, 123 64 Q124 59, 120 56 Z" fill="#C52F2F"/>
+  
+  <!-- Yong box right side -->
+  <path d="M150 56 Q152 58, 151 62 Q153 78, 150 94 Q148 98, 146 94 Q148 80, 147 64 Q146 59, 150 56 Z" fill="#C52F2F"/>
+  
+  <!-- Yong box middle horizontal -->
+  <path d="M122 74 Q126 72, 135 73 Q144 72, 148 74 Q146 76, 142 75 Q134 76, 126 75 Q124 76, 122 74 Z" fill="#C52F2F"/>
+  
+  <!-- Yong box bottom -->
+  <path d="M118 92 Q116 90, 120 88 Q132 86, 148 88 Q154 90, 150 92 Q148 94, 144 93 Q134 91, 126 93 Q120 94, 118 92 Z" fill="#C52F2F"/>
+  
+  <!-- Use bottom strokes -->
+  <path d="M124 94 Q122 96, 123 100 Q121 110, 124 120 Q126 124, 128 120 Q126 112, 127 102 Q128 97, 124 94 Z" fill="#C52F2F"/>
+  <path d="M146 94 Q148 96, 147 100 Q149 110, 146 120 Q144 124, 142 120 Q144 112, 143 102 Q142 97, 146 94 Z" fill="#C52F2F"/>
+  
+  <!-- Connection stroke -->
+  <path d="M136 118 Q134 120, 132 126 Q130 134, 136 140 Q142 136, 138 130 Q140 124, 136 118 Z" fill="#C52F2F"/>
+</svg>

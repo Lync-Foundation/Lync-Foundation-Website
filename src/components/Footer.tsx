@@ -14,7 +14,7 @@ export default function Footer() {
       {/* Seal watermark - positioned on the right */}
       <div className="absolute right-12 lg:right-24 top-1/2 -translate-y-1/2 opacity-[0.06] pointer-events-none">
         <Image
-          src="/lync-seal.svg"
+          src="/lync-seal-organic.svg"
           alt=""
           width={180}
           height={180}
