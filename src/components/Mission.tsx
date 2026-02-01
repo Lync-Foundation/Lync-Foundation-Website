@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import AnimatedSeal from "./AnimatedSeal";
+import HanziSeal from "./HanziSeal";
 
 export default function Mission() {
   return (
@@ -37,7 +37,7 @@ export default function Mission() {
               transition={{ duration: 1, delay: 0.8 }}
               className="hidden lg:flex lg:w-[320px] xl:w-[380px] lg:justify-end lg:pr-8"
             >
-              <AnimatedSeal />
+              <HanziSeal />
             </motion.div>
           </div>
         </div>
