@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface SilkRoadAnimationProps {
-  onAnimationComplete?: () => void;
+  onLogoReveal?: () => void;
 }
 
 interface SilkRibbon {
@@ -17,12 +17,13 @@ interface SilkRibbon {
   phase: number;
   width: number;
   colorOffset: number;
-  // Dunhuang ribbon properties
-  swirl: number; // Amount of swirl/curl
-  delay: number; // Staggered start
-  length: number; // Ribbon length
-  waveSpeed: number; // How fast the wave moves
-  yOffset: number; // Vertical position
+  swirl: number;
+  delay: number;
+  length: number;
+  waveSpeed: number;
+  yOffset: number;
+  // For the special ribbon that flies to logo
+  isLogoRibbon?: boolean;
 }
 
 interface Particle {
@@ -36,41 +37,45 @@ interface Particle {
   color: string;
 }
 
-export default function SilkRoadAnimation({ onAnimationComplete }: SilkRoadAnimationProps) {
+export default function SilkRoadAnimation({ onLogoReveal }: SilkRoadAnimationProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>(0);
   const ribbonsRef = useRef<SilkRibbon[]>([]);
   const particlesRef = useRef<Particle[]>([]);
   const startTimeRef = useRef<number>(0);
-  const [phase, setPhase] = useState<"waiting" | "flowing" | "converging" | "forming" | "complete">("waiting");
+  const logoRevealedRef = useRef(false);
+  const [phase, setPhase] = useState<"waiting" | "flowing" | "flyingToLogo" | "orbiting" | "complete">("waiting");
   const [hasPlayed, setHasPlayed] = useState(false);
-  const logoControls = useAnimation();
 
-  // Check if animation has already played this session
+  // Logo position (top-left, with padding)
+  const logoTargetX = 80; // px from left
+  const logoTargetY = 56; // px from top (center of header)
+
+  // Check if animation has already played
   useEffect(() => {
     if (typeof window !== "undefined") {
       const played = sessionStorage.getItem("silkRoadAnimationPlayed");
       if (played === "true") {
         setHasPlayed(true);
         setPhase("complete");
-        onAnimationComplete?.();
+        onLogoReveal?.();
       } else {
         setPhase("flowing");
       }
     }
-  }, [onAnimationComplete]);
+  }, [onLogoReveal]);
 
-  // Color palette - 故宫红 to autumn gold (敦煌 colors)
+  // Color palette - 故宫红 to autumn gold
   const getThreadColor = useCallback((progress: number, alpha: number = 1) => {
     const colorStops = [
-      { pos: 0, color: [122, 31, 31] },      // deepRed 故宫红
-      { pos: 0.12, color: [139, 35, 35] },   // vermillion
-      { pos: 0.25, color: [184, 40, 40] },   // crimson
-      { pos: 0.38, color: [224, 88, 32] },   // orange
-      { pos: 0.5, color: [255, 136, 16] },   // amber
-      { pos: 0.65, color: [255, 180, 40] },  // gold
-      { pos: 0.8, color: [255, 216, 102] },  // lightGold
-      { pos: 1, color: [255, 248, 220] },    // paleGold
+      { pos: 0, color: [122, 31, 31] },
+      { pos: 0.12, color: [139, 35, 35] },
+      { pos: 0.25, color: [184, 40, 40] },
+      { pos: 0.38, color: [224, 88, 32] },
+      { pos: 0.5, color: [255, 136, 16] },
+      { pos: 0.65, color: [255, 180, 40] },
+      { pos: 0.8, color: [255, 216, 102] },
+      { pos: 1, color: [255, 248, 220] },
     ];
 
     let lower = colorStops[0];
@@ -94,9 +99,9 @@ export default function SilkRoadAnimation({ onAnimationComplete }: SilkRoadAnima
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   }, []);
 
-  // Initialize 敦煌丝带 ribbons
+  // Initialize ribbons
   const initRibbons = useCallback((width: number, height: number) => {
-    const ribbonCount = 9; // More ribbons for richer effect
+    const ribbonCount = 9;
     const ribbons: SilkRibbon[] = [];
 
     for (let i = 0; i < ribbonCount; i++) {
@@ -105,18 +110,18 @@ export default function SilkRoadAnimation({ onAnimationComplete }: SilkRoadAnima
         id: i,
         points: [],
         progress: 0,
-        speed: 0.003 + Math.random() * 0.0015, // Slower, more graceful
-        amplitude: 35 + Math.random() * 55, // Larger waves for ribbon feel
+        speed: 0.003 + Math.random() * 0.0015,
+        amplitude: 35 + Math.random() * 55,
         frequency: 0.004 + Math.random() * 0.003,
         phase: Math.random() * Math.PI * 2,
-        width: 3 + Math.random() * 4, // Wider ribbons
+        width: 3 + Math.random() * 4,
         colorOffset: i / ribbonCount,
-        // Dunhuang-specific
-        swirl: 0.5 + Math.random() * 1.5, // Swirl intensity
-        delay: i * 0.12, // More staggered entry
-        length: 0.5 + Math.random() * 0.35, // Ribbon length (50-85% of path)
-        waveSpeed: 1.0 + Math.random() * 0.6, // Slower wave animation
+        swirl: 0.5 + Math.random() * 1.5,
+        delay: i * 0.12,
+        length: 0.5 + Math.random() * 0.35,
+        waveSpeed: 1.0 + Math.random() * 0.6,
         yOffset: yBase,
+        isLogoRibbon: i === 2, // Third ribbon will fly to logo
       });
     }
 
@@ -155,113 +160,141 @@ export default function SilkRoadAnimation({ onAnimationComplete }: SilkRoadAnima
     window.addEventListener("resize", resize);
 
     startTimeRef.current = Date.now();
-    let currentPhase: "flowing" | "converging" | "forming" | "complete" = "flowing";
+    let currentPhase: "flowing" | "flyingToLogo" | "orbiting" | "complete" = "flowing";
+
+    // Timing constants
+    const FLOW_END = 5.5;
+    const FLY_START = 5.5;
+    const FLY_END = 7.0;
+    const ORBIT_START = 7.0;
+    const ORBIT_END = 9.0;
+    const LOGO_REVEAL = 8.5;
 
     const animate = () => {
       const elapsed = (Date.now() - startTimeRef.current) / 1000;
       const width = canvas.width;
       const height = canvas.height;
-      const centerX = width / 2;
-      const centerY = height / 2;
 
-      // Phase transitions (slower timing)
-      if (elapsed > 5.5 && currentPhase === "flowing") {
-        currentPhase = "converging";
-        setPhase("converging");
-      } else if (elapsed > 7.0 && currentPhase === "converging") {
-        currentPhase = "forming";
-        setPhase("forming");
-      } else if (elapsed > 8.0 && currentPhase === "forming") {
+      // Phase transitions
+      if (elapsed > FLOW_END && currentPhase === "flowing") {
+        currentPhase = "flyingToLogo";
+        setPhase("flyingToLogo");
+      } else if (elapsed > ORBIT_START && currentPhase === "flyingToLogo") {
+        currentPhase = "orbiting";
+        setPhase("orbiting");
+      } else if (elapsed > ORBIT_END && currentPhase === "orbiting") {
         currentPhase = "complete";
         setPhase("complete");
-        // Mark as played
         sessionStorage.setItem("silkRoadAnimationPlayed", "true");
-        // Immediately trigger completion
-        onAnimationComplete?.();
         cancelAnimationFrame(animationRef.current);
         return;
+      }
+
+      // Reveal logo during orbiting phase
+      if (elapsed > LOGO_REVEAL && !logoRevealedRef.current) {
+        logoRevealedRef.current = true;
+        onLogoReveal?.();
       }
 
       // Clear canvas
       ctx.clearRect(0, 0, width, height);
 
-      // Draw ribbons - 敦煌丝带飞舞
+      // Draw ribbons
       ribbonsRef.current.forEach((ribbon, ribbonIndex) => {
-        // Staggered start
         const adjustedElapsed = Math.max(0, elapsed - ribbon.delay);
         if (adjustedElapsed <= 0) return;
 
-        // Update progress
+        // Update progress during flowing phase
         if (currentPhase === "flowing") {
           ribbon.progress = Math.min(1, ribbon.progress + ribbon.speed);
         }
 
-        // Calculate ribbon path with 环绕 (swirling) effect
         const points: { x: number; y: number }[] = [];
-        const segments = 150; // More segments for smoother curves
+        const segments = 150;
         const startX = width + 150;
         const endX = -150;
         const pathLength = startX - endX;
 
-        for (let i = 0; i <= segments; i++) {
-          const t = i / segments;
+        // Special handling for the logo ribbon
+        if (ribbon.isLogoRibbon && (currentPhase === "flyingToLogo" || currentPhase === "orbiting")) {
+          // Calculate ribbon flying to logo
+          const flyProgress = Math.min(1, (elapsed - FLY_START) / (FLY_END - FLY_START));
+          const orbitProgress = currentPhase === "orbiting" ? Math.min(1, (elapsed - ORBIT_START) / (ORBIT_END - ORBIT_START)) : 0;
           
-          // Only draw up to current progress, respecting ribbon length
-          const visibleStart = Math.max(0, ribbon.progress - ribbon.length);
-          if (t < visibleStart || t > ribbon.progress) continue;
+          // Current ribbon center position
+          const ribbonCenterX = width * 0.3; // Where ribbon roughly is
+          const ribbonCenterY = ribbon.yOffset;
+          
+          // Interpolate position toward logo
+          const currentX = ribbonCenterX + (logoTargetX - ribbonCenterX) * flyProgress;
+          const currentY = ribbonCenterY + (logoTargetY - ribbonCenterY) * flyProgress;
+          
+          // Draw orbiting ribbon around logo position
+          const orbitRadius = 60 * (1 - orbitProgress * 0.7); // Shrinks as it orbits
+          const ribbonLength = 80 * (1 - orbitProgress * 0.5);
+          const orbitSpeed = 4 + orbitProgress * 2; // Speeds up
+          
+          for (let i = 0; i <= 50; i++) {
+            const t = i / 50;
+            const angle = elapsed * orbitSpeed + t * Math.PI * 1.5;
+            
+            // Spiral inward effect
+            const spiralRadius = orbitRadius * (1 - t * 0.3);
+            const x = currentX + Math.cos(angle) * spiralRadius * (1 - flyProgress * 0.3 + flyProgress);
+            const y = currentY + Math.sin(angle) * spiralRadius * 0.6 * (1 - flyProgress * 0.3 + flyProgress);
+            
+            // Fade ribbon as it completes orbit
+            if (orbitProgress > 0.8) continue;
+            
+            points.push({ x, y });
+            
+            // Extra sparkles during orbit
+            if (Math.random() < 0.08) {
+              particlesRef.current.push(createParticle(x, y, 0.7));
+            }
+          }
+        } else if (!ribbon.isLogoRibbon || currentPhase === "flowing") {
+          // Normal ribbon drawing
+          for (let i = 0; i <= segments; i++) {
+            const t = i / segments;
+            
+            const visibleStart = Math.max(0, ribbon.progress - ribbon.length);
+            if (t < visibleStart || t > ribbon.progress) continue;
 
-          let x, y;
-          const time = adjustedElapsed * ribbon.waveSpeed;
+            let x, y;
+            const time = adjustedElapsed * ribbon.waveSpeed;
 
-          if (currentPhase === "flowing" || currentPhase === "converging") {
-            // 敦煌丝带 style - multiple wave components for organic flow
+            // Flowing animation
             x = startX - pathLength * t;
             
-            // Primary wave
             const wave1 = Math.sin(t * Math.PI * 3 + ribbon.phase + time) * ribbon.amplitude;
-            // Secondary wave (faster, smaller)
             const wave2 = Math.sin(t * Math.PI * 7 + ribbon.phase * 2 + time * 1.5) * (ribbon.amplitude * 0.3);
-            // Swirl component - creates the 环绕 effect
             const swirl = Math.sin(t * Math.PI * 2 + time * 0.5) * ribbon.swirl * 20 * Math.sin(t * Math.PI);
-            
-            // Dampening at edges for natural flow
             const edgeDamp = Math.sin(t * Math.PI);
             
             y = ribbon.yOffset + (wave1 + wave2 + swirl) * edgeDamp;
 
-            // Add convergence during that phase
-            if (currentPhase === "converging") {
-              const convergeProgress = Math.min(1, (elapsed - 5.5) / 1.5);
-              const targetY = centerY + (ribbonIndex - ribbonsRef.current.length / 2) * 30;
-              y = y + (targetY - y) * convergeProgress * 0.5;
-              x = x + (centerX - x) * convergeProgress * 0.3;
+            // Fade out other ribbons during fly phase
+            if (currentPhase !== "flowing") {
+              const fadeProgress = Math.min(1, (elapsed - FLOW_END) / 2);
+              if (fadeProgress > 0.8) continue; // Stop drawing when mostly faded
             }
-          } else {
-            // Forming phase - spiral into center
-            const formProgress = Math.min(1, (elapsed - 7.0) / 1.0);
-            const angle = ribbonIndex * (Math.PI * 2 / ribbonsRef.current.length) + t * Math.PI * 2;
-            const radius = 100 * (1 - formProgress) * (1 - t);
-            x = centerX + Math.cos(angle) * radius;
-            y = centerY + Math.sin(angle) * radius;
-          }
 
-          points.push({ x, y });
+            points.push({ x, y });
 
-          // Spawn golden particles along ribbon
-          if (Math.random() < 0.03 && currentPhase !== "complete") {
-            particlesRef.current.push(createParticle(x, y, t));
+            if (Math.random() < 0.03) {
+              particlesRef.current.push(createParticle(x, y, t));
+            }
           }
         }
 
         ribbon.points = points;
 
-        // Draw ribbon with gradient and glow
+        // Draw ribbon
         if (points.length > 2) {
-          // Main ribbon stroke
           ctx.beginPath();
           ctx.moveTo(points[0].x, points[0].y);
           
-          // Use quadratic curves for smoother ribbon
           for (let i = 1; i < points.length - 1; i++) {
             const xc = (points[i].x + points[i + 1].x) / 2;
             const yc = (points[i].y + points[i + 1].y) / 2;
@@ -271,20 +304,30 @@ export default function SilkRoadAnimation({ onAnimationComplete }: SilkRoadAnima
             ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
           }
 
-          // Create gradient along ribbon
+          // Calculate opacity based on phase
+          let ribbonOpacity = 1;
+          if (!ribbon.isLogoRibbon && currentPhase !== "flowing") {
+            const fadeProgress = Math.min(1, (elapsed - FLOW_END) / 1.5);
+            ribbonOpacity = 1 - fadeProgress;
+          }
+          if (ribbon.isLogoRibbon && currentPhase === "orbiting") {
+            const orbitProgress = Math.min(1, (elapsed - ORBIT_START) / (ORBIT_END - ORBIT_START));
+            ribbonOpacity = 1 - orbitProgress;
+          }
+
           const gradient = ctx.createLinearGradient(
             points[0].x, points[0].y,
             points[points.length - 1].x, points[points.length - 1].y
           );
-          gradient.addColorStop(0, getThreadColor(0, 0.2)); // Fade in
-          gradient.addColorStop(0.1, getThreadColor(0.1, 0.85));
-          gradient.addColorStop(0.4, getThreadColor(0.4, 0.9));
-          gradient.addColorStop(0.7, getThreadColor(0.7, 0.85));
-          gradient.addColorStop(1, getThreadColor(1, 0.6)); // Fade out at tip
+          gradient.addColorStop(0, getThreadColor(0, 0.2 * ribbonOpacity));
+          gradient.addColorStop(0.1, getThreadColor(0.1, 0.85 * ribbonOpacity));
+          gradient.addColorStop(0.4, getThreadColor(0.4, 0.9 * ribbonOpacity));
+          gradient.addColorStop(0.7, getThreadColor(0.7, 0.85 * ribbonOpacity));
+          gradient.addColorStop(1, getThreadColor(1, 0.6 * ribbonOpacity));
 
-          // Glow effect (draw first, underneath)
+          // Glow
           ctx.save();
-          ctx.shadowColor = getThreadColor(0.5, 0.6);
+          ctx.shadowColor = getThreadColor(0.5, 0.6 * ribbonOpacity);
           ctx.shadowBlur = 20;
           ctx.strokeStyle = gradient;
           ctx.lineWidth = ribbon.width + 2;
@@ -300,39 +343,39 @@ export default function SilkRoadAnimation({ onAnimationComplete }: SilkRoadAnima
           ctx.lineJoin = "round";
           ctx.stroke();
 
-          // Highlight edge (silk sheen effect)
-          ctx.beginPath();
-          ctx.moveTo(points[0].x, points[0].y - ribbon.width * 0.3);
-          for (let i = 1; i < points.length - 1; i++) {
-            const xc = (points[i].x + points[i + 1].x) / 2;
-            const yc = (points[i].y + points[i + 1].y) / 2 - ribbon.width * 0.3;
-            ctx.quadraticCurveTo(points[i].x, points[i].y - ribbon.width * 0.3, xc, yc);
+          // Highlight
+          if (ribbonOpacity > 0.3) {
+            ctx.beginPath();
+            ctx.moveTo(points[0].x, points[0].y - ribbon.width * 0.3);
+            for (let i = 1; i < points.length - 1; i++) {
+              const xc = (points[i].x + points[i + 1].x) / 2;
+              const yc = (points[i].y + points[i + 1].y) / 2 - ribbon.width * 0.3;
+              ctx.quadraticCurveTo(points[i].x, points[i].y - ribbon.width * 0.3, xc, yc);
+            }
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.3 * ribbonOpacity})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
           }
-          ctx.strokeStyle = `rgba(255, 255, 255, 0.3)`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
         }
       });
 
-      // Update and draw particles (golden sparkles)
+      // Draw particles
       particlesRef.current = particlesRef.current.filter(p => {
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.03; // Slight gravity
-        p.vx *= 0.99; // Air resistance
+        p.vy += 0.03;
+        p.vx *= 0.99;
         p.life++;
 
         if (p.life > p.maxLife) return false;
 
         const alpha = 1 - (p.life / p.maxLife);
         
-        // Particle glow
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size * 2.5 * alpha, 0, Math.PI * 2);
         ctx.fillStyle = p.color.replace(/[\d.]+\)$/, `${alpha * 0.15})`);
         ctx.fill();
         
-        // Particle core
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size * alpha, 0, Math.PI * 2);
         ctx.fillStyle = p.color.replace(/[\d.]+\)$/, `${alpha * 0.8})`);
@@ -354,28 +397,50 @@ export default function SilkRoadAnimation({ onAnimationComplete }: SilkRoadAnima
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(animationRef.current);
     };
-  }, [hasPlayed, phase, initRibbons, createParticle, getThreadColor, onAnimationComplete]);
+  }, [hasPlayed, phase, initRibbons, createParticle, getThreadColor, onLogoReveal, logoTargetX, logoTargetY]);
 
-  // Don't render anything if animation has already played
   if (hasPlayed || phase === "complete") {
     return null;
   }
 
   return (
     <div className="fixed inset-0 z-50 pointer-events-none">
-      {/* Canvas for silk ribbons */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0"
-      />
+      <canvas ref={canvasRef} className="absolute inset-0" />
 
-      {/* Ambient glow during animation */}
+      {/* Glow around logo area during orbit */}
+      {(phase === "flyingToLogo" || phase === "orbiting") && (
+        <motion.div
+          className="absolute rounded-full"
+          style={{
+            left: logoTargetX - 40,
+            top: logoTargetY - 40,
+            width: 80,
+            height: 80,
+          }}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ 
+            opacity: phase === "orbiting" ? 0.8 : 0.4, 
+            scale: phase === "orbiting" ? 1.2 : 1 
+          }}
+          transition={{ duration: 0.5 }}
+        >
+          <div 
+            className="w-full h-full rounded-full"
+            style={{
+              background: "radial-gradient(circle, rgba(255, 180, 40, 0.4) 0%, rgba(139, 35, 35, 0.2) 50%, transparent 70%)",
+              filter: "blur(15px)",
+            }}
+          />
+        </motion.div>
+      )}
+
+      {/* Ambient glow */}
       <motion.div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{
-          opacity: phase === "converging" || phase === "forming" ? 0.5 : 0.2,
-          scale: phase === "forming" ? 1.3 : 1,
+          opacity: phase === "flowing" ? 0.2 : 0,
+          scale: 1,
         }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
         style={{
