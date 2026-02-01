@@ -68,18 +68,37 @@ export default function Header() {
     >
       <div className="w-full px-8 lg:px-16 xl:px-24">
         <div className="flex items-center justify-between h-28">
-          {/* Logo */}
+          {/* Logo with appearing animation */}
           <Link href="/" className="flex items-center gap-5 group">
-            <Image
-              src="/lync-icon-new.svg"
-              alt="Lync Foundation"
-              width={54}
-              height={54}
-              className="w-14 h-14 opacity-90 group-hover:opacity-100 transition-opacity duration-500"
-            />
-            <span className="nav-text text-zinc-700 group-hover:text-[#8B2323] transition-colors duration-500">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: 0.3,
+                ease: [0.16, 1, 0.3, 1]
+              }}
+            >
+              <Image
+                src="/lync-icon-new.svg"
+                alt="Lync Foundation"
+                width={54}
+                height={54}
+                className="w-14 h-14 opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+              />
+            </motion.div>
+            <motion.span 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: 0.6,
+                ease: "easeOut"
+              }}
+              className="nav-text text-zinc-700 group-hover:text-[#8B2323] transition-colors duration-500"
+            >
               Lync Foundation
-            </span>
+            </motion.span>
           </Link>
 
           {/* Navigation */}

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useCallback } from "react";
 
-// Subtle floating particles background - no animation sequence
+// Subtle, sparse floating particles background
 export default function SilkRoadAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>(0);
@@ -36,7 +36,7 @@ export default function SilkRoadAnimation() {
     const width = canvas.width;
     const height = canvas.height;
 
-    // Create floating particles
+    // Sparse floating particles
     interface Particle {
       x: number;
       y: number;
@@ -45,46 +45,43 @@ export default function SilkRoadAnimation() {
       vx: number;
       vy: number;
       alpha: number;
-      targetAlpha: number;
       pulseSpeed: number;
       pulsePhase: number;
     }
 
     const particles: Particle[] = [];
-    const particleCount = 80;
+    const particleCount = 25; // Much fewer particles
 
-    // Initialize particles
+    // Initialize sparse particles
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: 2 + Math.random() * 4,
+        size: 1 + Math.random() * 2, // Smaller size
         color: getColor(1),
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        alpha: Math.random() * 0.5 + 0.2,
-        targetAlpha: Math.random() * 0.6 + 0.2,
-        pulseSpeed: 0.01 + Math.random() * 0.02,
+        vx: (Math.random() - 0.5) * 0.15, // Slower movement
+        vy: (Math.random() - 0.5) * 0.15,
+        alpha: 0.1 + Math.random() * 0.2, // Lower opacity
+        pulseSpeed: 0.005 + Math.random() * 0.01,
         pulsePhase: Math.random() * Math.PI * 2,
       });
     }
 
-    // Add cluster around logo position
+    // Small cluster near logo - very subtle
     const logoX = 75;
     const logoY = 56;
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 8; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const dist = 20 + Math.random() * 80;
+      const dist = 30 + Math.random() * 60;
       particles.push({
         x: logoX + Math.cos(angle) * dist,
         y: logoY + Math.sin(angle) * dist,
-        size: 2 + Math.random() * 3,
+        size: 1 + Math.random() * 1.5,
         color: getColor(1),
-        vx: (Math.random() - 0.5) * 0.2,
-        vy: (Math.random() - 0.5) * 0.2,
-        alpha: Math.random() * 0.6 + 0.3,
-        targetAlpha: Math.random() * 0.7 + 0.3,
-        pulseSpeed: 0.015 + Math.random() * 0.02,
+        vx: (Math.random() - 0.5) * 0.1,
+        vy: (Math.random() - 0.5) * 0.1,
+        alpha: 0.15 + Math.random() * 0.2,
+        pulseSpeed: 0.008 + Math.random() * 0.01,
         pulsePhase: Math.random() * Math.PI * 2,
       });
     }
@@ -96,7 +93,7 @@ export default function SilkRoadAnimation() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((p) => {
-        // Gentle floating motion
+        // Very gentle floating motion
         p.x += p.vx;
         p.y += p.vy;
 
@@ -106,28 +103,28 @@ export default function SilkRoadAnimation() {
         if (p.y < -10) p.y = canvas.height + 10;
         if (p.y > canvas.height + 10) p.y = -10;
 
-        // Gentle pulsing
+        // Subtle pulsing
         const pulse = Math.sin(time * p.pulseSpeed * 60 + p.pulsePhase);
-        const currentAlpha = p.alpha + pulse * 0.15;
+        const currentAlpha = p.alpha + pulse * 0.05;
 
-        // Draw glow
+        // Draw soft glow - smaller radius
         const gradient = ctx.createRadialGradient(
           p.x, p.y, 0,
-          p.x, p.y, p.size * 3
+          p.x, p.y, p.size * 2
         );
-        gradient.addColorStop(0, p.color.replace(/[\d.]+\)$/, `${currentAlpha})`));
-        gradient.addColorStop(0.4, p.color.replace(/[\d.]+\)$/, `${currentAlpha * 0.5})`));
+        gradient.addColorStop(0, p.color.replace(/[\d.]+\)$/, `${currentAlpha * 0.6})`));
+        gradient.addColorStop(0.5, p.color.replace(/[\d.]+\)$/, `${currentAlpha * 0.3})`));
         gradient.addColorStop(1, p.color.replace(/[\d.]+\)$/, `0)`));
 
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
         ctx.fillStyle = gradient;
         ctx.fill();
 
-        // Draw core
+        // Draw tiny core
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * 0.5, 0, Math.PI * 2);
-        ctx.fillStyle = p.color.replace(/[\d.]+\)$/, `${currentAlpha * 0.8})`);
+        ctx.arc(p.x, p.y, p.size * 0.3, 0, Math.PI * 2);
+        ctx.fillStyle = p.color.replace(/[\d.]+\)$/, `${currentAlpha * 0.4})`);
         ctx.fill();
       });
 
