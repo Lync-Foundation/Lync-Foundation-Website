@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Mission from "@/components/Mission";
 import Footer from "@/components/Footer";
@@ -8,7 +8,20 @@ import ImperialBackground from "@/components/ImperialBackground";
 import SilkRoadAnimation from "@/components/SilkRoadAnimation";
 
 export default function Home() {
-  const [logoInNav, setLogoInNav] = useState(false);
+  // Check if animation already played this session
+  const [logoInNav, setLogoInNav] = useState(() => {
+    if (typeof window !== "undefined") {
+      return sessionStorage.getItem("silkRoadAnimationPlayed") === "true";
+    }
+    return false;
+  });
+
+  // Also check on mount for SSR compatibility
+  useEffect(() => {
+    if (sessionStorage.getItem("silkRoadAnimationPlayed") === "true") {
+      setLogoInNav(true);
+    }
+  }, []);
 
   return (
     <>

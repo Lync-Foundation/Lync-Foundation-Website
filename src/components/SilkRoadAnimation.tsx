@@ -105,17 +105,17 @@ export default function SilkRoadAnimation({ onAnimationComplete }: SilkRoadAnima
         id: i,
         points: [],
         progress: 0,
-        speed: 0.006 + Math.random() * 0.003,
-        amplitude: 30 + Math.random() * 50, // Larger waves for ribbon feel
+        speed: 0.003 + Math.random() * 0.0015, // Slower, more graceful
+        amplitude: 35 + Math.random() * 55, // Larger waves for ribbon feel
         frequency: 0.004 + Math.random() * 0.003,
         phase: Math.random() * Math.PI * 2,
         width: 3 + Math.random() * 4, // Wider ribbons
         colorOffset: i / ribbonCount,
         // Dunhuang-specific
         swirl: 0.5 + Math.random() * 1.5, // Swirl intensity
-        delay: i * 0.08, // Staggered entry
-        length: 0.6 + Math.random() * 0.3, // Ribbon length (60-90% of path)
-        waveSpeed: 1.5 + Math.random() * 1, // Wave animation speed
+        delay: i * 0.12, // More staggered entry
+        length: 0.5 + Math.random() * 0.35, // Ribbon length (50-85% of path)
+        waveSpeed: 1.0 + Math.random() * 0.6, // Slower wave animation
         yOffset: yBase,
       });
     }
@@ -164,14 +164,14 @@ export default function SilkRoadAnimation({ onAnimationComplete }: SilkRoadAnima
       const centerX = width / 2;
       const centerY = height / 2;
 
-      // Phase transitions
-      if (elapsed > 3.8 && currentPhase === "flowing") {
+      // Phase transitions (slower timing)
+      if (elapsed > 5.5 && currentPhase === "flowing") {
         currentPhase = "converging";
         setPhase("converging");
-      } else if (elapsed > 4.8 && currentPhase === "converging") {
+      } else if (elapsed > 7.0 && currentPhase === "converging") {
         currentPhase = "forming";
         setPhase("forming");
-      } else if (elapsed > 5.5 && currentPhase === "forming") {
+      } else if (elapsed > 8.0 && currentPhase === "forming") {
         currentPhase = "complete";
         setPhase("complete");
         // Mark as played
@@ -231,14 +231,14 @@ export default function SilkRoadAnimation({ onAnimationComplete }: SilkRoadAnima
 
             // Add convergence during that phase
             if (currentPhase === "converging") {
-              const convergeProgress = Math.min(1, (elapsed - 3.8) / 1);
+              const convergeProgress = Math.min(1, (elapsed - 5.5) / 1.5);
               const targetY = centerY + (ribbonIndex - ribbonsRef.current.length / 2) * 30;
               y = y + (targetY - y) * convergeProgress * 0.5;
               x = x + (centerX - x) * convergeProgress * 0.3;
             }
           } else {
             // Forming phase - spiral into center
-            const formProgress = Math.min(1, (elapsed - 4.8) / 0.7);
+            const formProgress = Math.min(1, (elapsed - 7.0) / 1.0);
             const angle = ribbonIndex * (Math.PI * 2 / ribbonsRef.current.length) + t * Math.PI * 2;
             const radius = 100 * (1 - formProgress) * (1 - t);
             x = centerX + Math.cos(angle) * radius;
