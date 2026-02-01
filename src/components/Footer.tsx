@@ -7,9 +7,20 @@ import { Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="relative py-24 border-t border-[#8B2323]/15">
+    <footer className="relative py-24 border-t border-[#8B2323]/15 overflow-hidden">
       {/* Top accent glow */}
       <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#8B2323]/3 to-transparent" />
+
+      {/* Seal watermark - positioned on the right */}
+      <div className="absolute right-12 lg:right-24 top-1/2 -translate-y-1/2 opacity-[0.06] pointer-events-none">
+        <Image
+          src="/lync-seal.svg"
+          alt=""
+          width={180}
+          height={180}
+          className="w-44 h-44"
+        />
+      </div>
 
       <div className="relative w-full px-8 lg:px-16 xl:px-24">
         <motion.div

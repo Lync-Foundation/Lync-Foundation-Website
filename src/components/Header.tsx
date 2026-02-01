@@ -129,7 +129,7 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full right-0 mt-4 w-80 bg-[#6B1C1C] rounded-sm overflow-hidden shadow-xl shadow-black/20"
+                    className="absolute top-full right-0 mt-2 w-72 bg-[#faf8f5] backdrop-blur-xl border border-[#8B2323]/15 rounded overflow-hidden shadow-lg shadow-black/8"
                   >
                     {products.map((product, index) => (
                       <div key={product.name}>
@@ -138,44 +138,44 @@ export default function Header() {
                             href={product.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block px-6 py-5 hover:bg-white/10 transition-colors duration-300 border-b border-white/10 last:border-b-0"
+                            className={`block px-5 py-4 hover:bg-[#8B2323]/5 transition-colors duration-300 ${index < products.length - 1 ? 'border-b border-[#8B2323]/10' : ''}`}
                             onClick={() => setIsProductsOpen(false)}
                           >
                             {product.logo ? (
-                              <div className="mb-3">
+                              <div className="mb-2">
                                 <Image
                                   src={product.logo}
                                   alt={product.name}
-                                  width={80}
-                                  height={32}
-                                  className="h-8 w-auto brightness-0 invert"
+                                  width={72}
+                                  height={28}
+                                  className="h-7 w-auto"
                                 />
                               </div>
                             ) : (
-                              <div className="mb-2">
-                                <span className="text-base text-white">
+                              <div className="mb-1">
+                                <span className="text-sm font-medium text-zinc-800">
                                   {product.name}
                                 </span>
                               </div>
                             )}
-                            <p className="text-sm text-white/70">
+                            <p className="text-xs text-zinc-500">
                               {product.description}
                             </p>
                           </Link>
                         ) : (
-                          <div className={`block px-6 py-5 opacity-80 cursor-not-allowed ${index < products.length - 1 ? 'border-b border-white/10' : ''}`}>
-                            <div className="flex items-center justify-between mb-2">
+                          <div className={`block px-5 py-4 opacity-60 cursor-not-allowed ${index < products.length - 1 ? 'border-b border-[#8B2323]/10' : ''}`}>
+                            <div className="flex items-center justify-between mb-1">
                               <span 
-                                className="text-lg text-white/90 tracking-wider"
-                                style={{ fontFamily: 'Garamond, "Times New Roman", serif', fontWeight: 400 }}
+                                className="text-sm text-zinc-700 tracking-wide"
+                                style={{ fontFamily: 'Garamond, "Times New Roman", serif', fontWeight: 500 }}
                               >
                                 {product.name}
                               </span>
                               {product.status && (
-                                <span className="text-[10px] tracking-[0.2em] uppercase text-white/60 font-medium">{product.status}</span>
+                                <span className="text-[9px] tracking-[0.15em] uppercase text-[#8B2323]/70 font-medium">{product.status}</span>
                               )}
                             </div>
-                            <p className="text-sm text-white/60">
+                            <p className="text-xs text-zinc-400">
                               {product.description}
                             </p>
                           </div>
@@ -214,7 +214,7 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full right-0 mt-4 w-44 bg-[#6B1C1C] rounded-sm overflow-hidden shadow-xl shadow-black/20"
+                    className="absolute top-full right-0 mt-2 w-40 bg-[#faf8f5] backdrop-blur-xl border border-[#8B2323]/15 rounded overflow-hidden shadow-lg shadow-black/8"
                   >
                     {languages.map((lang, index) => (
                       <button
@@ -223,16 +223,16 @@ export default function Header() {
                           setCurrentLang(lang.code);
                           setIsLangOpen(false);
                         }}
-                        className={`block w-full text-left px-5 py-3.5 hover:bg-white/10 transition-colors duration-300 ${
-                          index < languages.length - 1 ? 'border-b border-white/10' : ''
+                        className={`block w-full text-left px-4 py-3 hover:bg-[#8B2323]/5 transition-colors duration-300 ${
+                          index < languages.length - 1 ? 'border-b border-[#8B2323]/10' : ''
                         } ${
                           currentLang === lang.code 
-                            ? "text-white bg-white/10" 
-                            : "text-white/80"
+                            ? "text-[#8B2323] bg-[#8B2323]/5" 
+                            : "text-zinc-600"
                         }`}
                       >
-                        <span className="nav-text text-white">{lang.code}</span>
-                        <span className="text-sm text-white/60 ml-3">{lang.name}</span>
+                        <span className="text-xs tracking-widest font-medium">{lang.code}</span>
+                        <span className="text-xs text-zinc-400 ml-2">{lang.name}</span>
                       </button>
                     ))}
                   </motion.div>

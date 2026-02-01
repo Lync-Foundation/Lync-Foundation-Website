@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Outer border with rough seal edge effect -->
+  <rect x="4" y="4" width="92" height="92" stroke="#8B2323" stroke-width="3" fill="none" rx="2"/>
+  <rect x="8" y="8" width="84" height="84" stroke="#8B2323" stroke-width="1" fill="none" rx="1"/>
+  
+  <!-- Stylized "L" character in seal script style -->
+  <path d="M25 25 L25 60 L45 60" stroke="#8B2323" stroke-width="5" stroke-linecap="square" fill="none"/>
+  
+  <!-- Stylized abstract pattern representing connection/linking -->
+  <path d="M55 25 L55 45 L75 45" stroke="#8B2323" stroke-width="5" stroke-linecap="square" fill="none"/>
+  <path d="M55 55 L75 55 L75 75" stroke="#8B2323" stroke-width="5" stroke-linecap="square" fill="none"/>
+  
+  <!-- Center dot - representing the coin hole -->
+  <circle cx="50" cy="50" r="4" fill="#8B2323"/>
+  
+  <!-- Corner accents -->
+  <path d="M15 15 L22 15 M15 15 L15 22" stroke="#8B2323" stroke-width="2" stroke-linecap="square"/>
+  <path d="M85 15 L78 15 M85 15 L85 22" stroke="#8B2323" stroke-width="2" stroke-linecap="square"/>
+  <path d="M15 85 L22 85 M15 85 L15 78" stroke="#8B2323" stroke-width="2" stroke-linecap="square"/>
+  <path d="M85 85 L78 85 M85 85 L85 78" stroke="#8B2323" stroke-width="2" stroke-linecap="square"/>
+</svg>
