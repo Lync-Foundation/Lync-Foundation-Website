@@ -29,11 +29,7 @@ const languages = [
   { code: "TW", name: "繁體中文" },
 ];
 
-interface HeaderProps {
-  showLogo?: boolean;
-}
-
-export default function Header({ showLogo = true }: HeaderProps) {
+export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -72,26 +68,16 @@ export default function Header({ showLogo = true }: HeaderProps) {
     >
       <div className="w-full px-8 lg:px-16 xl:px-24">
         <div className="flex items-center justify-between h-28">
-          {/* Logo - hidden until silk ribbon reveals it */}
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-5 group">
-            <div 
-              className={`transition-all duration-500 ${
-                showLogo ? "opacity-100 scale-100" : "opacity-0 scale-75"
-              }`}
-            >
-              <Image
-                src="/lync-icon-new.svg"
-                alt="Lync Foundation"
-                width={54}
-                height={54}
-                className="w-14 h-14 group-hover:opacity-100 transition-opacity duration-500"
-              />
-            </div>
-            <span 
-              className={`nav-text text-zinc-700 group-hover:text-[#8B2323] transition-all duration-500 ${
-                showLogo ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
-              }`}
-            >
+            <Image
+              src="/lync-icon-new.svg"
+              alt="Lync Foundation"
+              width={54}
+              height={54}
+              className="w-14 h-14 opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+            />
+            <span className="nav-text text-zinc-700 group-hover:text-[#8B2323] transition-colors duration-500">
               Lync Foundation
             </span>
           </Link>
