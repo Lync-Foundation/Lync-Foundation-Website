@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import AnimatedSeal from "./AnimatedSeal";
 
 export default function Mission() {
   return (
@@ -10,22 +11,35 @@ export default function Mission() {
       {/* Section 1: Hero Declaration - Animation plays here */}
       <section id="about" className="relative min-h-screen flex items-center">
         <div className="relative w-full px-8 lg:px-16 xl:px-24 pt-28">
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.5 }}
-            className="max-w-5xl"
-          >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extralight tracking-wide leading-tight mb-8">
-              <span className="gradient-text">Lyncing the World</span>
-              <br />
-              <span className="text-zinc-600">to China&apos;s Currency</span>
-            </h1>
-            
-            <p className="text-lg lg:text-xl font-light text-zinc-500 leading-relaxed max-w-2xl">
-              We build trustless infrastructure to internationalize CNY — making the People&apos;s Currency accessible to everyone, everywhere.
-            </p>
-          </motion.div>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12">
+            {/* Left: Text content */}
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.5 }}
+              className="max-w-2xl lg:max-w-3xl"
+            >
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extralight tracking-wide leading-tight mb-8">
+                <span className="gradient-text">Lyncing the World</span>
+                <br />
+                <span className="text-zinc-600">to China&apos;s Currency</span>
+              </h1>
+              
+              <p className="text-lg lg:text-xl font-light text-zinc-500 leading-relaxed max-w-2xl">
+                We build trustless infrastructure to internationalize CNY — making the People&apos;s Currency accessible to everyone, everywhere.
+              </p>
+            </motion.div>
+
+            {/* Right: Animated Seal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="hidden lg:flex lg:w-[320px] xl:w-[380px] lg:justify-end lg:pr-8"
+            >
+              <AnimatedSeal />
+            </motion.div>
+          </div>
         </div>
 
         {/* Scroll indicator */}
