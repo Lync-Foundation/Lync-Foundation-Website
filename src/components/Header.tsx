@@ -62,11 +62,16 @@ export default function Header({ showLogo = true }: HeaderProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Don't render header until animation completes
+  if (!showLogo) {
+    return null;
+  }
+
   return (
     <motion.header
-      initial={{ y: -100, opacity: 0 }}
+      initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, ease: "easeOut" }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         isScrolled
           ? "bg-[#f8f6f2]/95 backdrop-blur-xl border-b border-[#8B2323]/10 shadow-sm"
@@ -75,35 +80,18 @@ export default function Header({ showLogo = true }: HeaderProps) {
     >
       <div className="w-full px-8 lg:px-16 xl:px-24">
         <div className="flex items-center justify-between h-28">
-          {/* Logo - fades in after flying animation */}
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-5 group">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ 
-                opacity: showLogo ? 1 : 0, 
-                scale: showLogo ? 1 : 0.5 
-              }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <Image
-                src="/lync-icon-new.svg"
-                alt="Lync Foundation"
-                width={54}
-                height={54}
-                className="w-14 h-14 opacity-90 group-hover:opacity-100 transition-opacity duration-500"
-              />
-            </motion.div>
-            <motion.span 
-              className="nav-text text-zinc-700 group-hover:text-[#8B2323] transition-colors duration-500"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ 
-                opacity: showLogo ? 1 : 0, 
-                x: showLogo ? 0 : -20 
-              }}
-              transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            >
+            <Image
+              src="/lync-icon-new.svg"
+              alt="Lync Foundation"
+              width={54}
+              height={54}
+              className="w-14 h-14 opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+            />
+            <span className="nav-text text-zinc-700 group-hover:text-[#8B2323] transition-colors duration-500">
               Lync Foundation
-            </motion.span>
+            </span>
           </Link>
 
           {/* Navigation */}
