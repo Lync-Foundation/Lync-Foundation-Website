@@ -86,7 +86,7 @@ export default function HanziSeal() {
       {/* Irregular organic seal border using SVG - vertical 2x2 layout */}
       <div className="relative" ref={containerRef}>
         <svg
-          viewBox="0 0 240 280"
+          viewBox="0 0 240 300"
           className="w-full h-auto"
           style={{ minWidth: "200px", maxWidth: "260px" }}
         >
@@ -95,12 +95,12 @@ export default function HanziSeal() {
             d="M12 16 
                C22 8, 50 11, 120 9 
                C190 11, 218 8, 228 16 
-               C238 26, 240 50, 236 140 
-               C240 230, 238 258, 228 268 
-               C218 278, 190 275, 120 277 
-               C50 275, 22 278, 12 268 
-               C2 258, 0 230, 4 140 
-               C0 50, 2 26, 12 16 Z"
+               C238 26, 240 55, 236 150 
+               C240 245, 238 278, 228 288 
+               C218 298, 190 295, 120 297 
+               C50 295, 22 298, 12 288 
+               C2 278, 0 245, 4 150 
+               C0 55, 2 26, 12 16 Z"
             fill="none"
             stroke={STROKE_COLOR}
             strokeWidth="3.5"
@@ -112,12 +112,12 @@ export default function HanziSeal() {
             d="M24 28 
                C32 22, 55 24, 120 23 
                C185 24, 208 22, 216 28 
-               C224 36, 226 55, 223 140 
-               C226 225, 224 248, 216 256 
-               C208 264, 185 262, 120 263 
-               C55 262, 32 264, 24 256 
-               C16 248, 14 225, 17 140 
-               C14 55, 16 36, 24 28 Z"
+               C224 36, 226 60, 223 150 
+               C226 240, 224 268, 216 276 
+               C208 284, 185 282, 120 283 
+               C55 282, 32 284, 24 276 
+               C16 268, 14 240, 17 150 
+               C14 60, 16 36, 24 28 Z"
             fill="none"
             stroke={STROKE_COLOR}
             strokeWidth="1.8"
@@ -125,36 +125,38 @@ export default function HanziSeal() {
             className="transition-all duration-300"
           />
 
-          {/* 2x2 Grid of characters */}
-          {/* Row 0: 東 (left), 遇 (right) */}
-          {/* Row 1: 方 (left), 見 (right) */}
+          {/* Staggered diagonal layout */}
+          {/* 方 at (1.5, 0) - right, top */}
+          {/* 見 at (0, 1) - left, upper */}
+          {/* 東 at (1.5, 2) - right, lower */}
+          {/* 遇 at (0, 3) - left, bottom */}
           
-          {/* 遇 - top right */}
-          <foreignObject x="125" y="40" width="95" height="95">
+          {/* 遇 - left column, bottom (0, 3) */}
+          <foreignObject x="25" y="190" width="95" height="95">
             <div
               id="hanzi-0"
               className="hanzi-char flex justify-center items-center w-full h-full"
             />
           </foreignObject>
 
-          {/* 見 - bottom right */}
-          <foreignObject x="125" y="145" width="95" height="95">
+          {/* 見 - left column, upper (0, 1) */}
+          <foreignObject x="25" y="55" width="95" height="95">
             <div
               id="hanzi-1"
               className="hanzi-char flex justify-center items-center w-full h-full"
             />
           </foreignObject>
 
-          {/* 東 - top left */}
-          <foreignObject x="20" y="40" width="95" height="95">
+          {/* 東 - right column, lower (1.5, 2) */}
+          <foreignObject x="120" y="125" width="95" height="95">
             <div
               id="hanzi-2"
               className="hanzi-char flex justify-center items-center w-full h-full"
             />
           </foreignObject>
 
-          {/* 方 - bottom left */}
-          <foreignObject x="20" y="145" width="95" height="95">
+          {/* 方 - right column, top (1.5, 0) */}
+          <foreignObject x="120" y="25" width="95" height="95">
             <div
               id="hanzi-3"
               className="hanzi-char flex justify-center items-center w-full h-full"
