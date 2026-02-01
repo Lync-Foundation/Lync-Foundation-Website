@@ -137,6 +137,67 @@ export default function HanziSeal() {
           <circle cx="120" cy="510" r="2" fill={STROKE_COLOR} opacity="0.5" />
           <circle cx="260" cy="512" r="2" fill={STROKE_COLOR} opacity="0.4" />
 
+          {/* Decorative interior curves - smooth flowing lines between characters */}
+          {/* Top flowing curve - between 遇 and 東 */}
+          <path
+            d="M175 90 
+               Q190 75, 195 100 
+               C200 130, 185 145, 195 155"
+            fill="none"
+            stroke={STROKE_COLOR}
+            strokeWidth="1"
+            opacity="0.25"
+            strokeLinecap="round"
+          />
+          
+          {/* Middle flowing curve - diagonal through center */}
+          <path
+            d="M170 200 
+               Q185 220, 180 250 
+               C175 280, 195 290, 185 310"
+            fill="none"
+            stroke={STROKE_COLOR}
+            strokeWidth="1"
+            opacity="0.2"
+            strokeLinecap="round"
+          />
+          
+          {/* Bottom flowing curve - between 見 and 方 */}
+          <path
+            d="M175 430 
+               Q190 415, 195 440 
+               C200 470, 185 485, 195 495"
+            fill="none"
+            stroke={STROKE_COLOR}
+            strokeWidth="1"
+            opacity="0.25"
+            strokeLinecap="round"
+          />
+          
+          {/* Left side subtle curve */}
+          <path
+            d="M50 185 
+               Q42 210, 48 235 
+               C54 260, 42 280, 50 300"
+            fill="none"
+            stroke={STROKE_COLOR}
+            strokeWidth="0.8"
+            opacity="0.18"
+            strokeLinecap="round"
+          />
+          
+          {/* Right side subtle curve */}
+          <path
+            d="M335 220 
+               Q342 250, 338 280 
+               C334 310, 345 340, 338 365"
+            fill="none"
+            stroke={STROKE_COLOR}
+            strokeWidth="0.8"
+            opacity="0.18"
+            strokeLinecap="round"
+          />
+
           {/* Staggered zigzag layout - more spread out */}
           {/* 遇 at (0, 3) - left, TOP */}
           {/* 東 at (1.5, 2) - right, second from top */}

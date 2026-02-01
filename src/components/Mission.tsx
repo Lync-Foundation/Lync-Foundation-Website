@@ -10,12 +10,20 @@ export default function Mission() {
     <>
       {/* Section 1: Hero Declaration - Animation plays here */}
       <section id="about" className="relative min-h-screen flex items-center">
-        {/* Background Seal - centered slightly to the right */}
+        {/* Background Seal - fades from foreground to background */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 0.12, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-          className="absolute left-1/2 top-1/2 -translate-x-1/3 -translate-y-1/2 pointer-events-none z-0"
+          initial={{ opacity: 0, scale: 0.95, zIndex: 20 }}
+          animate={{ 
+            opacity: [0, 0.9, 0.9, 0.12],
+            scale: 1,
+            zIndex: 0
+          }}
+          transition={{ 
+            duration: 8,
+            times: [0, 0.1, 0.7, 1],
+            ease: "easeOut"
+          }}
+          className="absolute left-1/2 top-1/2 -translate-x-1/4 -translate-y-[45%] pointer-events-none"
         >
           <HanziSeal />
         </motion.div>
