@@ -125,38 +125,38 @@ export default function HanziSeal() {
             className="transition-all duration-300"
           />
 
-          {/* Staggered diagonal layout */}
-          {/* 方 at (1.5, 0) - right, top */}
-          {/* 見 at (0, 1) - left, upper */}
-          {/* 東 at (1.5, 2) - right, lower */}
-          {/* 遇 at (0, 3) - left, bottom */}
+          {/* Staggered zigzag layout (y increases upward in coord system) */}
+          {/* 遇 at (0, 3) - left, TOP */}
+          {/* 東 at (1.5, 2) - right, second from top */}
+          {/* 見 at (0, 1) - left, third from top */}
+          {/* 方 at (1.5, 0) - right, BOTTOM */}
           
-          {/* 遇 - left column, bottom (0, 3) */}
-          <foreignObject x="25" y="190" width="95" height="95">
+          {/* 遇 - TOP LEFT (0, 3) */}
+          <foreignObject x="25" y="20" width="95" height="95">
             <div
               id="hanzi-0"
               className="hanzi-char flex justify-center items-center w-full h-full"
             />
           </foreignObject>
 
-          {/* 見 - left column, upper (0, 1) */}
-          <foreignObject x="25" y="55" width="95" height="95">
+          {/* 見 - THIRD from top, LEFT (0, 1) */}
+          <foreignObject x="25" y="150" width="95" height="95">
             <div
               id="hanzi-1"
               className="hanzi-char flex justify-center items-center w-full h-full"
             />
           </foreignObject>
 
-          {/* 東 - right column, lower (1.5, 2) */}
-          <foreignObject x="120" y="125" width="95" height="95">
+          {/* 東 - SECOND from top, RIGHT (1.5, 2) */}
+          <foreignObject x="120" y="85" width="95" height="95">
             <div
               id="hanzi-2"
               className="hanzi-char flex justify-center items-center w-full h-full"
             />
           </foreignObject>
 
-          {/* 方 - right column, top (1.5, 0) */}
-          <foreignObject x="120" y="25" width="95" height="95">
+          {/* 方 - BOTTOM RIGHT (1.5, 0) */}
+          <foreignObject x="120" y="195" width="95" height="95">
             <div
               id="hanzi-3"
               className="hanzi-char flex justify-center items-center w-full h-full"
