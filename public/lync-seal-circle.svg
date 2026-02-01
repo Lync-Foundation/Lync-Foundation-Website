@@ -1,47 +1,68 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
-  <!-- Circular seal with character: Lian (connect) - simplified version -->
+  <!-- Circular seal: Lian Tong (connect through) -->
   
-  <!-- Outer circle border -->
-  <circle cx="100" cy="100" r="90" fill="none" stroke="#C52F2F" stroke-width="5"/>
+  <!-- Outer circle border with slight irregularity -->
+  <path d="M100 8 C150 6, 190 45, 192 100 C194 155, 155 194, 100 192 C45 194, 6 155, 8 100 C6 45, 45 6, 100 8 Z" fill="none" stroke="#C52F2F" stroke-width="5"/>
   
   <!-- Inner circle border -->
-  <circle cx="100" cy="100" r="75" fill="none" stroke="#C52F2F" stroke-width="2.5"/>
+  <path d="M100 25 C140 23, 175 58, 177 100 C179 142, 144 177, 100 175 C56 177, 21 142, 23 100 C21 58, 56 23, 100 25 Z" fill="none" stroke="#C52F2F" stroke-width="2.5"/>
   
-  <!-- === Character: Lian - connect === -->
-  <!-- Structure: Che (vehicle) on top + Chuo (walk) radical at bottom -->
-  
-  <!-- TOP PART: Che (vehicle) -->
-  
-  <!-- Top horizontal line -->
-  <path d="M55 38 Q60 35, 85 36 Q110 35, 145 38 Q148 41, 145 43 Q142 45, 130 44 Q100 46, 70 44 Q60 45, 55 43 Q52 41, 55 38 Z" fill="#C52F2F"/>
-  
-  <!-- Second horizontal -->
-  <path d="M65 55 Q70 52, 90 53 Q110 52, 135 55 Q138 58, 135 60 Q132 62, 120 61 Q100 63, 80 61 Q70 62, 65 60 Q62 58, 65 55 Z" fill="#C52F2F"/>
-  
-  <!-- Center vertical stroke -->
-  <path d="M98 36 Q95 40, 96 50 L96 115 Q96 122, 100 120 Q104 118, 103 112 L103 48 Q104 40, 98 36 Z" fill="#C52F2F"/>
-  
-  <!-- Box - left vertical -->
-  <path d="M62 55 Q60 58, 61 65 L61 92 Q61 98, 65 96 Q68 94, 67 88 L67 62 Q68 57, 62 55 Z" fill="#C52F2F"/>
-  
-  <!-- Box - right vertical -->
-  <path d="M132 55 Q134 58, 133 65 L133 92 Q133 98, 130 96 Q127 94, 128 88 L128 62 Q127 57, 132 55 Z" fill="#C52F2F"/>
-  
-  <!-- Box - bottom horizontal -->
-  <path d="M62 88 Q68 85, 90 86 Q112 85, 135 88 Q138 91, 135 94 Q132 97, 118 95 Q98 97, 78 95 Q68 97, 62 94 Q59 91, 62 88 Z" fill="#C52F2F"/>
-  
-  <!-- Inner horizontal of box -->
-  <path d="M68 72 Q74 69, 90 70 Q106 69, 128 72 Q131 75, 128 77 Q125 79, 112 78 Q95 80, 78 78 Q72 79, 68 77 Q65 75, 68 72 Z" fill="#C52F2F"/>
+  <!-- Subtle vertical divider -->
+  <path d="M100 32 Q98 100, 100 168" fill="none" stroke="#C52F2F" stroke-width="1.5" opacity="0.4"/>
   
   
-  <!-- BOTTOM: Chuo (walk) radical -->
+  <!-- === LEFT: Lian (connect) === -->
   
-  <!-- Dot -->
-  <path d="M55 108 Q52 105, 54 110 Q52 118, 58 124 Q64 120, 60 114 Q62 108, 55 108 Z" fill="#C52F2F"/>
+  <!-- Top horizontal with brush taper -->
+  <path d="M30 42 Q35 38, 50 40 Q70 38, 90 42 Q94 46, 90 48 Q85 50, 75 48 Q55 50, 40 48 Q32 50, 30 46 Q28 44, 30 42 Z" fill="#C52F2F"/>
   
-  <!-- Horizontal sweep -->
-  <path d="M58 135 Q55 132, 60 130 Q80 126, 110 128 Q140 126, 158 135 Q165 142, 158 145 Q150 140, 125 138 Q95 140, 70 138 Q60 140, 58 135 Z" fill="#C52F2F"/>
+  <!-- Che box - left vertical -->
+  <path d="M35 52 Q32 55, 33 62 L33 88 Q33 94, 37 92 L38 62 Q39 56, 35 52 Z" fill="#C52F2F"/>
   
-  <!-- Curved stroke connecting -->
-  <path d="M68 120 Q65 122, 64 128 Q62 134, 68 136 Q74 134, 72 128 Q74 124, 68 120 Z" fill="#C52F2F"/>
+  <!-- Che box - right vertical -->  
+  <path d="M85 52 Q88 55, 87 62 L87 88 Q87 94, 83 92 L82 62 Q81 56, 85 52 Z" fill="#C52F2F"/>
+  
+  <!-- Che center vertical -->
+  <path d="M58 40 Q55 44, 56 52 L56 108 Q56 115, 60 112 Q64 110, 63 104 L63 50 Q64 44, 58 40 Z" fill="#C52F2F"/>
+  
+  <!-- Che horizontal bars -->
+  <path d="M36 58 Q45 55, 60 56 Q75 55, 86 58 Q84 62, 78 60 Q62 62, 46 60 Q38 62, 36 58 Z" fill="#C52F2F"/>
+  <path d="M36 74 Q45 71, 60 72 Q75 71, 86 74 Q84 78, 78 76 Q62 78, 46 76 Q38 78, 36 74 Z" fill="#C52F2F"/>
+  <path d="M34 90 Q45 87, 60 88 Q75 87, 88 90 Q86 94, 78 92 Q62 94, 46 92 Q36 94, 34 90 Z" fill="#C52F2F"/>
+  
+  <!-- Chuo radical - dot -->
+  <path d="M32 105 Q28 102, 30 108 Q28 116, 34 120 Q40 116, 36 110 Q38 104, 32 105 Z" fill="#C52F2F"/>
+  
+  <!-- Chuo radical - sweep -->
+  <path d="M38 128 Q34 125, 40 122 Q55 118, 75 120 Q92 118, 98 128 Q102 136, 95 138 Q88 134, 75 132 Q55 134, 45 132 Q38 134, 38 128 Z" fill="#C52F2F"/>
+  
+  
+  <!-- === RIGHT: Tong (through) === -->
+  
+  <!-- Yong top lid -->
+  <path d="M108 42 Q115 38, 135 40 Q155 38, 168 42 Q172 46, 168 48 Q163 50, 150 48 Q130 50, 118 48 Q110 50, 108 46 Q106 44, 108 42 Z" fill="#C52F2F"/>
+  
+  <!-- Yong center vertical -->
+  <path d="M136 40 Q133 44, 134 52 L134 105 Q134 112, 138 110 Q142 108, 141 102 L141 50 Q142 44, 136 40 Z" fill="#C52F2F"/>
+  
+  <!-- Yong box - left vertical -->
+  <path d="M115 52 Q112 55, 113 62 L113 88 Q113 94, 117 92 L118 62 Q119 56, 115 52 Z" fill="#C52F2F"/>
+  
+  <!-- Yong box - right vertical -->
+  <path d="M158 52 Q161 55, 160 62 L160 88 Q160 94, 156 92 L155 62 Q154 56, 158 52 Z" fill="#C52F2F"/>
+  
+  <!-- Yong horizontal bars -->
+  <path d="M115 56 Q125 53, 138 54 Q151 53, 160 56 Q158 60, 152 58 Q140 60, 125 58 Q118 60, 115 56 Z" fill="#C52F2F"/>
+  <path d="M116 72 Q125 69, 138 70 Q151 69, 159 72 Q157 76, 150 74 Q138 76, 125 74 Q118 76, 116 72 Z" fill="#C52F2F"/>
+  <path d="M114 88 Q125 85, 138 86 Q151 85, 162 88 Q160 92, 152 90 Q138 92, 125 90 Q116 92, 114 88 Z" fill="#C52F2F"/>
+  
+  <!-- Yong bottom legs -->
+  <path d="M120 90 Q117 94, 118 100 L118 115 Q118 120, 122 118 L123 102 Q124 96, 120 90 Z" fill="#C52F2F"/>
+  <path d="M152 90 Q155 94, 154 100 L154 115 Q154 120, 150 118 L149 102 Q148 96, 152 90 Z" fill="#C52F2F"/>
+  
+  <!-- Chuo radical - dot -->
+  <path d="M108 118 Q104 115, 106 121 Q104 129, 110 133 Q116 129, 112 123 Q114 117, 108 118 Z" fill="#C52F2F"/>
+  
+  <!-- Chuo radical - sweep -->
+  <path d="M114 142 Q110 138, 116 135 Q132 130, 155 132 Q172 130, 180 142 Q184 150, 176 152 Q168 148, 152 146 Q132 148, 122 146 Q114 148, 114 142 Z" fill="#C52F2F"/>
 </svg>
