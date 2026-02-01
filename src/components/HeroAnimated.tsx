@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useRef, useCallback, useState } from "react";
-import FlyingLogo from "./FlyingLogo";
+import SilkRoadAnimation from "./SilkRoadAnimation";
 
 // Particle system for the mystical effect
 function useParticleCanvas() {
@@ -127,80 +127,15 @@ export default function HeroAnimated({ onLogoAnimationComplete }: HeroAnimatedPr
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Transparent - relies on ImperialBackground */}
 
-      {/* Particle canvas */}
+      {/* Silk Road Animation */}
+      <SilkRoadAnimation onAnimationComplete={handleAnimationComplete} />
+
+      {/* Particle canvas - subtle background particles */}
       <canvas 
         ref={canvasRef} 
-        className="absolute inset-0 pointer-events-none opacity-60"
+        className="absolute inset-0 pointer-events-none opacity-40"
       />
 
-      {/* Center content with FLYING LOGO */}
-      <div className="relative z-10 flex flex-col items-center justify-center">
-        {/* Rotating outer ring - autumn red/gold feel */}
-        <motion.div
-          className="absolute w-80 h-80 lg:w-[500px] lg:h-[500px] rounded-full"
-          style={{
-            background: "conic-gradient(from 0deg, transparent, rgba(139, 35, 35, 0.08), transparent, rgba(255, 180, 40, 0.06), transparent, rgba(255, 136, 16, 0.06), transparent)",
-          }}
-          animate={{ 
-            rotate: 360,
-            opacity: logoFlown ? 0 : 1,
-          }}
-          transition={{ 
-            rotate: { duration: 60, repeat: Infinity, ease: "linear" },
-            opacity: { duration: 0.5 }
-          }}
-        />
-
-        {/* Second rotating ring - inner */}
-        <motion.div
-          className="absolute w-64 h-64 lg:w-96 lg:h-96 rounded-full"
-          style={{
-            background: "conic-gradient(from 180deg, transparent, rgba(255, 216, 102, 0.05), transparent, rgba(139, 35, 35, 0.05), transparent)",
-          }}
-          animate={{ 
-            rotate: -360,
-            opacity: logoFlown ? 0 : 1,
-          }}
-          transition={{ 
-            rotate: { duration: 45, repeat: Infinity, ease: "linear" },
-            opacity: { duration: 0.5 }
-          }}
-        />
-
-        {/* Inner pulsing ring - classified seal */}
-        <motion.div
-          className="absolute w-48 h-48 lg:w-64 lg:h-64 rounded-full border border-[#8B2323]/15"
-          animate={{
-            scale: [1, 1.08, 1],
-            opacity: logoFlown ? 0 : [0.4, 0.7, 0.4],
-          }}
-          transition={{
-            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-            opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-          }}
-        />
-
-        {/* Tech crosshairs */}
-        {!logoFlown && (
-          <>
-            <motion.div 
-              className="absolute w-[2px] h-32 lg:h-48 bg-gradient-to-b from-transparent via-[#8B2323]/20 to-transparent"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            />
-            <motion.div 
-              className="absolute w-32 lg:w-48 h-[2px] bg-gradient-to-r from-transparent via-[#8B2323]/20 to-transparent"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            />
-          </>
-        )}
-
-        {/* FLYING LOGO - draws then flies to nav corner */}
-        <FlyingLogo onAnimationComplete={handleAnimationComplete} />
-      </div>
 
       {/* Scroll indicator */}
       <motion.div
