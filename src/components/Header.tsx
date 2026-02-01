@@ -129,16 +129,16 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full right-0 mt-4 w-72 bg-[#f8f6f2]/98 backdrop-blur-xl border border-[#d4c8b8]/60 rounded-sm overflow-hidden shadow-lg shadow-[#8B2323]/5"
+                    className="absolute top-full right-0 mt-4 w-80 bg-[#6B1C1C] rounded-sm overflow-hidden shadow-xl shadow-black/20"
                   >
-                    {products.map((product) => (
+                    {products.map((product, index) => (
                       <div key={product.name}>
                         {product.href ? (
                           <Link
                             href={product.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block px-6 py-5 hover:bg-[#8B2323]/8 transition-colors duration-300 border-b border-[#d4c8b8]/40 last:border-b-0"
+                            className="block px-6 py-5 hover:bg-white/10 transition-colors duration-300 border-b border-white/10 last:border-b-0"
                             onClick={() => setIsProductsOpen(false)}
                           >
                             {product.logo ? (
@@ -148,31 +148,34 @@ export default function Header() {
                                   alt={product.name}
                                   width={80}
                                   height={32}
-                                  className="h-8 w-auto"
+                                  className="h-8 w-auto brightness-0 invert"
                                 />
                               </div>
                             ) : (
                               <div className="mb-2">
-                                <span className="text-base text-zinc-800">
+                                <span className="text-base text-white">
                                   {product.name}
                                 </span>
                               </div>
                             )}
-                            <p className="text-sm text-zinc-500">
+                            <p className="text-sm text-white/70">
                               {product.description}
                             </p>
                           </Link>
                         ) : (
-                          <div className="block px-6 py-5 opacity-70 cursor-not-allowed border-b border-[#d4c8b8]/40 last:border-b-0">
+                          <div className={`block px-6 py-5 opacity-80 cursor-not-allowed ${index < products.length - 1 ? 'border-b border-white/10' : ''}`}>
                             <div className="flex items-center justify-between mb-2">
-                              <span className="text-lg italic font-light text-zinc-600 tracking-wide" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
+                              <span 
+                                className="text-lg text-white/90 tracking-wider"
+                                style={{ fontFamily: 'Garamond, "Times New Roman", serif', fontWeight: 400 }}
+                              >
                                 {product.name}
                               </span>
                               {product.status && (
-                                <span className="text-[10px] tracking-[0.2em] uppercase text-[#8B2323]/80 font-medium">{product.status}</span>
+                                <span className="text-[10px] tracking-[0.2em] uppercase text-white/60 font-medium">{product.status}</span>
                               )}
                             </div>
-                            <p className="text-sm text-zinc-500">
+                            <p className="text-sm text-white/60">
                               {product.description}
                             </p>
                           </div>
@@ -211,23 +214,25 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full right-0 mt-4 w-40 bg-[#f8f6f2]/98 backdrop-blur-xl border border-[#d4c8b8]/60 rounded-sm overflow-hidden shadow-lg shadow-[#8B2323]/5"
+                    className="absolute top-full right-0 mt-4 w-44 bg-[#6B1C1C] rounded-sm overflow-hidden shadow-xl shadow-black/20"
                   >
-                    {languages.map((lang) => (
+                    {languages.map((lang, index) => (
                       <button
                         key={lang.code}
                         onClick={() => {
                           setCurrentLang(lang.code);
                           setIsLangOpen(false);
                         }}
-                        className={`block w-full text-left px-4 py-3 hover:bg-[#8B2323]/8 transition-colors duration-300 border-b border-[#d4c8b8]/40 last:border-b-0 ${
+                        className={`block w-full text-left px-5 py-3.5 hover:bg-white/10 transition-colors duration-300 ${
+                          index < languages.length - 1 ? 'border-b border-white/10' : ''
+                        } ${
                           currentLang === lang.code 
-                            ? "text-[#8B2323] bg-[#8B2323]/5" 
-                            : "text-zinc-600"
+                            ? "text-white bg-white/10" 
+                            : "text-white/80"
                         }`}
                       >
-                        <span className="nav-text">{lang.code}</span>
-                        <span className="text-sm text-zinc-400 ml-2">{lang.name}</span>
+                        <span className="nav-text text-white">{lang.code}</span>
+                        <span className="text-sm text-white/60 ml-3">{lang.name}</span>
                       </button>
                     ))}
                   </motion.div>
