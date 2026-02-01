@@ -17,7 +17,7 @@ export default function Mission() {
             className="max-w-5xl"
           >
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extralight tracking-wide leading-tight mb-8">
-              <span className="gradient-text">Linking the World</span>
+              <span className="gradient-text">Lyncing the World</span>
               <br />
               <span className="text-zinc-600">to China&apos;s Currency</span>
             </h1>
