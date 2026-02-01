@@ -44,7 +44,7 @@ export default function Mission() {
               </h1>
               
               <p className="text-lg lg:text-xl font-light text-zinc-500 leading-relaxed max-w-2xl">
-                We build trustless infrastructure to internationalize CNY — making the People&apos;s Currency accessible to everyone, everywhere.
+                Lync Foundation is a non-profit building trustless infrastructure to internationalize CNY — making the People&apos;s Currency accessible to everyone, everywhere.
               </p>
             </motion.div>
           </div>
@@ -283,47 +283,6 @@ export default function Mission() {
         </div>
       </section>
 
-      {/* Section 5: Foundation + CTA */}
-      <section className="relative py-24 lg:py-32">
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#8B2323]/20 to-transparent" />
-        
-        <div className="relative w-full px-8 lg:px-16 xl:px-24">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="text-center max-w-2xl mx-auto"
-          >
-            <p className="text-xs tracking-[0.3em] uppercase text-[#8B2323] mb-6">Non-Profit Foundation</p>
-            
-            <h2 className="text-2xl lg:text-4xl font-extralight text-zinc-700 mb-6">
-              The Future is CNY
-            </h2>
-            
-            <p className="text-base text-zinc-500 font-light mb-10 leading-relaxed">
-              Lync Foundation is a non-profit organization. All revenue funds research and development for trustless CNY infrastructure.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="https://lync-z.xyz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3 bg-[#8B2323] text-white text-sm tracking-[0.15em] uppercase hover:bg-[#6B1A1A] transition-colors duration-300"
-              >
-                Start with LyncZ
-              </Link>
-              <Link
-                href="mailto:contact@lync-foundation.org"
-                className="px-8 py-3 border border-[#8B2323]/30 text-[#8B2323] text-sm tracking-[0.15em] uppercase hover:bg-[#8B2323]/5 transition-colors duration-300"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </>
   );
 }

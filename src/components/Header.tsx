@@ -239,6 +239,14 @@ export default function Header() {
                 )}
               </AnimatePresence>
             </div>
+
+            {/* Contact Us Button */}
+            <Link
+              href="mailto:contact@lync-foundation.org"
+              className="px-5 py-2 bg-[#8B2323] text-white text-xs tracking-[0.12em] uppercase hover:bg-[#6B1A1A] transition-colors duration-300"
+            >
+              Contact Us
+            </Link>
           </nav>
         </div>
       </div>

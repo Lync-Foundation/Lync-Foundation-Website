@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -11,16 +10,6 @@ export default function Footer() {
       {/* Top accent glow */}
       <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#8B2323]/3 to-transparent" />
 
-      {/* Seal watermark - positioned on the right */}
-      <div className="absolute right-12 lg:right-24 top-1/2 -translate-y-1/2 opacity-[0.06] pointer-events-none">
-        <Image
-          src="/lync-seal-organic.svg"
-          alt=""
-          width={180}
-          height={180}
-          className="w-44 h-44"
-        />
-      </div>
 
       <div className="relative w-full px-8 lg:px-16 xl:px-24">
         <motion.div
@@ -42,7 +31,7 @@ export default function Footer() {
           </Link>
 
           {/* Links */}
-          <div className="flex items-center gap-8 mb-8">
+          <div className="flex items-center gap-8 mb-16">
             <Link
               href="https://x.com/LyncFoundation"
               target="_blank"
@@ -53,16 +42,6 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* Contact */}
-          <Link
-            href="mailto:contact@lync-foundation.org"
-            className="flex items-center gap-3 mb-16 group"
-          >
-            <Mail className="w-4 h-4 text-zinc-500 group-hover:text-[#8B2323] transition-colors duration-300" />
-            <span className="text-sm text-zinc-500 group-hover:text-zinc-700 transition-colors duration-300">
-              contact@lync-foundation.org
-            </span>
-          </Link>
 
           {/* Copyright */}
           <div className="flex items-center gap-4">
