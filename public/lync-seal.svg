@@ -1,91 +1,195 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
-  <!-- Main seal background - organic square shape with hand-carved feel -->
+  <!-- Main seal background - organic square -->
   <path 
-    d="M20 16 
-       C28 13, 50 15, 80 14 
-       C110 13, 150 14, 170 15 
-       C182 16, 186 20, 186 30
-       C187 50, 186 90, 186 120 
-       C186 150, 187 170, 184 180
-       C182 186, 175 187, 165 187 
-       C140 188, 100 187, 60 187 
-       C35 187, 20 188, 16 183
-       C13 175, 14 150, 14 120 
-       C14 90, 13 50, 15 30 
-       C16 20, 15 16, 20 16 Z"
-    fill="#C13B33"
+    d="M18 14 
+       C30 11, 60 13, 100 12 
+       C140 11, 170 13, 182 14 
+       C188 16, 189 22, 188 35
+       C187 70, 188 130, 187 165 
+       C186 178, 188 184, 182 186
+       C170 189, 140 187, 100 188 
+       C60 189, 30 187, 18 186
+       C12 184, 11 178, 12 165 
+       C13 130, 12 70, 13 35 
+       C14 22, 12 16, 18 14 Z"
+    fill="#C72C2C"
   />
   
-  <!-- Inner carved area - slightly recessed look -->
+  <!-- Inner border - with slight irregularity -->
   <path 
-    d="M28 26 
-       C35 24, 55 25, 85 24 
-       C115 23, 150 24, 168 25 
-       C174 26, 176 29, 176 36
-       C177 55, 176 95, 176 125 
-       C176 155, 177 168, 174 174
-       C172 177, 166 178, 158 178 
-       C135 179, 100 178, 65 178 
-       C42 178, 28 179, 25 174
-       C22 168, 23 155, 23 125 
-       C23 95, 22 55, 24 36 
-       C25 29, 24 26, 28 26 Z"
-    fill="#B53029"
+    d="M28 25 
+       C38 23, 65 24, 100 24 
+       C135 24, 162 23, 172 25 
+       C176 27, 177 32, 176 42
+       C175 75, 176 125, 175 158 
+       C174 168, 176 173, 172 175
+       C162 177, 135 176, 100 176 
+       C65 176, 38 177, 28 175
+       C24 173, 23 168, 24 158 
+       C25 125, 24 75, 25 42 
+       C26 32, 24 27, 28 25 Z"
+    fill="none"
+    stroke="#F5EBE0"
+    stroke-width="2"
+    opacity="0.9"
   />
   
-  <!-- Inner border frame - clean line -->
-  <rect x="36" y="36" width="128" height="128" rx="2" ry="2" fill="none" stroke="#F2E8DF" stroke-width="2.5" opacity="0.92"/>
+  <!-- === 霖 Character - Elegant Curved Seal Script === -->
+  <!-- More white space, curved flowing strokes -->
   
-  <!-- === 霖 Character - Seal Script Style === -->
-  <!-- The character 霖 (lín) means continuous rain, phonetically similar to "Lync" -->
+  <!-- ===== TOP: 雨 (rain) - curved elegant style ===== -->
   
-  <!-- ===== TOP: 雨 (rain) radical ===== -->
-  <!-- Main top horizontal bar -->
-  <rect x="52" y="48" width="96" height="9" rx="1" fill="#F2E8DF" opacity="0.95"/>
+  <!-- Top curved horizontal -->
+  <path 
+    d="M58 52 Q100 48, 142 52" 
+    stroke="#F5EBE0" 
+    stroke-width="5" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.95"
+  />
   
-  <!-- Left pillar -->
-  <rect x="54" y="48" width="7" height="36" rx="1" fill="#F2E8DF" opacity="0.95"/>
+  <!-- Left curved pillar -->
+  <path 
+    d="M62 52 Q60 65, 62 82" 
+    stroke="#F5EBE0" 
+    stroke-width="4.5" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.95"
+  />
   
-  <!-- Right pillar -->
-  <rect x="139" y="48" width="7" height="36" rx="1" fill="#F2E8DF" opacity="0.95"/>
+  <!-- Right curved pillar -->
+  <path 
+    d="M138 52 Q140 65, 138 82" 
+    stroke="#F5EBE0" 
+    stroke-width="4.5" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.95"
+  />
   
-  <!-- Inner horizontal -->
-  <rect x="61" y="60" width="78" height="5" rx="1" fill="#F2E8DF" opacity="0.9"/>
+  <!-- Inner curved horizontal -->
+  <path 
+    d="M68 64 Q100 61, 132 64" 
+    stroke="#F5EBE0" 
+    stroke-width="3.5" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.9"
+  />
   
-  <!-- Rain strokes (4 drops) -->
-  <rect x="70" y="67" width="5" height="18" rx="1" fill="#F2E8DF" opacity="0.92"/>
-  <rect x="88" y="67" width="5" height="14" rx="1" fill="#F2E8DF" opacity="0.92"/>
-  <rect x="106" y="67" width="5" height="14" rx="1" fill="#F2E8DF" opacity="0.92"/>
-  <rect x="124" y="67" width="5" height="18" rx="1" fill="#F2E8DF" opacity="0.92"/>
+  <!-- Rain drops - curved elegant strokes -->
+  <path 
+    d="M78 70 Q76 78, 78 88" 
+    stroke="#F5EBE0" 
+    stroke-width="3.5" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.9"
+  />
+  <path 
+    d="M100 70 Q98 76, 100 84" 
+    stroke="#F5EBE0" 
+    stroke-width="3.5" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.9"
+  />
+  <path 
+    d="M122 70 Q124 78, 122 88" 
+    stroke="#F5EBE0" 
+    stroke-width="3.5" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.9"
+  />
   
-  <!-- ===== BOTTOM: 林 (forest) - two 木 ===== -->
+  <!-- ===== BOTTOM: 林 (forest) - elegant curved style ===== -->
   
-  <!-- LEFT 木 -->
-  <rect x="48" y="98" width="42" height="6" rx="1" fill="#F2E8DF" opacity="0.95"/>
-  <rect x="65" y="92" width="7" height="60" rx="1" fill="#F2E8DF" opacity="0.95"/>
-  <!-- Branches -->
-  <path d="M50 128 L65 145 L65 152 L58 152 L48 138 Z" fill="#F2E8DF" opacity="0.9"/>
-  <path d="M72 152 L72 145 L87 128 L90 138 L80 152 Z" fill="#F2E8DF" opacity="0.9"/>
+  <!-- LEFT 木 - with flowing curves -->
+  <!-- Curved horizontal -->
+  <path 
+    d="M52 108 Q70 105, 88 108" 
+    stroke="#F5EBE0" 
+    stroke-width="4" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.95"
+  />
+  <!-- Curved vertical trunk -->
+  <path 
+    d="M70 100 Q68 125, 70 155" 
+    stroke="#F5EBE0" 
+    stroke-width="4" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.95"
+  />
+  <!-- Left sweeping branch -->
+  <path 
+    d="M70 130 Q58 142, 48 155" 
+    stroke="#F5EBE0" 
+    stroke-width="3.5" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.9"
+  />
+  <!-- Right sweeping branch -->
+  <path 
+    d="M70 130 Q82 142, 92 155" 
+    stroke="#F5EBE0" 
+    stroke-width="3.5" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.9"
+  />
   
-  <!-- RIGHT 木 -->
-  <rect x="110" y="98" width="42" height="6" rx="1" fill="#F2E8DF" opacity="0.95"/>
-  <rect x="127" y="92" width="7" height="60" rx="1" fill="#F2E8DF" opacity="0.95"/>
-  <!-- Branches -->
-  <path d="M112 128 L127 145 L127 152 L120 152 L110 138 Z" fill="#F2E8DF" opacity="0.9"/>
-  <path d="M134 152 L134 145 L149 128 L152 138 L142 152 Z" fill="#F2E8DF" opacity="0.9"/>
+  <!-- RIGHT 木 - with flowing curves -->
+  <!-- Curved horizontal -->
+  <path 
+    d="M112 108 Q130 105, 148 108" 
+    stroke="#F5EBE0" 
+    stroke-width="4" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.95"
+  />
+  <!-- Curved vertical trunk -->
+  <path 
+    d="M130 100 Q128 125, 130 155" 
+    stroke="#F5EBE0" 
+    stroke-width="4" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.95"
+  />
+  <!-- Left sweeping branch -->
+  <path 
+    d="M130 130 Q118 142, 108 155" 
+    stroke="#F5EBE0" 
+    stroke-width="3.5" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.9"
+  />
+  <!-- Right sweeping branch -->
+  <path 
+    d="M130 130 Q142 142, 152 155" 
+    stroke="#F5EBE0" 
+    stroke-width="3.5" 
+    stroke-linecap="round" 
+    fill="none" 
+    opacity="0.9"
+  />
   
-  <!-- Subtle worn edges - integrated into the seal edge -->
-  <ellipse cx="100" cy="13" rx="8" ry="2" fill="#faf8f5"/>
-  <ellipse cx="45" cy="188" rx="6" ry="2" fill="#faf8f5"/>
-  <ellipse cx="155" cy="188" rx="5" ry="2" fill="#faf8f5"/>
-  <ellipse cx="12" cy="100" rx="2" ry="6" fill="#faf8f5"/>
-  <ellipse cx="188" cy="85" rx="2" ry="5" fill="#faf8f5"/>
-  <ellipse cx="188" cy="140" rx="2" ry="4" fill="#faf8f5"/>
-  <ellipse cx="12" cy="55" rx="2" ry="4" fill="#faf8f5"/>
+  <!-- Subtle worn edges - very minimal -->
+  <ellipse cx="100" cy="11" rx="5" ry="2" fill="#faf8f5"/>
+  <ellipse cx="12" cy="100" rx="2" ry="4" fill="#faf8f5"/>
+  <ellipse cx="188" cy="100" rx="2" ry="4" fill="#faf8f5"/>
+  <ellipse cx="100" cy="189" rx="4" ry="2" fill="#faf8f5"/>
   
-  <!-- Tiny imperfections for authenticity -->
-  <circle cx="180" cy="25" r="1.5" fill="#faf8f5" opacity="0.7"/>
-  <circle cx="22" cy="175" r="1.5" fill="#faf8f5" opacity="0.7"/>
-  <circle cx="178" cy="178" r="2" fill="#faf8f5" opacity="0.6"/>
-  <circle cx="22" cy="22" r="1.5" fill="#faf8f5" opacity="0.5"/>
+  <!-- Corner imperfections -->
+  <circle cx="16" cy="16" r="1.5" fill="#faf8f5" opacity="0.6"/>
+  <circle cx="184" cy="184" r="1.5" fill="#faf8f5" opacity="0.6"/>
 </svg>
