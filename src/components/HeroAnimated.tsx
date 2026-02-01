@@ -24,10 +24,10 @@ function useParticleCanvas() {
 
   const createParticle = useCallback((width: number, height: number): Particle => {
     const colors = [
-      "rgba(139, 35, 35, alpha)",    // Vermillion
-      "rgba(99, 102, 241, alpha)",   // Indigo
-      "rgba(168, 85, 247, alpha)",   // Purple  
-      "rgba(67, 56, 202, alpha)",    // Tech indigo
+      "rgba(139, 35, 35, alpha)",    // 故宫红墙 Forbidden City red
+      "rgba(255, 136, 16, alpha)",   // Orange autumn
+      "rgba(255, 216, 102, alpha)",  // Golden leaf
+      "rgba(224, 88, 32, alpha)",    // Vermillion orange
     ];
     
     return {
@@ -135,11 +135,11 @@ export default function HeroAnimated({ onLogoAnimationComplete }: HeroAnimatedPr
 
       {/* Center content with FLYING LOGO */}
       <div className="relative z-10 flex flex-col items-center justify-center">
-        {/* Rotating outer ring - tech/classified feel */}
+        {/* Rotating outer ring - autumn red/gold feel */}
         <motion.div
           className="absolute w-80 h-80 lg:w-[500px] lg:h-[500px] rounded-full"
           style={{
-            background: "conic-gradient(from 0deg, transparent, rgba(139, 35, 35, 0.08), transparent, rgba(99, 102, 241, 0.06), transparent, rgba(168, 85, 247, 0.06), transparent)",
+            background: "conic-gradient(from 0deg, transparent, rgba(139, 35, 35, 0.08), transparent, rgba(255, 180, 40, 0.06), transparent, rgba(255, 136, 16, 0.06), transparent)",
           }}
           animate={{ 
             rotate: 360,
@@ -155,7 +155,7 @@ export default function HeroAnimated({ onLogoAnimationComplete }: HeroAnimatedPr
         <motion.div
           className="absolute w-64 h-64 lg:w-96 lg:h-96 rounded-full"
           style={{
-            background: "conic-gradient(from 180deg, transparent, rgba(67, 56, 202, 0.05), transparent, rgba(139, 35, 35, 0.05), transparent)",
+            background: "conic-gradient(from 180deg, transparent, rgba(255, 216, 102, 0.05), transparent, rgba(139, 35, 35, 0.05), transparent)",
           }}
           animate={{ 
             rotate: -360,

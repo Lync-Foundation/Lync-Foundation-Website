@@ -22,7 +22,7 @@ export default function Footer() {
           {/* Logo */}
           <Link href="/" className="mb-12 group">
             <Image
-              src="/lync-icon.svg"
+              src="/lync-icon-new.svg"
               alt="Lync Foundation"
               width={48}
               height={48}

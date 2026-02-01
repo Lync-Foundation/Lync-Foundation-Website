@@ -96,8 +96,8 @@ export default function FlyingLogo({ onAnimationComplete }: FlyingLogoProps) {
 
   // Get visual properties based on phase
   const getLeafStyle = (leafIndex: number) => {
-    const sketchColors = ["#8B2323", "#6366F1", "#A855F7"]; // Vermillion and logo gradient sketch colors
-    const midColors = ["#6B8CF5", "#8866F0", "#A66FE8"]; // Partial gradient colors
+    const sketchColors = ["#FFD866", "#E05820", "#8B2323"]; // Golden to vermillion sketch colors
+    const midColors = ["#FFC040", "#D04028", "#9E2626"]; // Autumn transition colors
     const finalGradients = [
       "url(#upperWingGradient)",
       "url(#innerCurveGradient)", 
@@ -171,7 +171,7 @@ export default function FlyingLogo({ onAnimationComplete }: FlyingLogoProps) {
       className="fixed inset-0 z-40 pointer-events-none flex items-center justify-center"
       animate={containerControls}
     >
-      {/* Ambient glow that grows with the animation - subtle for light theme */}
+      {/* Ambient glow that grows with the animation - autumn red/gold theme */}
       <motion.div
         className="absolute w-[600px] h-[600px] rounded-full"
         initial={{ opacity: 0, scale: 0.3 }}
@@ -181,7 +181,7 @@ export default function FlyingLogo({ onAnimationComplete }: FlyingLogoProps) {
         }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
         style={{
-          background: "radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(168, 85, 247, 0.15) 40%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255, 180, 40, 0.25) 0%, rgba(139, 35, 35, 0.15) 40%, transparent 70%)",
           filter: "blur(60px)",
         }}
       />
@@ -224,40 +224,42 @@ export default function FlyingLogo({ onAnimationComplete }: FlyingLogoProps) {
               className="w-full h-full"
               style={{ overflow: 'visible' }}
               animate={{
-                filter: phase === "flying" ? "drop-shadow(0 0 20px rgba(105, 78, 250, 0.5))" : "none",
+                filter: phase === "flying" ? "drop-shadow(0 0 20px rgba(255, 150, 24, 0.5))" : "none",
               }}
               transition={{ duration: 0.5 }}
             >
               <defs>
-                {/* Upper Wing Gradient: Light tip, smooth transition, dark bottom */}
+                {/* Upper Wing Gradient: 香山红叶 - golden tip to 故宫红墙 base */}
                 <linearGradient id="upperWingGradient" gradientUnits="userSpaceOnUse" x1="207" y1="229" x2="537" y2="655">
-                  <stop offset="0%" stopColor="#e8f8ff" />
-                  <stop offset="10%" stopColor="#d0efff" />
-                  <stop offset="20%" stopColor="#b8e6ff" />
-                  <stop offset="30%" stopColor="#a9dbff" />
-                  <stop offset="40%" stopColor="#99c3ff" />
-                  <stop offset="50%" stopColor="#89a7ff" />
-                  <stop offset="60%" stopColor="#7881ff" />
-                  <stop offset="70%" stopColor="#7374ff" />
-                  <stop offset="80%" stopColor="#6c5bfe" />
-                  <stop offset="100%" stopColor="#664af7" />
+                  <stop offset="0%" stopColor="#FFF8DC" />
+                  <stop offset="10%" stopColor="#FFE488" />
+                  <stop offset="20%" stopColor="#FFC844" />
+                  <stop offset="30%" stopColor="#FF9E18" />
+                  <stop offset="40%" stopColor="#FF7010" />
+                  <stop offset="50%" stopColor="#E04420" />
+                  <stop offset="60%" stopColor="#D03428" />
+                  <stop offset="70%" stopColor="#B82828" />
+                  <stop offset="85%" stopColor="#8B2323" />
+                  <stop offset="100%" stopColor="#7A1F1F" />
                 </linearGradient>
-                {/* Inner Curve Gradient: Lighter tip, darker bottom */}
+                {/* Inner Curve Gradient: Golden tip to deep red base */}
                 <linearGradient id="innerCurveGradient" gradientUnits="userSpaceOnUse" x1="268" y1="446" x2="459" y2="602">
-                  <stop offset="0%" stopColor="#90b3ff" />
-                  <stop offset="15%" stopColor="#7c8bff" />
-                  <stop offset="30%" stopColor="#6f68ff" />
-                  <stop offset="50%" stopColor="#664af7" />
-                  <stop offset="100%" stopColor="#664af7" />
+                  <stop offset="0%" stopColor="#FFD866" />
+                  <stop offset="20%" stopColor="#FFA020" />
+                  <stop offset="40%" stopColor="#E05820" />
+                  <stop offset="60%" stopColor="#B83028" />
+                  <stop offset="80%" stopColor="#8B2323" />
+                  <stop offset="100%" stopColor="#7A1F1F" />
                 </linearGradient>
-                {/* Lower Wing Gradient: Deep indigo to lavender-purple */}
+                {/* Lower Wing Gradient: 故宫红墙 base (40%) then rapid to golden tip */}
                 <linearGradient id="lowerWingGradient" gradientUnits="userSpaceOnUse" x1="465" y1="722" x2="836" y2="357">
-                  <stop offset="0%" stopColor="#664af7" />
-                  <stop offset="20%" stopColor="#6c5bfe" />
-                  <stop offset="40%" stopColor="#8460ff" />
-                  <stop offset="60%" stopColor="#8f6aff" />
-                  <stop offset="80%" stopColor="#9e78ff" />
-                  <stop offset="100%" stopColor="#ab84ff" />
+                  <stop offset="0%" stopColor="#7A1F1F" />
+                  <stop offset="20%" stopColor="#8B2323" />
+                  <stop offset="40%" stopColor="#9E2626" />
+                  <stop offset="55%" stopColor="#D04028" />
+                  <stop offset="70%" stopColor="#F07818" />
+                  <stop offset="85%" stopColor="#FFB428" />
+                  <stop offset="100%" stopColor="#FFE066" />
                 </linearGradient>
               </defs>
 
@@ -292,7 +294,7 @@ export default function FlyingLogo({ onAnimationComplete }: FlyingLogoProps) {
               key={`particle-${i}`}
               className="absolute w-2 h-2 rounded-full"
               style={{
-                background: i % 3 === 0 ? "#e8f8ff" : i % 3 === 1 ? "#664af7" : "#ab84ff",
+                background: i % 3 === 0 ? "#FFE066" : i % 3 === 1 ? "#FF8810" : "#8B2323",
               }}
               initial={{ 
                 x: (Math.random() - 0.5) * 200,

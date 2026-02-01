@@ -72,20 +72,20 @@ html {
   background: linear-gradient(90deg, transparent, rgba(139, 35, 35, 0.5), transparent);
 }
 
-/* Logo gradient colors */
+/* Logo gradient colors - 香山红叶 autumn red/gold theme */
 .gradient-text {
-  background: linear-gradient(135deg, #7DD3FC 0%, #6366F1 50%, #A855F7 100%);
+  background: linear-gradient(135deg, #FFD866 0%, #FF8810 35%, #D03428 70%, #8B2323 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-border {
-  border-image: linear-gradient(135deg, #7DD3FC, #6366F1, #A855F7) 1;
+  border-image: linear-gradient(135deg, #FFD866, #FF8810, #8B2323) 1;
 }
 
 .gradient-glow {
-  box-shadow: 0 0 60px rgba(99, 102, 241, 0.1), 0 0 120px rgba(168, 85, 247, 0.08);
+  box-shadow: 0 0 60px rgba(255, 180, 40, 0.1), 0 0 120px rgba(139, 35, 35, 0.08);
 }
 
 /* Vermillion glow - subtle on light */

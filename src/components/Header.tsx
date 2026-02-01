@@ -86,7 +86,7 @@ export default function Header({ showLogo = true }: HeaderProps) {
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
               <Image
-                src="/lync-icon.svg"
+                src="/lync-icon-new.svg"
                 alt="Lync Foundation"
                 width={54}
                 height={54}

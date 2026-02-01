@@ -66,7 +66,7 @@ export default function ImperialBackground() {
         }}
       />
 
-      {/* Tech accent glow - logo colors */}
+      {/* Tech accent glow - autumn red/gold logo colors */}
       <motion.div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px]"
         animate={{
@@ -79,7 +79,7 @@ export default function ImperialBackground() {
           ease: "easeInOut",
         }}
         style={{
-          background: "radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.04) 40%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(255, 180, 40, 0.08) 0%, rgba(139, 35, 35, 0.04) 40%, transparent 70%)",
         }}
       />
 
