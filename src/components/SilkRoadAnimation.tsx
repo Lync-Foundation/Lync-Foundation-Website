@@ -50,18 +50,18 @@ export default function SilkRoadAnimation() {
     }
 
     const particles: Particle[] = [];
-    const particleCount = 25; // Much fewer particles
+    const particleCount = 50; // More particles for enhanced effect
 
-    // Initialize sparse particles
+    // Initialize particles across the screen
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: 1 + Math.random() * 2, // Smaller size
+        size: 1 + Math.random() * 2.5, // Varied size
         color: getColor(1),
-        vx: (Math.random() - 0.5) * 0.15, // Slower movement
-        vy: (Math.random() - 0.5) * 0.15,
-        alpha: 0.1 + Math.random() * 0.2, // Lower opacity
+        vx: (Math.random() - 0.5) * 0.12, // Gentle movement
+        vy: (Math.random() - 0.5) * 0.12,
+        alpha: 0.12 + Math.random() * 0.25, // Slightly more visible
         pulseSpeed: 0.005 + Math.random() * 0.01,
         pulsePhase: Math.random() * Math.PI * 2,
       });
