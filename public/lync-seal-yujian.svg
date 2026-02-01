@@ -87,5 +87,33 @@
     d="M50 142 Q44 138, 55 132 Q72 125, 90 128 Q105 125, 112 140 Q118 152, 108 156 Q98 150, 85 146 Q65 150, 55 146 Q48 148, 50 142 Z"
     fill="#C52F2F" id="yu-s12" data-stroke="12" data-char="yu"
   />
+
+
+  <!-- ========== CHARACTER 2: Jian (4 strokes) ========== -->
+  <!-- Position: x=125-195 -->
   
+  <!-- Stroke 1: Shu (vertical) left side -->
+  <path 
+    d="M138 38 Q134 42, 135 52 L135 95 Q135 102, 139 100 Q143 98, 142 92 L142 50 Q143 44, 138 38 Z"
+    fill="#C52F2F" id="jian-s01" data-stroke="1" data-char="jian"
+  />
+  
+  <!-- Stroke 2: Hengzhe (horizontal + turn down) -->
+  <path 
+    d="M140 42 Q145 38, 160 39 Q175 38, 185 42 Q189 46, 187 52 L187 95 Q187 102, 183 100 Q180 98, 181 92 L181 48 Q178 44, 168 45 Q155 47, 145 45 Q141 46, 140 42 Z"
+    fill="#C52F2F" id="jian-s02" data-stroke="2" data-char="jian"
+  />
+  
+  <!-- Stroke 3: Pie (left-falling) - left leg of Er -->
+  <path 
+    d="M152 100 Q148 105, 140 120 Q132 138, 128 155 Q126 165, 132 168 Q138 165, 140 155 Q146 138, 154 120 Q160 108, 152 100 Z"
+    fill="#C52F2F" id="jian-s03" data-stroke="3" data-char="jian"
+  />
+  
+  <!-- Stroke 4: Shuwangou (vertical curve hook) - right leg sweeping right -->
+  <path 
+    d="M168 100 Q164 106, 165 118 Q164 135, 168 148 Q172 158, 182 162 Q195 160, 205 155 Q212 150, 208 145 Q200 148, 188 152 Q178 150, 176 140 Q174 125, 175 112 Q176 104, 168 100 Z"
+    fill="#C52F2F" id="jian-s04" data-stroke="4" data-char="jian"
+  />
+
 </svg>

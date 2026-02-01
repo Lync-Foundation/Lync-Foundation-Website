@@ -31,6 +31,18 @@ const YU_STROKES = [
   "M50 142 Q44 138, 55 132 Q72 125, 90 128 Q105 125, 112 140 Q118 152, 108 156 Q98 150, 85 146 Q65 150, 55 146 Q48 148, 50 142 Z",
 ];
 
+// Stroke paths for Jian character - 4 strokes in correct order
+const JIAN_STROKES = [
+  // Stroke 1: Shu (vertical) left side
+  "M138 38 Q134 42, 135 52 L135 95 Q135 102, 139 100 Q143 98, 142 92 L142 50 Q143 44, 138 38 Z",
+  // Stroke 2: Hengzhe (horizontal + turn down)
+  "M140 42 Q145 38, 160 39 Q175 38, 185 42 Q189 46, 187 52 L187 95 Q187 102, 183 100 Q180 98, 181 92 L181 48 Q178 44, 168 45 Q155 47, 145 45 Q141 46, 140 42 Z",
+  // Stroke 3: Pie (left-falling) - left leg
+  "M152 100 Q148 105, 140 120 Q132 138, 128 155 Q126 165, 132 168 Q138 165, 140 155 Q146 138, 154 120 Q160 108, 152 100 Z",
+  // Stroke 4: Shuwangou (vertical curve hook) - right leg
+  "M168 100 Q164 106, 165 118 Q164 135, 168 148 Q172 158, 182 162 Q195 160, 205 155 Q212 150, 208 145 Q200 148, 188 152 Q178 150, 176 140 Q174 125, 175 112 Q176 104, 168 100 Z",
+];
+
 // Border paths
 const OUTER_BORDER = "M10 12 C20 6, 80 8, 200 6 C320 8, 380 6, 390 12 C398 20, 400 35, 398 55 C400 100, 398 145, 400 165 C398 180, 395 192, 390 194 C380 200, 320 198, 200 200 C80 198, 20 200, 10 194 C3 188, 1 178, 3 160 C1 115, 3 70, 1 45 C3 28, 6 16, 10 12 Z";
 const INNER_BORDER = "M22 24 C32 19, 85 20, 200 19 C315 20, 368 19, 378 24 C385 30, 387 42, 385 58 C387 100, 385 142, 387 160 C385 172, 382 182, 378 184 C368 189, 315 187, 200 189 C85 187, 32 189, 22 184 C15 179, 13 170, 15 154 C13 112, 15 72, 13 52 C15 38, 18 28, 22 24 Z";
@@ -84,10 +96,10 @@ export default function AnimatedSeal() {
           transition={{ duration: BORDER_DURATION * 0.8, delay: 0.3, ease: "easeInOut" }}
         />
 
-        {/* Character strokes - animate one by one */}
+        {/* Yu character strokes - animate one by one */}
         {YU_STROKES.map((strokePath, index) => (
           <motion.path
-            key={index}
+            key={`yu-${index}`}
             d={strokePath}
             fill={STROKE_COLOR}
             initial={{ opacity: 0, scale: 0.8 }}
@@ -95,6 +107,23 @@ export default function AnimatedSeal() {
             transition={{
               duration: STROKE_DURATION,
               delay: BORDER_DURATION + 0.2 + index * STROKE_DELAY,
+              ease: "easeOut",
+            }}
+            style={{ transformOrigin: "center", transformBox: "fill-box" }}
+          />
+        ))}
+
+        {/* Jian character strokes - animate after Yu completes */}
+        {JIAN_STROKES.map((strokePath, index) => (
+          <motion.path
+            key={`jian-${index}`}
+            d={strokePath}
+            fill={STROKE_COLOR}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+            transition={{
+              duration: STROKE_DURATION,
+              delay: BORDER_DURATION + 0.2 + (YU_STROKES.length + index) * STROKE_DELAY,
               ease: "easeOut",
             }}
             style={{ transformOrigin: "center", transformBox: "fill-box" }}
