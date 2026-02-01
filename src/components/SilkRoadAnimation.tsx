@@ -12,8 +12,6 @@ export default function SilkRoadAnimation({ onLogoReveal }: SilkRoadAnimationPro
   const startTimeRef = useRef<number>(0);
   const logoRevealedRef = useRef(false);
   const hasInitializedRef = useRef(false);
-
-  // Check if animation already played
   const hasPlayedRef = useRef(false);
   
   useEffect(() => {
@@ -26,15 +24,15 @@ export default function SilkRoadAnimation({ onLogoReveal }: SilkRoadAnimationPro
     }
   }, [onLogoReveal]);
 
-  // Color interpolation
+  // Smooth color interpolation for silk gradient
   const getColor = useCallback((progress: number, alpha: number = 1) => {
     const colors = [
-      [122, 31, 31],   // deep red
-      [184, 40, 40],   // crimson
-      [224, 88, 32],   // orange  
-      [255, 136, 16],  // amber
-      [255, 180, 40],  // gold
       [255, 216, 102], // light gold
+      [255, 180, 40],  // gold
+      [255, 136, 16],  // amber
+      [224, 88, 32],   // orange  
+      [184, 40, 40],   // crimson
+      [139, 35, 35],   // deep red
     ];
     
     const idx = Math.min(Math.floor(progress * (colors.length - 1)), colors.length - 2);
@@ -50,7 +48,6 @@ export default function SilkRoadAnimation({ onLogoReveal }: SilkRoadAnimationPro
   }, []);
 
   useEffect(() => {
-    // Skip if already played
     if (hasPlayedRef.current) return;
     if (hasInitializedRef.current) return;
     hasInitializedRef.current = true;
@@ -60,7 +57,6 @@ export default function SilkRoadAnimation({ onLogoReveal }: SilkRoadAnimationPro
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Setup canvas
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
@@ -71,26 +67,53 @@ export default function SilkRoadAnimation({ onLogoReveal }: SilkRoadAnimationPro
     const LOGO_X = 75;
     const LOGO_Y = 56;
 
-    // Ribbon data
-    const ribbons = Array.from({ length: 7 }, (_, i) => ({
-      yOffset: height * 0.15 + (height * 0.65 * i / 6),
-      amplitude: 40 + Math.random() * 40,
-      phase: Math.random() * Math.PI * 2,
-      width: 4 + Math.random() * 3,
-      speed: 0.004 + Math.random() * 0.002,
-      waveSpeed: 1 + Math.random() * 0.5,
-      delay: i * 0.15,
-      progress: 0,
-      length: 0.5 + Math.random() * 0.3,
-      isLogoRibbon: i === 1,
-    }));
+    // Only 3 silk ribbons - elegant Dunhuang style
+    const ribbons = [
+      {
+        yOffset: height * 0.25,
+        amplitude: 50,
+        phase: 0,
+        width: 6,
+        speed: 0.003,
+        waveFreq: 2.5,
+        delay: 0,
+        progress: 0,
+        length: 0.6,
+        isLogoRibbon: false,
+        colorOffset: 0,
+      },
+      {
+        yOffset: height * 0.45,
+        amplitude: 60,
+        phase: Math.PI / 3,
+        width: 7,
+        speed: 0.0035,
+        waveFreq: 2,
+        delay: 0.3,
+        progress: 0,
+        length: 0.55,
+        isLogoRibbon: true, // This one flies to logo
+        colorOffset: 0.2,
+      },
+      {
+        yOffset: height * 0.65,
+        amplitude: 45,
+        phase: Math.PI / 2,
+        width: 5,
+        speed: 0.0025,
+        waveFreq: 3,
+        delay: 0.6,
+        progress: 0,
+        length: 0.5,
+        isLogoRibbon: false,
+        colorOffset: 0.4,
+      },
+    ];
 
-    // Particles
-    const particles: Array<{x: number; y: number; vx: number; vy: number; life: number; maxLife: number; size: number; color: string}> = [];
-
-    // Timing
+    // Timing constants
     const FLOW_END = 5.0;
-    const FLY_END = 7.0;
+    const FLY_START = 5.0;
+    const FLY_END = 7.5;
     const ORBIT_END = 8.5;
     const LOGO_REVEAL_TIME = 8.0;
 
@@ -99,14 +122,13 @@ export default function SilkRoadAnimation({ onLogoReveal }: SilkRoadAnimationPro
     const animate = () => {
       const elapsed = (Date.now() - startTimeRef.current) / 1000;
 
-      // End animation
+      // End animation - clear everything
       if (elapsed > ORBIT_END) {
         sessionStorage.setItem("silkRoadAnimationPlayed", "true");
         if (!logoRevealedRef.current) {
           logoRevealedRef.current = true;
           onLogoReveal?.();
         }
-        // Clear canvas and stop
         ctx.clearRect(0, 0, width, height);
         return;
       }
@@ -119,153 +141,134 @@ export default function SilkRoadAnimation({ onLogoReveal }: SilkRoadAnimationPro
 
       ctx.clearRect(0, 0, width, height);
 
+      // Calculate fade out for cleanup
+      const cleanupFade = elapsed > LOGO_REVEAL_TIME 
+        ? Math.max(0, 1 - (elapsed - LOGO_REVEAL_TIME) / 0.5) 
+        : 1;
+
       // Draw each ribbon
       ribbons.forEach((ribbon) => {
         const adjustedTime = Math.max(0, elapsed - ribbon.delay);
         if (adjustedTime <= 0) return;
 
-        // Update progress
+        // Update progress during flow phase
         if (elapsed < FLOW_END) {
           ribbon.progress = Math.min(1, ribbon.progress + ribbon.speed);
         }
 
         const points: { x: number; y: number }[] = [];
-        const startX = width + 100;
-        const pathLength = width + 200;
+        const startX = width + 150;
+        const pathLength = width + 300;
 
-        // Is this the flying ribbon phase?
-        const isFlying = ribbon.isLogoRibbon && elapsed > FLOW_END;
-        const flyProgress = isFlying ? Math.min(1, (elapsed - FLOW_END) / (FLY_END - FLOW_END)) : 0;
+        // Check if this ribbon should fly to logo
+        const shouldFly = ribbon.isLogoRibbon && elapsed >= FLY_START;
+        const flyProgress = shouldFly ? Math.min(1, (elapsed - FLY_START) / (FLY_END - FLY_START)) : 0;
         const orbitProgress = elapsed > FLY_END ? Math.min(1, (elapsed - FLY_END) / (ORBIT_END - FLY_END)) : 0;
 
-        if (isFlying) {
-          // FLYING RIBBON - flies from its position to logo and orbits
-          const ribbonStartX = width * 0.4;
-          const ribbonStartY = ribbon.yOffset;
-          
-          // Current position interpolating toward logo
-          const currentX = ribbonStartX + (LOGO_X - ribbonStartX) * flyProgress;
-          const currentY = ribbonStartY + (LOGO_Y - ribbonStartY) * flyProgress;
+        if (shouldFly) {
+          // FLYING RIBBON - continues from its current position toward logo
+          // Ease function for smooth movement
+          const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+          const easedFly = easeOutCubic(flyProgress);
 
-          // Draw spiral ribbon around current position
-          const segCount = 50;
-          const spiralRadius = 60 * (1 - orbitProgress * 0.8);
-          
-          for (let i = 0; i < segCount; i++) {
-            const t = i / segCount;
-            const angle = elapsed * 5 + t * Math.PI * 2;
-            const radius = spiralRadius * (1 - t * 0.5);
+          // Starting position is where the ribbon head was at FLOW_END
+          const ribbonHeadX = startX - pathLength * ribbon.progress;
+          const ribbonHeadY = ribbon.yOffset;
+
+          // Current position interpolating toward logo
+          const currentX = ribbonHeadX + (LOGO_X - ribbonHeadX) * easedFly;
+          const currentY = ribbonHeadY + (LOGO_Y - ribbonHeadY) * easedFly;
+
+          // Draw flowing tail behind the moving head
+          const tailLength = 40;
+          for (let i = 0; i < tailLength; i++) {
+            const t = i / tailLength;
+            const tailProgress = flyProgress - t * 0.3;
+            if (tailProgress < 0) continue;
+
+            const easedTail = easeOutCubic(Math.max(0, tailProgress));
+            const tx = ribbonHeadX + (LOGO_X - ribbonHeadX) * easedTail;
+            const ty = ribbonHeadY + (LOGO_Y - ribbonHeadY) * easedTail;
             
-            const x = currentX + Math.cos(angle) * radius;
-            const y = currentY + Math.sin(angle) * radius * 0.6;
+            // Add wave motion to tail
+            const wave = Math.sin(t * Math.PI * 4 + elapsed * 3) * (20 * (1 - flyProgress));
             
-            points.push({ x, y });
+            points.push({ x: tx + wave * 0.3, y: ty + wave });
+          }
+
+          // Add spiral orbit effect when close to logo
+          if (flyProgress > 0.7) {
+            const orbitPhase = orbitProgress * Math.PI * 4;
+            const orbitRadius = 40 * (1 - orbitProgress * 0.9);
             
-            // Spawn particles
-            if (Math.random() < 0.15) {
-              particles.push({
-                x, y,
-                vx: (Math.random() - 0.5) * 3,
-                vy: (Math.random() - 0.5) * 3,
-                life: 0,
-                maxLife: 30 + Math.random() * 30,
-                size: 2 + Math.random() * 2,
-                color: getColor(0.7, 1),
-              });
+            for (let i = 0; i < 20; i++) {
+              const angle = orbitPhase + (i / 20) * Math.PI * 2;
+              const r = orbitRadius * (1 - i / 40);
+              const ox = LOGO_X + Math.cos(angle) * r;
+              const oy = LOGO_Y + Math.sin(angle) * r * 0.6;
+              points.push({ x: ox, y: oy });
             }
           }
 
-          // Draw with fading opacity
-          const opacity = 1 - orbitProgress;
-          if (opacity > 0.1) {
-            drawRibbon(ctx, points, ribbon.width, opacity, getColor);
-          }
-
-          // Draw glow at logo position
-          if (flyProgress > 0.3) {
-            const glowAlpha = Math.min(0.6, flyProgress * 0.8) * (1 - orbitProgress);
-            ctx.beginPath();
-            const glowRadius = 40 + 20 * Math.sin(elapsed * 3);
-            const gradient = ctx.createRadialGradient(LOGO_X, LOGO_Y, 0, LOGO_X, LOGO_Y, glowRadius);
-            gradient.addColorStop(0, `rgba(255, 180, 40, ${glowAlpha})`);
-            gradient.addColorStop(0.5, `rgba(255, 136, 16, ${glowAlpha * 0.5})`);
-            gradient.addColorStop(1, `rgba(139, 35, 35, 0)`);
-            ctx.fillStyle = gradient;
-            ctx.arc(LOGO_X, LOGO_Y, glowRadius, 0, Math.PI * 2);
-            ctx.fill();
+          // Draw with fading
+          const opacity = cleanupFade * (1 - orbitProgress * 0.8);
+          if (opacity > 0.05 && points.length > 2) {
+            drawSilkRibbon(ctx, points, ribbon.width, opacity, getColor, ribbon.colorOffset);
           }
 
         } else {
-          // NORMAL RIBBON - flowing across screen
-          const fadeOut = elapsed > FLOW_END ? Math.max(0, 1 - (elapsed - FLOW_END) / 1.5) : 1;
+          // NORMAL FLOWING RIBBON
+          const fadeOut = elapsed > FLOW_END ? Math.max(0, 1 - (elapsed - FLOW_END) / 2) : 1;
           
-          for (let i = 0; i <= 100; i++) {
-            const t = i / 100;
+          // Skip non-logo ribbons after flow ends
+          if (!ribbon.isLogoRibbon && fadeOut <= 0) return;
+
+          // Generate smooth silk curve
+          const segments = 80;
+          for (let i = 0; i <= segments; i++) {
+            const t = i / segments;
             const visibleStart = Math.max(0, ribbon.progress - ribbon.length);
             if (t < visibleStart || t > ribbon.progress) continue;
 
             const x = startX - pathLength * t;
-            const wave1 = Math.sin(t * Math.PI * 3 + ribbon.phase + adjustedTime * ribbon.waveSpeed) * ribbon.amplitude;
-            const wave2 = Math.sin(t * Math.PI * 6 + ribbon.phase * 2 + adjustedTime * 1.5) * ribbon.amplitude * 0.3;
-            const y = ribbon.yOffset + (wave1 + wave2) * Math.sin(t * Math.PI);
+            
+            // Multi-frequency wave for silk-like undulation
+            const wave1 = Math.sin(t * Math.PI * ribbon.waveFreq + ribbon.phase + adjustedTime * 1.5) * ribbon.amplitude;
+            const wave2 = Math.sin(t * Math.PI * ribbon.waveFreq * 2 + ribbon.phase * 1.5 + adjustedTime * 2) * ribbon.amplitude * 0.3;
+            const wave3 = Math.sin(t * Math.PI * ribbon.waveFreq * 0.5 + adjustedTime * 0.8) * ribbon.amplitude * 0.4;
+            
+            // Envelope to make ribbon taper at ends
+            const envelope = Math.sin(((t - visibleStart) / (ribbon.progress - visibleStart)) * Math.PI);
+            
+            const y = ribbon.yOffset + (wave1 + wave2 + wave3) * envelope;
 
             points.push({ x, y });
-
-            // Spawn particles
-            if (Math.random() < 0.015) {
-              particles.push({
-                x, y,
-                vx: (Math.random() - 0.5) * 2,
-                vy: (Math.random() - 0.5) * 2,
-                life: 0,
-                maxLife: 40 + Math.random() * 40,
-                size: 1.5 + Math.random() * 2,
-                color: getColor(t, 1),
-              });
-            }
           }
 
-          if (fadeOut > 0.1) {
-            drawRibbon(ctx, points, ribbon.width, fadeOut, getColor);
+          if (fadeOut > 0.05 && points.length > 2) {
+            drawSilkRibbon(ctx, points, ribbon.width, fadeOut * cleanupFade, getColor, ribbon.colorOffset);
           }
         }
       });
 
-      // Draw particles
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.02;
-        p.life++;
-
-        if (p.life > p.maxLife) {
-          particles.splice(i, 1);
-          continue;
-        }
-
-        const alpha = (1 - p.life / p.maxLife) * 0.7;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * (1 - p.life / p.maxLife / 2), 0, Math.PI * 2);
-        ctx.fillStyle = p.color.replace(/[\d.]+\)$/, `${alpha})`);
-        ctx.fill();
-      }
-
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    // Draw ribbon helper
-    function drawRibbon(
+    // Draw elegant silk ribbon with gradient and sheen
+    function drawSilkRibbon(
       ctx: CanvasRenderingContext2D,
       points: { x: number; y: number }[],
       lineWidth: number,
       opacity: number,
-      getColor: (p: number, a: number) => string
+      getColor: (p: number, a: number) => string,
+      colorOffset: number
     ) {
-      if (points.length < 2) return;
+      if (points.length < 3) return;
 
+      // Create smooth curve path
       ctx.beginPath();
       ctx.moveTo(points[0].x, points[0].y);
+      
       for (let i = 1; i < points.length - 1; i++) {
         const xc = (points[i].x + points[i + 1].x) / 2;
         const yc = (points[i].y + points[i + 1].y) / 2;
@@ -273,37 +276,57 @@ export default function SilkRoadAnimation({ onLogoReveal }: SilkRoadAnimationPro
       }
       ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
 
+      // Create gradient along ribbon
       const gradient = ctx.createLinearGradient(
         points[0].x, points[0].y,
         points[points.length - 1].x, points[points.length - 1].y
       );
-      gradient.addColorStop(0, getColor(0, 0.3 * opacity));
-      gradient.addColorStop(0.2, getColor(0.2, 0.9 * opacity));
-      gradient.addColorStop(0.5, getColor(0.5, 0.95 * opacity));
-      gradient.addColorStop(0.8, getColor(0.8, 0.85 * opacity));
-      gradient.addColorStop(1, getColor(1, 0.5 * opacity));
+      
+      // Silk gradient with sheen effect
+      gradient.addColorStop(0, getColor((0 + colorOffset) % 1, 0.2 * opacity));
+      gradient.addColorStop(0.15, getColor((0.2 + colorOffset) % 1, 0.8 * opacity));
+      gradient.addColorStop(0.3, getColor((0.35 + colorOffset) % 1, 0.95 * opacity));
+      gradient.addColorStop(0.5, getColor((0.5 + colorOffset) % 1, 1 * opacity));
+      gradient.addColorStop(0.7, getColor((0.65 + colorOffset) % 1, 0.9 * opacity));
+      gradient.addColorStop(0.85, getColor((0.8 + colorOffset) % 1, 0.7 * opacity));
+      gradient.addColorStop(1, getColor((0.95 + colorOffset) % 1, 0.3 * opacity));
 
-      // Glow
+      // Draw soft glow
       ctx.save();
-      ctx.shadowColor = getColor(0.5, 0.5 * opacity);
-      ctx.shadowBlur = 15;
+      ctx.shadowColor = getColor(0.5, 0.4 * opacity);
+      ctx.shadowBlur = 20;
       ctx.strokeStyle = gradient;
-      ctx.lineWidth = lineWidth + 2;
+      ctx.lineWidth = lineWidth + 4;
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
       ctx.stroke();
       ctx.restore();
 
-      // Main line
+      // Draw main ribbon
       ctx.strokeStyle = gradient;
       ctx.lineWidth = lineWidth;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
       ctx.stroke();
+
+      // Draw silk sheen highlight
+      ctx.save();
+      ctx.globalCompositeOperation = "lighter";
+      const sheenGradient = ctx.createLinearGradient(
+        points[0].x, points[0].y - 10,
+        points[0].x, points[0].y + 10
+      );
+      sheenGradient.addColorStop(0, `rgba(255, 255, 255, 0)`);
+      sheenGradient.addColorStop(0.5, `rgba(255, 255, 255, ${0.15 * opacity})`);
+      sheenGradient.addColorStop(1, `rgba(255, 255, 255, 0)`);
+      ctx.strokeStyle = sheenGradient;
+      ctx.lineWidth = lineWidth * 0.4;
+      ctx.stroke();
+      ctx.restore();
     }
 
-    // Start animation
     animate();
 
-    // Handle resize
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -316,7 +339,6 @@ export default function SilkRoadAnimation({ onLogoReveal }: SilkRoadAnimationPro
     };
   }, [getColor, onLogoReveal]);
 
-  // Don't render if already played
   if (hasPlayedRef.current) {
     return null;
   }
