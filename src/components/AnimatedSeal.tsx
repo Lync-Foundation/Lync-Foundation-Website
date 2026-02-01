@@ -31,16 +31,25 @@ const YU_STROKES = [
   "M50 142 Q44 138, 55 132 Q72 125, 90 128 Q105 125, 112 140 Q118 152, 108 156 Q98 150, 85 146 Q65 150, 55 146 Q48 148, 50 142 Z",
 ];
 
-// Stroke paths for Jian character - 4 strokes in correct order
+// Stroke paths for Jian character - Seal Script form (7 strokes)
+// Structure: Mu (eye) on top + Er (legs) on bottom
 const JIAN_STROKES = [
-  // Stroke 1: Shu (vertical) left side
-  "M138 38 Q134 42, 135 52 L135 95 Q135 102, 139 100 Q143 98, 142 92 L142 50 Q143 44, 138 38 Z",
-  // Stroke 2: Hengzhe (horizontal + turn down)
-  "M140 42 Q145 38, 160 39 Q175 38, 185 42 Q189 46, 187 52 L187 95 Q187 102, 183 100 Q180 98, 181 92 L181 48 Q178 44, 168 45 Q155 47, 145 45 Q141 46, 140 42 Z",
-  // Stroke 3: Pie (left-falling) - left leg
-  "M152 100 Q148 105, 140 120 Q132 138, 128 155 Q126 165, 132 168 Q138 165, 140 155 Q146 138, 154 120 Q160 108, 152 100 Z",
-  // Stroke 4: Shuwangou (vertical curve hook) - right leg
-  "M168 100 Q164 106, 165 118 Q164 135, 168 148 Q172 158, 182 162 Q195 160, 205 155 Q212 150, 208 145 Q200 148, 188 152 Q178 150, 176 140 Q174 125, 175 112 Q176 104, 168 100 Z",
+  // Stroke 1: Left vertical of eye (Mu)
+  "M138 32 Q134 36, 135 45 L135 85 Q135 92, 139 90 Q143 88, 142 82 L142 42 Q143 36, 138 32 Z",
+  // Stroke 2: Top horizontal of eye
+  "M140 36 Q145 32, 160 33 Q175 32, 185 36 Q188 40, 184 43 Q178 40, 165 41 Q150 40, 144 42 Q140 40, 140 36 Z",
+  // Stroke 3: Right vertical of eye
+  "M182 32 Q186 36, 185 45 L185 85 Q185 92, 181 90 Q177 88, 178 82 L178 42 Q177 36, 182 32 Z",
+  // Stroke 4: First inner horizontal (upper pupil line)
+  "M142 52 Q148 49, 160 50 Q172 49, 178 52 Q176 56, 168 54 Q156 56, 148 54 Q142 55, 142 52 Z",
+  // Stroke 5: Second inner horizontal (lower pupil line)
+  "M142 68 Q148 65, 160 66 Q172 65, 178 68 Q176 72, 168 70 Q156 72, 148 70 Q142 71, 142 68 Z",
+  // Stroke 5b: Bottom horizontal of eye box
+  "M140 85 Q145 82, 160 83 Q175 82, 185 85 Q188 89, 184 92 Q178 89, 165 90 Q150 89, 144 91 Q140 89, 140 85 Z",
+  // Stroke 6: Pie (left-falling curved leg)
+  "M152 92 Q148 98, 142 112 Q136 128, 130 145 Q126 158, 132 162 Q138 158, 142 145 Q148 128, 154 112 Q160 100, 152 92 Z",
+  // Stroke 7: Shuwangou (curved sweeping right leg)
+  "M168 92 Q164 100, 165 115 Q164 135, 170 150 Q176 162, 188 166 Q200 164, 210 158 Q216 152, 212 147 Q202 152, 192 155 Q180 152, 176 142 Q172 128, 174 112 Q176 100, 168 92 Z",
 ];
 
 // Border paths
