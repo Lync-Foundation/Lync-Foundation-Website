@@ -14,13 +14,13 @@ export default function Mission() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95, zIndex: 20 }}
           animate={{ 
-            opacity: [0, 0.9, 0.9, 0.12],
+            opacity: [0, 0.9, 0.9, 0.15],
             scale: 1,
             zIndex: 0
           }}
           transition={{ 
-            duration: 8,
-            times: [0, 0.1, 0.7, 1],
+            duration: 14,
+            times: [0, 0.08, 0.8, 1],
             ease: "easeOut"
           }}
           className="absolute left-[60%] top-1/2 -translate-x-1/4 -translate-y-[45%] pointer-events-none"
