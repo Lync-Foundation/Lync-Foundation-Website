@@ -137,12 +137,28 @@ export default function HanziSeal() {
           <circle cx="120" cy="510" r="2" fill={STROKE_COLOR} opacity="0.5" />
           <circle cx="260" cy="512" r="2" fill={STROKE_COLOR} opacity="0.4" />
 
-          {/* Decorative interior curves - smooth flowing lines between characters */}
-          {/* Top flowing curve - between 遇 and 東 */}
+          {/* Traditional Chinese decorative elements - 祥云 (auspicious clouds) and flowing patterns */}
+          
+          {/* Top-left cloud spiral (祥云) */}
           <path
-            d="M175 90 
-               Q190 75, 195 100 
-               C200 130, 185 145, 195 155"
+            d="M60 190 
+               C55 185, 48 188, 50 195
+               C52 202, 60 205, 65 200
+               C70 195, 68 188, 62 186
+               C56 184, 50 190, 55 198
+               C60 206, 72 204, 75 195"
+            fill="none"
+            stroke={STROKE_COLOR}
+            strokeWidth="1.2"
+            opacity="0.3"
+            strokeLinecap="round"
+          />
+          
+          {/* Top-left cloud tail */}
+          <path
+            d="M75 195 
+               C82 192, 88 198, 85 205
+               C82 212, 75 210, 78 203"
             fill="none"
             stroke={STROKE_COLOR}
             strokeWidth="1"
@@ -150,51 +166,102 @@ export default function HanziSeal() {
             strokeLinecap="round"
           />
           
-          {/* Middle flowing curve - diagonal through center */}
+          {/* Center flowing flame element */}
           <path
-            d="M170 200 
-               Q185 220, 180 250 
-               C175 280, 195 290, 185 310"
+            d="M185 245 
+               C178 235, 172 242, 175 252
+               C178 262, 188 258, 185 248
+               C182 238, 175 245, 180 255
+               C185 265, 195 260, 192 250"
+            fill="none"
+            stroke={STROKE_COLOR}
+            strokeWidth="1.1"
+            opacity="0.28"
+            strokeLinecap="round"
+          />
+          
+          {/* Center flame tendril */}
+          <path
+            d="M192 250 
+               C198 255, 195 265, 188 268
+               C181 271, 178 265, 182 260"
+            fill="none"
+            stroke={STROKE_COLOR}
+            strokeWidth="0.9"
+            opacity="0.22"
+            strokeLinecap="round"
+          />
+          
+          {/* Bottom-right cloud spiral */}
+          <path
+            d="M320 400 
+               C325 395, 332 398, 330 405
+               C328 412, 320 415, 315 410
+               C310 405, 312 398, 318 396
+               C324 394, 330 400, 325 408
+               C320 416, 308 414, 305 405"
+            fill="none"
+            stroke={STROKE_COLOR}
+            strokeWidth="1.2"
+            opacity="0.3"
+            strokeLinecap="round"
+          />
+          
+          {/* Bottom-right cloud extension */}
+          <path
+            d="M305 405 
+               C298 402, 292 408, 295 415
+               C298 422, 305 420, 302 413"
             fill="none"
             stroke={STROKE_COLOR}
             strokeWidth="1"
+            opacity="0.25"
+            strokeLinecap="round"
+          />
+          
+          {/* Left side flowing wave */}
+          <path
+            d="M48 350 
+               C42 345, 38 352, 42 360
+               C46 368, 55 365, 52 355
+               C49 345, 42 350, 46 362"
+            fill="none"
+            stroke={STROKE_COLOR}
+            strokeWidth="1"
+            opacity="0.25"
+            strokeLinecap="round"
+          />
+          
+          {/* Right side decorative swirl */}
+          <path
+            d="M340 155 
+               C345 150, 352 153, 350 160
+               C348 167, 340 170, 335 165
+               C330 160, 332 153, 338 151
+               C344 149, 350 155, 345 163"
+            fill="none"
+            stroke={STROKE_COLOR}
+            strokeWidth="1.1"
+            opacity="0.28"
+            strokeLinecap="round"
+          />
+          
+          {/* Small accent spirals */}
+          <path
+            d="M170 140 C165 135, 160 140, 165 148 C170 156, 178 152, 175 145"
+            fill="none"
+            stroke={STROKE_COLOR}
+            strokeWidth="0.8"
             opacity="0.2"
             strokeLinecap="round"
           />
           
-          {/* Bottom flowing curve - between 見 and 方 */}
           <path
-            d="M175 430 
-               Q190 415, 195 440 
-               C200 470, 185 485, 195 495"
-            fill="none"
-            stroke={STROKE_COLOR}
-            strokeWidth="1"
-            opacity="0.25"
-            strokeLinecap="round"
-          />
-          
-          {/* Left side subtle curve */}
-          <path
-            d="M50 185 
-               Q42 210, 48 235 
-               C54 260, 42 280, 50 300"
+            d="M180 380 C175 375, 170 380, 175 388 C180 396, 188 392, 185 385"
             fill="none"
             stroke={STROKE_COLOR}
             strokeWidth="0.8"
-            opacity="0.18"
-            strokeLinecap="round"
-          />
-          
-          {/* Right side subtle curve */}
-          <path
-            d="M335 220 
-               Q342 250, 338 280 
-               C334 310, 345 340, 338 365"
-            fill="none"
-            stroke={STROKE_COLOR}
-            strokeWidth="0.8"
-            opacity="0.18"
+            opacity="0.2"
             strokeLinecap="round"
           />
 
