@@ -31,7 +31,7 @@ const YU_STROKES = [
   "M50 142 Q44 138, 55 132 Q72 125, 90 128 Q105 125, 112 140 Q118 152, 108 156 Q98 150, 85 146 Q65 150, 55 146 Q48 148, 50 142 Z",
 ];
 
-// Stroke paths for Jian character - Seal Script form (7 strokes)
+// Stroke paths for Jian character - Seal Script form (8 strokes)
 // Structure: Mu (eye) on top + Er (legs) on bottom
 const JIAN_STROKES = [
   // Stroke 1: Left vertical of eye (Mu)
@@ -50,6 +50,29 @@ const JIAN_STROKES = [
   "M152 92 Q148 98, 142 112 Q136 128, 130 145 Q126 158, 132 162 Q138 158, 142 145 Q148 128, 154 112 Q160 100, 152 92 Z",
   // Stroke 7: Shuwangou (curved sweeping right leg)
   "M168 92 Q164 100, 165 115 Q164 135, 170 150 Q176 162, 188 166 Q200 164, 210 158 Q216 152, 212 147 Q202 152, 192 155 Q180 152, 176 142 Q172 128, 174 112 Q176 100, 168 92 Z",
+];
+
+// Stroke paths for Dong character - Seal Script form (8 strokes)
+// Structure: Sun (Ri) in center + Tree (Mu) vertical through with diagonals
+const DONG_STROKES = [
+  // Stroke 1: Top horizontal of tree (above sun)
+  "M232 32 Q238 28, 255 29 Q272 28, 278 32 Q280 36, 276 39 Q268 36, 255 37 Q242 36, 236 38 Q232 36, 232 32 Z",
+  // Stroke 2: Left vertical of sun box
+  "M238 42 Q234 46, 235 54 L235 88 Q235 94, 239 92 Q243 90, 242 85 L242 52 Q243 47, 238 42 Z",
+  // Stroke 3: Top horizontal of sun
+  "M240 46 Q246 42, 255 43 Q264 42, 270 46 Q272 50, 268 52 Q262 49, 255 50 Q248 49, 244 51 Q240 49, 240 46 Z",
+  // Stroke 4: Right vertical of sun box
+  "M268 42 Q272 46, 271 54 L271 88 Q271 94, 267 92 Q263 90, 264 85 L264 52 Q263 47, 268 42 Z",
+  // Stroke 5: Inner horizontal of sun (middle line)
+  "M242 66 Q248 63, 255 64 Q262 63, 268 66 Q266 70, 260 68 Q252 70, 246 68 Q242 69, 242 66 Z",
+  // Stroke 5b: Bottom horizontal of sun
+  "M240 88 Q246 85, 255 86 Q264 85, 270 88 Q272 92, 268 94 Q262 91, 255 92 Q248 91, 244 93 Q240 91, 240 88 Z",
+  // Stroke 6: Main vertical of tree (through sun)
+  "M252 28 Q248 32, 250 42 L250 145 Q250 155, 254 152 Q258 149, 257 142 L257 40 Q258 34, 252 28 Z",
+  // Stroke 7: Left diagonal (pie - tree root)
+  "M250 95 Q246 102, 238 118 Q230 135, 222 152 Q218 164, 224 168 Q230 164, 236 150 Q244 132, 252 115 Q258 102, 250 95 Z",
+  // Stroke 8: Right diagonal (na - tree root sweeping right)
+  "M256 95 Q260 102, 268 118 Q276 135, 286 152 Q292 164, 298 160 Q300 154, 292 142 Q282 125, 272 108 Q262 95, 256 95 Z",
 ];
 
 // Border paths
@@ -133,6 +156,23 @@ export default function AnimatedSeal() {
             transition={{
               duration: STROKE_DURATION,
               delay: BORDER_DURATION + 0.2 + (YU_STROKES.length + index) * STROKE_DELAY,
+              ease: "easeOut",
+            }}
+            style={{ transformOrigin: "center", transformBox: "fill-box" }}
+          />
+        ))}
+
+        {/* Dong character strokes - animate after Jian completes */}
+        {DONG_STROKES.map((strokePath, index) => (
+          <motion.path
+            key={`dong-${index}`}
+            d={strokePath}
+            fill={STROKE_COLOR}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+            transition={{
+              duration: STROKE_DURATION,
+              delay: BORDER_DURATION + 0.2 + (YU_STROKES.length + JIAN_STROKES.length + index) * STROKE_DELAY,
               ease: "easeOut",
             }}
             style={{ transformOrigin: "center", transformBox: "fill-box" }}

@@ -145,4 +145,65 @@
     fill="#C52F2F" id="jian-s07" data-stroke="7" data-char="jian"
   />
 
+
+  <!-- ========== CHARACTER 3: Dong - Seal Script (8 strokes) ========== -->
+  <!-- Position: x=220-290 -->
+  <!-- Structure: Sun (Ri) in center + Tree (Mu) vertical through with diagonals -->
+  
+  <!-- Stroke 1: Top horizontal of tree (above sun) -->
+  <path 
+    d="M232 32 Q238 28, 255 29 Q272 28, 278 32 Q280 36, 276 39 Q268 36, 255 37 Q242 36, 236 38 Q232 36, 232 32 Z"
+    fill="#C52F2F" id="dong-s01" data-stroke="1" data-char="dong"
+  />
+  
+  <!-- === Ri (sun) component - strokes 2-5 === -->
+  
+  <!-- Stroke 2: Left vertical of sun box -->
+  <path 
+    d="M238 42 Q234 46, 235 54 L235 88 Q235 94, 239 92 Q243 90, 242 85 L242 52 Q243 47, 238 42 Z"
+    fill="#C52F2F" id="dong-s02" data-stroke="2" data-char="dong"
+  />
+  
+  <!-- Stroke 3: Top horizontal of sun -->
+  <path 
+    d="M240 46 Q246 42, 255 43 Q264 42, 270 46 Q272 50, 268 52 Q262 49, 255 50 Q248 49, 244 51 Q240 49, 240 46 Z"
+    fill="#C52F2F" id="dong-s03" data-stroke="3" data-char="dong"
+  />
+  
+  <!-- Stroke 4: Right vertical of sun box -->
+  <path 
+    d="M268 42 Q272 46, 271 54 L271 88 Q271 94, 267 92 Q263 90, 264 85 L264 52 Q263 47, 268 42 Z"
+    fill="#C52F2F" id="dong-s04" data-stroke="4" data-char="dong"
+  />
+  
+  <!-- Stroke 5: Inner horizontal of sun (middle line) -->
+  <path 
+    d="M242 66 Q248 63, 255 64 Q262 63, 268 66 Q266 70, 260 68 Q252 70, 246 68 Q242 69, 242 66 Z"
+    fill="#C52F2F" id="dong-s05" data-stroke="5" data-char="dong"
+  />
+  
+  <!-- Stroke 5b: Bottom horizontal of sun -->
+  <path 
+    d="M240 88 Q246 85, 255 86 Q264 85, 270 88 Q272 92, 268 94 Q262 91, 255 92 Q248 91, 244 93 Q240 91, 240 88 Z"
+    fill="#C52F2F" id="dong-s05b" data-stroke="5" data-char="dong"
+  />
+  
+  <!-- Stroke 6: Main vertical of tree (through sun) -->
+  <path 
+    d="M252 28 Q248 32, 250 42 L250 145 Q250 155, 254 152 Q258 149, 257 142 L257 40 Q258 34, 252 28 Z"
+    fill="#C52F2F" id="dong-s06" data-stroke="6" data-char="dong"
+  />
+  
+  <!-- Stroke 7: Left diagonal (pie - tree root) -->
+  <path 
+    d="M250 95 Q246 102, 238 118 Q230 135, 222 152 Q218 164, 224 168 Q230 164, 236 150 Q244 132, 252 115 Q258 102, 250 95 Z"
+    fill="#C52F2F" id="dong-s07" data-stroke="7" data-char="dong"
+  />
+  
+  <!-- Stroke 8: Right diagonal (na - tree root sweeping right) -->
+  <path 
+    d="M256 95 Q260 102, 268 118 Q276 135, 286 152 Q292 164, 298 160 Q300 154, 292 142 Q282 125, 272 108 Q262 95, 256 95 Z"
+    fill="#C52F2F" id="dong-s08" data-stroke="8" data-char="dong"
+  />
+
 </svg>
