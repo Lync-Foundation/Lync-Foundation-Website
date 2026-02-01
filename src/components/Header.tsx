@@ -62,17 +62,9 @@ export default function Header({ showLogo = true }: HeaderProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Don't render header until animation completes
-  if (!showLogo) {
-    return null;
-  }
-
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+    <header
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-700 ${
         isScrolled
           ? "bg-[#f8f6f2]/95 backdrop-blur-xl border-b border-[#8B2323]/10 shadow-sm"
           : "bg-transparent"
@@ -230,6 +222,6 @@ export default function Header({ showLogo = true }: HeaderProps) {
           </nav>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }
