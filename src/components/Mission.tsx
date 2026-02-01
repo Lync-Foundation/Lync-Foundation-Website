@@ -7,19 +7,13 @@ import Link from "next/link";
 export default function Mission() {
   return (
     <>
-      {/* Section 1: Declaration */}
-      <section id="about" className="relative py-24 lg:py-32">
-        <div className="absolute top-0 left-0 right-0">
-          <div className="h-[1px] bg-gradient-to-r from-transparent via-[#8B2323]/40 to-transparent" />
-          <div className="h-12 bg-gradient-to-b from-[#8B2323]/5 to-transparent" />
-        </div>
-
-        <div className="relative w-full px-8 lg:px-16 xl:px-24">
+      {/* Section 1: Hero Declaration - Animation plays here */}
+      <section id="about" className="relative min-h-screen flex items-center">
+        <div className="relative w-full px-8 lg:px-16 xl:px-24 pt-28">
           <motion.div
             initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.5 }}
             className="max-w-5xl"
           >
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extralight tracking-wide leading-tight mb-8">
@@ -33,10 +27,31 @@ export default function Mission() {
             </p>
           </motion.div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 6 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-2"
+          >
+            <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-[#8B2323]/40 to-transparent" />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Section 2: Why CNY */}
       <section className="relative py-20 lg:py-28">
+        <div className="absolute top-0 left-0 right-0">
+          <div className="h-[1px] bg-gradient-to-r from-transparent via-[#8B2323]/40 to-transparent" />
+          <div className="h-12 bg-gradient-to-b from-[#8B2323]/5 to-transparent" />
+        </div>
+        
         <div className="relative w-full px-8 lg:px-16 xl:px-24">
           <motion.div
             initial={{ opacity: 0, y: 40 }}

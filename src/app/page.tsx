@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Header from "@/components/Header";
-import HeroAnimated from "@/components/HeroAnimated";
 import Mission from "@/components/Mission";
 import Footer from "@/components/Footer";
 import ImperialBackground from "@/components/ImperialBackground";
+import SilkRoadAnimation from "@/components/SilkRoadAnimation";
 
 export default function Home() {
   const [logoInNav, setLogoInNav] = useState(false);
@@ -15,11 +15,13 @@ export default function Home() {
       {/* Persistent imperial background */}
       <ImperialBackground />
       
+      {/* Silk Road Animation - plays in the hero section */}
+      <SilkRoadAnimation onAnimationComplete={() => setLogoInNav(true)} />
+      
       {/* Content layer */}
       <div className="relative z-10">
         <Header showLogo={logoInNav} />
         <main>
-          <HeroAnimated onLogoAnimationComplete={() => setLogoInNav(true)} />
           <Mission />
         </main>
         <Footer />
