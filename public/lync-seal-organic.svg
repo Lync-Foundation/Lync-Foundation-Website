@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 220" fill="none">
+  <!-- Irregular organic seal shape with decorative flourishes -->
+  
+  <!-- Main seal body - rounded irregular shape -->
+  <path 
+    d="M25 35
+       C20 25, 35 15, 55 12
+       Q90 8, 125 12
+       C145 15, 160 25, 155 35
+       C158 45, 160 60, 158 80
+       Q160 120, 156 155
+       C154 170, 148 180, 135 185
+       Q90 192, 45 185
+       C32 180, 26 170, 24 155
+       Q20 120, 22 80
+       C20 60, 22 45, 25 35 Z"
+    fill="none"
+    stroke="#C52F2F"
+    stroke-width="5"
+  />
+  
+  <!-- Inner border - following organic shape -->
+  <path 
+    d="M38 45
+       C35 38, 48 30, 62 28
+       Q90 24, 118 28
+       C132 30, 145 38, 142 45
+       C144 55, 146 68, 144 85
+       Q146 115, 143 145
+       C141 156, 136 164, 125 168
+       Q90 174, 55 168
+       C44 164, 39 156, 37 145
+       Q34 115, 36 85
+       C34 68, 36 55, 38 45 Z"
+    fill="none"
+    stroke="#C52F2F"
+    stroke-width="2.5"
+  />
+  
+  <!-- Top horizontal with curve -->
+  <path 
+    d="M52 55 
+       Q48 53, 52 51
+       Q70 47, 90 46
+       Q110 47, 128 51
+       Q132 53, 128 55
+       Q126 57, 122 56
+       Q105 53, 90 52
+       Q75 53, 58 56
+       Q54 57, 52 55 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- Left pillar -->
+  <path 
+    d="M56 51 
+       Q52 53, 53 57
+       Q50 68, 54 80
+       Q56 85, 59 82
+       Q54 78, 56 66
+       Q58 55, 56 51 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- Right pillar -->
+  <path 
+    d="M124 51 
+       Q128 53, 127 57
+       Q130 68, 126 80
+       Q124 85, 121 82
+       Q126 78, 124 66
+       Q122 55, 124 51 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- Inner horizontal -->
+  <path 
+    d="M62 66 
+       Q58 64, 62 62
+       Q75 59, 90 58
+       Q105 59, 118 62
+       Q122 64, 118 66
+       Q116 68, 112 67
+       Q100 64, 90 64
+       Q80 64, 68 67
+       Q64 68, 62 66 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- Rain drops -->
+  <path d="M74 72 Q70 70, 71 74 Q68 82, 73 90 Q77 88, 75 80 Q72 75, 74 72 Z" fill="#C52F2F"/>
+  <path d="M90 72 Q86 70, 87 74 Q84 80, 89 88 Q93 86, 91 78 Q88 74, 90 72 Z" fill="#C52F2F"/>
+  <path d="M106 72 Q102 70, 103 74 Q100 82, 105 90 Q109 88, 107 80 Q104 75, 106 72 Z" fill="#C52F2F"/>
+  
+  <!-- LEFT tree horizontal -->
+  <path 
+    d="M48 105 
+       Q44 103, 48 101
+       Q60 97, 70 96
+       Q80 97, 92 101
+       Q96 103, 92 105
+       Q90 107, 86 106
+       Q76 103, 70 102
+       Q64 103, 54 106
+       Q50 107, 48 105 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- Left vertical trunk -->
+  <path 
+    d="M68 94 
+       Q64 96, 65 100
+       Q62 118, 66 140
+       Q68 146, 71 142
+       Q69 132, 70 108
+       Q72 98, 68 94 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- Left sweep stroke -->
+  <path 
+    d="M66 122 
+       Q62 120, 58 124
+       Q48 134, 40 146
+       Q36 152, 42 150
+       Q50 140, 60 128
+       Q66 122, 66 122 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- Left right sweep -->
+  <path 
+    d="M72 122 
+       Q76 120, 80 124
+       Q88 134, 96 146
+       Q100 152, 94 150
+       Q86 140, 78 128
+       Q72 122, 72 122 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- RIGHT tree horizontal -->
+  <path 
+    d="M88 105 
+       Q84 103, 88 101
+       Q100 97, 110 96
+       Q120 97, 132 101
+       Q136 103, 132 105
+       Q130 107, 126 106
+       Q116 103, 110 102
+       Q104 103, 94 106
+       Q90 107, 88 105 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- Right vertical trunk -->
+  <path 
+    d="M108 94 
+       Q104 96, 105 100
+       Q102 118, 106 140
+       Q108 146, 111 142
+       Q109 132, 110 108
+       Q112 98, 108 94 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- Right left sweep -->
+  <path 
+    d="M106 122 
+       Q102 120, 98 124
+       Q88 134, 80 146
+       Q76 152, 82 150
+       Q90 140, 100 128
+       Q106 122, 106 122 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- Right right sweep -->
+  <path 
+    d="M112 122 
+       Q116 120, 120 124
+       Q128 134, 136 146
+       Q140 152, 134 150
+       Q126 140, 118 128
+       Q112 122, 112 122 Z" 
+    fill="#C52F2F"
+  />
+  
+  <!-- Left spiral flourish -->
+  <path 
+    d="M35 190
+       Q28 188, 25 195
+       Q20 205, 30 210
+       Q42 215, 55 210
+       Q65 205, 60 198
+       Q55 192, 45 195
+       Q38 198, 42 202
+       Q46 205, 52 202"
+    fill="none"
+    stroke="#C52F2F"
+    stroke-width="3.5"
+    stroke-linecap="round"
+  />
+  
+  <!-- Right decorative swirl -->
+  <path 
+    d="M145 190
+       Q152 188, 155 195
+       Q160 205, 150 210
+       Q138 215, 125 210
+       Q115 205, 120 198
+       Q125 192, 135 195
+       Q142 198, 138 202
+       Q134 205, 128 202"
+    fill="none"
+    stroke="#C52F2F"
+    stroke-width="3.5"
+    stroke-linecap="round"
+  />
+  
+  <!-- Center connecting flourish -->
+  <path 
+    d="M60 205 
+       Q75 215, 90 212
+       Q105 215, 120 205"
+    fill="none"
+    stroke="#C52F2F"
+    stroke-width="2.5"
+    stroke-linecap="round"
+  />
+  
+  <!-- Small decorative dot -->
+  <circle cx="90" cy="178" r="4" fill="#C52F2F"/>
+</svg>
