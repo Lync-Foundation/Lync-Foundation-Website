@@ -75,6 +75,19 @@ const DONG_STROKES = [
   "M256 95 Q260 102, 268 118 Q276 135, 286 152 Q292 164, 298 160 Q300 154, 292 142 Q282 125, 272 108 Q262 95, 256 95 Z",
 ];
 
+// Stroke paths for Fang character - Seal Script form (4 strokes)
+// Structure: Dot + horizontal + vertical-hook + left-falling
+const FANG_STROKES = [
+  // Stroke 1: Dian (dot) at top
+  "M345 32 Q340 28, 342 35 Q340 44, 348 50 Q356 44, 352 38 Q354 32, 345 32 Z",
+  // Stroke 2: Heng (horizontal)
+  "M318 55 Q325 50, 345 52 Q365 50, 375 55 Q378 60, 374 64 Q366 60, 350 62 Q334 60, 324 63 Q318 60, 318 55 Z",
+  // Stroke 3: Hengzhegou (horizontal-bend-hook)
+  "M345 55 Q340 60, 342 72 L342 135 Q340 148, 348 155 Q358 150, 368 145 Q376 140, 372 135 Q364 140, 355 145 Q350 142, 350 132 L350 70 Q352 62, 345 55 Z",
+  // Stroke 4: Pie (left-falling)
+  "M342 72 Q336 82, 328 100 Q318 122, 308 145 Q302 160, 310 165 Q318 160, 325 142 Q336 118, 346 95 Q354 80, 342 72 Z",
+];
+
 // Border paths
 const OUTER_BORDER = "M10 12 C20 6, 80 8, 200 6 C320 8, 380 6, 390 12 C398 20, 400 35, 398 55 C400 100, 398 145, 400 165 C398 180, 395 192, 390 194 C380 200, 320 198, 200 200 C80 198, 20 200, 10 194 C3 188, 1 178, 3 160 C1 115, 3 70, 1 45 C3 28, 6 16, 10 12 Z";
 const INNER_BORDER = "M22 24 C32 19, 85 20, 200 19 C315 20, 368 19, 378 24 C385 30, 387 42, 385 58 C387 100, 385 142, 387 160 C385 172, 382 182, 378 184 C368 189, 315 187, 200 189 C85 187, 32 189, 22 184 C15 179, 13 170, 15 154 C13 112, 15 72, 13 52 C15 38, 18 28, 22 24 Z";
@@ -173,6 +186,23 @@ export default function AnimatedSeal() {
             transition={{
               duration: STROKE_DURATION,
               delay: BORDER_DURATION + 0.2 + (YU_STROKES.length + JIAN_STROKES.length + index) * STROKE_DELAY,
+              ease: "easeOut",
+            }}
+            style={{ transformOrigin: "center", transformBox: "fill-box" }}
+          />
+        ))}
+
+        {/* Fang character strokes - animate after Dong completes */}
+        {FANG_STROKES.map((strokePath, index) => (
+          <motion.path
+            key={`fang-${index}`}
+            d={strokePath}
+            fill={STROKE_COLOR}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+            transition={{
+              duration: STROKE_DURATION,
+              delay: BORDER_DURATION + 0.2 + (YU_STROKES.length + JIAN_STROKES.length + DONG_STROKES.length + index) * STROKE_DELAY,
               ease: "easeOut",
             }}
             style={{ transformOrigin: "center", transformBox: "fill-box" }}

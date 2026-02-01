@@ -206,4 +206,33 @@
     fill="#C52F2F" id="dong-s08" data-stroke="8" data-char="dong"
   />
 
+
+  <!-- ========== CHARACTER 4: Fang - Seal Script (4 strokes) ========== -->
+  <!-- Position: x=310-380 -->
+  <!-- Structure: Dot at top + horizontal + vertical-hook + left-falling -->
+  
+  <!-- Stroke 1: Dian (dot) at top -->
+  <path 
+    d="M345 32 Q340 28, 342 35 Q340 44, 348 50 Q356 44, 352 38 Q354 32, 345 32 Z"
+    fill="#C52F2F" id="fang-s01" data-stroke="1" data-char="fang"
+  />
+  
+  <!-- Stroke 2: Heng (horizontal) -->
+  <path 
+    d="M318 55 Q325 50, 345 52 Q365 50, 375 55 Q378 60, 374 64 Q366 60, 350 62 Q334 60, 324 63 Q318 60, 318 55 Z"
+    fill="#C52F2F" id="fang-s02" data-stroke="2" data-char="fang"
+  />
+  
+  <!-- Stroke 3: Hengzhegou (horizontal-bend-hook) - forms the body -->
+  <path 
+    d="M345 55 Q340 60, 342 72 L342 135 Q340 148, 348 155 Q358 150, 368 145 Q376 140, 372 135 Q364 140, 355 145 Q350 142, 350 132 L350 70 Q352 62, 345 55 Z"
+    fill="#C52F2F" id="fang-s03" data-stroke="3" data-char="fang"
+  />
+  
+  <!-- Stroke 4: Pie (left-falling) -->
+  <path 
+    d="M342 72 Q336 82, 328 100 Q318 122, 308 145 Q302 160, 310 165 Q318 160, 325 142 Q336 118, 346 95 Q354 80, 342 72 Z"
+    fill="#C52F2F" id="fang-s04" data-stroke="4" data-char="fang"
+  />
+
 </svg>
