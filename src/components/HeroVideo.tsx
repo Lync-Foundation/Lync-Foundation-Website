@@ -117,7 +117,7 @@ export default function HeroVideo({
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           >
             <Image
-              src="/logo.png"
+              src="/lync-icon.svg"
               alt="Lync Foundation"
               width={180}
               height={180}

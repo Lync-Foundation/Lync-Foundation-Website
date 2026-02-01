@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef, useCallback } from "react";
-import AnimatedLogo from "./AnimatedLogo";
+import { useEffect, useRef, useCallback, useState } from "react";
+import FlyingLogo from "./FlyingLogo";
 
 // Particle system for the mystical effect
 function useParticleCanvas() {
@@ -24,22 +24,22 @@ function useParticleCanvas() {
 
   const createParticle = useCallback((width: number, height: number): Particle => {
     const colors = [
+      "rgba(139, 35, 35, alpha)",    // Vermillion
       "rgba(99, 102, 241, alpha)",   // Indigo
       "rgba(168, 85, 247, alpha)",   // Purple  
-      "rgba(125, 211, 252, alpha)",  // Sky blue
-      "rgba(139, 35, 35, alpha)",    // Vermillion
+      "rgba(67, 56, 202, alpha)",    // Tech indigo
     ];
     
     return {
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3 - 0.1,
-      size: Math.random() * 2 + 0.5,
-      alpha: Math.random() * 0.5 + 0.1,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25 - 0.08,
+      size: Math.random() * 1.5 + 0.5,
+      alpha: Math.random() * 0.3 + 0.1,
       color: colors[Math.floor(Math.random() * colors.length)],
       life: 0,
-      maxLife: Math.random() * 400 + 200,
+      maxLife: Math.random() * 500 + 300,
     };
   }, []);
 
@@ -57,7 +57,7 @@ function useParticleCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    const particleCount = Math.min(80, Math.floor(window.innerWidth / 20));
+    const particleCount = Math.min(50, Math.floor(window.innerWidth / 30));
     particlesRef.current = Array.from({ length: particleCount }, () => 
       createParticle(canvas.width, canvas.height)
     );
@@ -84,9 +84,10 @@ function useParticleCanvas() {
         ctx.fillStyle = p.color.replace("alpha", String(currentAlpha));
         ctx.fill();
 
+        // Subtle glow
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
-        ctx.fillStyle = p.color.replace("alpha", String(currentAlpha * 0.1));
+        ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = p.color.replace("alpha", String(currentAlpha * 0.08));
         ctx.fill();
 
         if (p.life > p.maxLife || p.x < -10 || p.x > canvas.width + 10 || 
@@ -109,102 +110,103 @@ function useParticleCanvas() {
   return canvasRef;
 }
 
-export default function HeroAnimated() {
+interface HeroAnimatedProps {
+  onLogoAnimationComplete?: () => void;
+}
+
+export default function HeroAnimated({ onLogoAnimationComplete }: HeroAnimatedProps) {
   const canvasRef = useParticleCanvas();
+  const [logoFlown, setLogoFlown] = useState(false);
+
+  const handleAnimationComplete = useCallback(() => {
+    setLogoFlown(true);
+    onLogoAnimationComplete?.();
+  }, [onLogoAnimationComplete]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Light theme background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#f5f0e6] via-[#f0ebe3] to-[#ebe5dc]" />
-
-      {/* Animated lattice pattern */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage: `
-              linear-gradient(90deg, rgba(139, 35, 35, 0.5) 1px, transparent 1px),
-              linear-gradient(rgba(139, 35, 35, 0.5) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px',
-            animation: 'latticeShift 30s linear infinite',
-          }}
-        />
-      </div>
-
-      {/* Radial glows */}
-      <motion.div 
-        className="absolute inset-0 opacity-15"
-        animate={{
-          background: [
-            "radial-gradient(ellipse 40% 35% at 50% 50%, rgba(139, 35, 35, 0.25) 0%, transparent 70%)",
-            "radial-gradient(ellipse 45% 40% at 48% 52%, rgba(139, 35, 35, 0.3) 0%, transparent 70%)",
-            "radial-gradient(ellipse 40% 35% at 52% 48%, rgba(139, 35, 35, 0.25) 0%, transparent 70%)",
-            "radial-gradient(ellipse 40% 35% at 50% 50%, rgba(139, 35, 35, 0.25) 0%, transparent 70%)",
-          ]
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Logo gradient glow */}
-      <motion.div 
-        className="absolute inset-0 opacity-10"
-        animate={{
-          background: [
-            "radial-gradient(ellipse 30% 25% at 50% 50%, rgba(99, 102, 241, 0.2) 0%, transparent 60%)",
-            "radial-gradient(ellipse 35% 30% at 50% 50%, rgba(168, 85, 247, 0.25) 0%, transparent 60%)",
-            "radial-gradient(ellipse 30% 25% at 50% 50%, rgba(125, 211, 252, 0.2) 0%, transparent 60%)",
-            "radial-gradient(ellipse 30% 25% at 50% 50%, rgba(99, 102, 241, 0.2) 0%, transparent 60%)",
-          ]
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
+      {/* Transparent - relies on ImperialBackground */}
 
       {/* Particle canvas */}
       <canvas 
         ref={canvasRef} 
-        className="absolute inset-0 pointer-events-none opacity-40"
+        className="absolute inset-0 pointer-events-none opacity-60"
       />
 
-      {/* Vignette */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.2) 100%)"
-        }}
-      />
-
-      {/* Center content with ANIMATED SVG LOGO */}
+      {/* Center content with FLYING LOGO */}
       <div className="relative z-10 flex flex-col items-center justify-center">
-        {/* Rotating outer ring */}
+        {/* Rotating outer ring - tech/classified feel */}
         <motion.div
-          className="absolute w-72 h-72 lg:w-96 lg:h-96 rounded-full"
+          className="absolute w-80 h-80 lg:w-[500px] lg:h-[500px] rounded-full"
           style={{
-            background: "conic-gradient(from 0deg, transparent, rgba(139, 35, 35, 0.06), transparent, rgba(99, 102, 241, 0.06), transparent, rgba(168, 85, 247, 0.06), transparent)",
+            background: "conic-gradient(from 0deg, transparent, rgba(139, 35, 35, 0.08), transparent, rgba(99, 102, 241, 0.06), transparent, rgba(168, 85, 247, 0.06), transparent)",
           }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          animate={{ 
+            rotate: 360,
+            opacity: logoFlown ? 0 : 1,
+          }}
+          transition={{ 
+            rotate: { duration: 60, repeat: Infinity, ease: "linear" },
+            opacity: { duration: 0.5 }
+          }}
         />
 
-        {/* Second rotating ring */}
+        {/* Second rotating ring - inner */}
         <motion.div
-          className="absolute w-56 h-56 lg:w-72 lg:h-72 rounded-full"
+          className="absolute w-64 h-64 lg:w-96 lg:h-96 rounded-full"
           style={{
-            background: "conic-gradient(from 180deg, transparent, rgba(125, 211, 252, 0.04), transparent, rgba(139, 35, 35, 0.04), transparent)",
+            background: "conic-gradient(from 180deg, transparent, rgba(67, 56, 202, 0.05), transparent, rgba(139, 35, 35, 0.05), transparent)",
           }}
-          animate={{ rotate: -360 }}
-          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+          animate={{ 
+            rotate: -360,
+            opacity: logoFlown ? 0 : 1,
+          }}
+          transition={{ 
+            rotate: { duration: 45, repeat: Infinity, ease: "linear" },
+            opacity: { duration: 0.5 }
+          }}
         />
 
-        {/* ANIMATED SVG LOGO - draws itself in */}
-        <AnimatedLogo size={220} className="lg:w-[280px] lg:h-[280px]" />
+        {/* Inner pulsing ring - classified seal */}
+        <motion.div
+          className="absolute w-48 h-48 lg:w-64 lg:h-64 rounded-full border border-[#8B2323]/15"
+          animate={{
+            scale: [1, 1.08, 1],
+            opacity: logoFlown ? 0 : [0.4, 0.7, 0.4],
+          }}
+          transition={{
+            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+            opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+          }}
+        />
+
+        {/* Tech crosshairs */}
+        {!logoFlown && (
+          <>
+            <motion.div 
+              className="absolute w-[2px] h-32 lg:h-48 bg-gradient-to-b from-transparent via-[#8B2323]/20 to-transparent"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            />
+            <motion.div 
+              className="absolute w-32 lg:w-48 h-[2px] bg-gradient-to-r from-transparent via-[#8B2323]/20 to-transparent"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            />
+          </>
+        )}
+
+        {/* FLYING LOGO - draws then flies to nav corner */}
+        <FlyingLogo onAnimationComplete={handleAnimationComplete} />
       </div>
 
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 4 }}
+        animate={{ opacity: logoFlown ? 1 : 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
         className="absolute bottom-12 z-10"
       >
         <motion.div
@@ -212,17 +214,9 @@ export default function HeroAnimated() {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-2"
         >
-          <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-zinc-500 to-transparent" />
+          <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-[#8B2323]/40 to-transparent" />
         </motion.div>
       </motion.div>
-
-      {/* CSS Keyframes */}
-      <style jsx>{`
-        @keyframes latticeShift {
-          0% { transform: translate(0, 0); }
-          100% { transform: translate(60px, 60px); }
-        }
-      `}</style>
     </section>
   );
 }

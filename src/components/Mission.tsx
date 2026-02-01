@@ -4,21 +4,14 @@ import { motion } from "framer-motion";
 
 export default function Mission() {
   return (
-    <section id="about" className="relative py-32 lg:py-48 bg-[#f5f0e6]">
-      {/* Subtle lattice pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `
-            linear-gradient(90deg, rgba(139, 35, 35, 0.4) 1px, transparent 1px),
-            linear-gradient(rgba(139, 35, 35, 0.4) 1px, transparent 1px)
-          `,
-          backgroundSize: '80px 80px'
-        }}
-      />
-
-      {/* Top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[rgba(139,35,35,0.4)] to-transparent" />
+    <section id="about" className="relative py-32 lg:py-48">
+      {/* Transparent - relies on ImperialBackground */}
+      
+      {/* Top accent line with subtle glow */}
+      <div className="absolute top-0 left-0 right-0">
+        <div className="h-[1px] bg-gradient-to-r from-transparent via-[#8B2323]/40 to-transparent" />
+        <div className="h-12 bg-gradient-to-b from-[#8B2323]/5 to-transparent" />
+      </div>
 
       <div className="relative w-full px-8 lg:px-16 xl:px-24">
         {/* Main statement */}
@@ -45,8 +38,8 @@ export default function Mission() {
           className="max-w-3xl mb-20"
         >
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-[1px] bg-gradient-to-r from-[#8B2323] to-transparent" />
-            <p className="text-xs tracking-[0.3em] uppercase text-zinc-500">About</p>
+            <div className="w-12 h-[2px] bg-gradient-to-r from-[#8B2323] to-[#8B2323]/30" />
+            <p className="text-xs tracking-[0.3em] uppercase text-[#8B2323]">About</p>
           </div>
           
           <p className="text-lg lg:text-xl font-extralight text-zinc-600 leading-relaxed">
@@ -57,17 +50,17 @@ export default function Mission() {
         </motion.div>
         
         {/* Three pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 pt-16 border-t border-zinc-300/50">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 pt-16 border-t border-[#8B2323]/15">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="relative"
+            className="relative group"
           >
-            <div className="absolute -top-4 left-0 w-6 h-[1px] bg-[#8B2323]" />
-            <p className="text-xs tracking-[0.2em] uppercase text-zinc-500 mb-4">Principle</p>
-            <p className="text-sm text-zinc-600 leading-relaxed font-light">
+            <div className="absolute -top-4 left-0 w-8 h-[2px] bg-gradient-to-r from-[#8B2323] to-[#8B2323]/20" />
+            <p className="text-xs tracking-[0.2em] uppercase text-[#8B2323] mb-4">Principle</p>
+            <p className="text-sm text-zinc-500 leading-relaxed font-light group-hover:text-zinc-700 transition-colors duration-500">
               Trust through mathematics, not intermediaries.
             </p>
           </motion.div>
@@ -77,11 +70,11 @@ export default function Mission() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="relative group"
           >
-            <div className="absolute -top-4 left-0 w-6 h-[1px] bg-[#8B2323]" />
-            <p className="text-xs tracking-[0.2em] uppercase text-zinc-500 mb-4">Method</p>
-            <p className="text-sm text-zinc-600 leading-relaxed font-light">
+            <div className="absolute -top-4 left-0 w-8 h-[2px] bg-gradient-to-r from-[#8B2323] to-[#8B2323]/20" />
+            <p className="text-xs tracking-[0.2em] uppercase text-[#8B2323] mb-4">Method</p>
+            <p className="text-sm text-zinc-500 leading-relaxed font-light group-hover:text-zinc-700 transition-colors duration-500">
               Zero-knowledge proofs for real-world payments.
             </p>
           </motion.div>
@@ -91,11 +84,11 @@ export default function Mission() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
+            className="relative group"
           >
-            <div className="absolute -top-4 left-0 w-6 h-[1px] bg-[#8B2323]" />
-            <p className="text-xs tracking-[0.2em] uppercase text-zinc-500 mb-4">Structure</p>
-            <p className="text-sm text-zinc-600 leading-relaxed font-light">
+            <div className="absolute -top-4 left-0 w-8 h-[2px] bg-gradient-to-r from-[#8B2323] to-[#8B2323]/20" />
+            <p className="text-xs tracking-[0.2em] uppercase text-[#8B2323] mb-4">Structure</p>
+            <p className="text-sm text-zinc-500 leading-relaxed font-light group-hover:text-zinc-700 transition-colors duration-500">
               No value extraction. Pure infrastructure.
             </p>
           </motion.div>

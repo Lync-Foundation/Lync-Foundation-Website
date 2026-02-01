@@ -1,16 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f0e6;
-  --foreground: #1A1A1A;
-  --silver: #666666;
-  --gold: #B8860B;
-  --gold-light: #D4AF37;
-  --surface: #FFFFFF;
-  --surface-light: #F5F5F5;
-  --border: rgba(0, 0, 0, 0.08);
+  --background: #f8f6f2;
+  --background-secondary: #f0ece4;
+  --foreground: #1a1a1a;
+  --silver: #6b6b6b;
+  --gold: #8B6914;
+  --gold-light: #a67c1a;
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-light: rgba(248, 246, 242, 0.95);
+  --border: rgba(139, 35, 35, 0.15);
   --vermillion: #8B2323;
-  --imperial-cream: #f5f0e6;
+  --vermillion-dark: #6a1a1a;
+  --vermillion-light: #a83232;
+  --imperial-cream: #f8f6f2;
+  --tech-blue: #3b5998;
+  --tech-indigo: #4338ca;
 }
 
 @theme inline {
@@ -30,18 +35,18 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Luxury gold accent */
-.text-gold {
-  color: #D4AF37;
+/* Vermillion accent */
+.text-vermillion {
+  color: #8B2323;
 }
 
-.border-gold {
-  border-color: rgba(212, 175, 55, 0.3);
+.border-vermillion {
+  border-color: rgba(139, 35, 35, 0.3);
 }
 
 /* Silver text */
 .text-silver {
-  color: #666666;
+  color: #6b6b6b;
 }
 
 /* Refined uppercase */
@@ -60,11 +65,11 @@ html {
   font-weight: 400;
 }
 
-/* Elegant line with logo gradient */
+/* Elegant line with vermillion */
 .elegant-line {
   width: 80px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.5), rgba(168, 85, 247, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(139, 35, 35, 0.5), transparent);
 }
 
 /* Logo gradient colors */
@@ -80,36 +85,36 @@ html {
 }
 
 .gradient-glow {
-  box-shadow: 0 0 60px rgba(99, 102, 241, 0.15), 0 0 120px rgba(168, 85, 247, 0.1);
+  box-shadow: 0 0 60px rgba(99, 102, 241, 0.1), 0 0 120px rgba(168, 85, 247, 0.08);
 }
 
-/* Subtle glow */
-.glow-gold {
-  box-shadow: 0 0 80px rgba(212, 175, 55, 0.08);
+/* Vermillion glow - subtle on light */
+.glow-vermillion {
+  box-shadow: 0 0 60px rgba(139, 35, 35, 0.08), 0 0 120px rgba(139, 35, 35, 0.05);
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - light theme */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--imperial-cream);
+  background: #f8f6f2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: #d0c8bc;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #999;
+  background: #b8ae9e;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(99, 102, 241, 0.2);
-  color: #1A1A1A;
+  background: rgba(139, 35, 35, 0.15);
+  color: #1a1a1a;
 }
 
 /* Dropdown animation */
@@ -122,4 +127,38 @@ html {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 200ms ease, transform 200ms ease;
+}
+
+/* Imperial classified pattern */
+.classified-pattern {
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(139, 35, 35, 0.02) 2px,
+      rgba(139, 35, 35, 0.02) 4px
+    );
+}
+
+/* Tech grid pattern */
+.tech-grid {
+  background-image:
+    linear-gradient(rgba(139, 35, 35, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 35, 35, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Subtle noise texture */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.015;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
