@@ -10,9 +10,19 @@ export default function Mission() {
     <>
       {/* Section 1: Hero Declaration - Animation plays here */}
       <section id="about" className="relative min-h-screen flex items-center">
-        <div className="relative w-full px-8 lg:px-16 xl:px-24 pt-28">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12">
-            {/* Left: Text content */}
+        {/* Background Seal - positioned behind content */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 0.15, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+          className="absolute right-8 lg:right-16 xl:right-24 top-1/2 -translate-y-1/2 pointer-events-none z-0"
+        >
+          <HanziSeal />
+        </motion.div>
+
+        <div className="relative w-full px-8 lg:px-16 xl:px-24 pt-28 z-10">
+          <div className="flex flex-col">
+            {/* Text content */}
             <motion.div
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
@@ -28,16 +38,6 @@ export default function Mission() {
               <p className="text-lg lg:text-xl font-light text-zinc-500 leading-relaxed max-w-2xl">
                 We build trustless infrastructure to internationalize CNY — making the People&apos;s Currency accessible to everyone, everywhere.
               </p>
-            </motion.div>
-
-            {/* Right: Animated Seal */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="hidden lg:flex lg:w-[320px] xl:w-[380px] lg:justify-end lg:pr-8"
-            >
-              <HanziSeal />
             </motion.div>
           </div>
         </div>
